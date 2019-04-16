@@ -1,4 +1,8 @@
+# MacPorts, so .bashrc can see commands
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+
 source ~/.bashrc
+
 if [[ -f ~/.tokens ]]; then
 	source ~/.tokens
 fi
@@ -15,9 +19,6 @@ if [[ "$BASH_VERSINFO" -ge 4 ]]; then
 		. /opt/local/etc/profile.d/bash_completion.sh
 	fi
 fi
-
-# MacPorts
-export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 
 export CFLAGS="-I/opt/local/include"
 export CPPFLAGS="-I/opt/local/include"

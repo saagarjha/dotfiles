@@ -20,12 +20,17 @@ if [[ "$TERM" == xterm* ]]; then
 fi
 # export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 # export PS1="\u@\h \t \W$ "
-if [[ "$BASH_VERSINFO" -ge 4 ]]; then # If we have git and a recent bash
-	if [[ -x "$(which git)" && -x $(which git-ps1-status) ]]; then
-		export PS1="\[\e[32m\]\u\[\e[m\] \[\e[31m\]\D{%m/%d %T}\[\e[32m\] \[\e[34m\]\W\[\e[m\]\[\e[35m\]\$(gtimeout 1 git ps1-status)\[\e[m\]$ "
-	else
-		export PS1="\[\e[32m\]\u\[\e[m\] \[\e[31m\]\D{%m/%d %T}\[\e[32m\] \[\e[34m\]\W\[\e[m\]\[\e[35m\]$ "
+if [[ "$BASH_VERSINFO" -ge 4 ]]; then # If a recent bash
+	if [[ -x "$(which git)" && -x "$(which git-ps1-status)" ]]; then
+		if [[ -x "$(which timeout)" ]]; then
+			GIT_PS1_COMMAND="\[\e[35m\]\$(timeout 1 git ps1-status)\[\e[m\]"
+		elif [[ -x "$(which gtimeout)" ]]; then
+			GIT_PS1_COMMAND="\[\e[35m\]\$(gtimeout 1 git ps1-status)\[\e[m\]"
+		else
+			echo foo
+		fi
 	fi
+	export PS1="\[\e[32m\]\u\[\e[m\] \[\e[31m\]\D{%m/%d %T}\[\e[32m\] \[\e[34m\]\W\[\e[m\]$GIT_PS1_COMMAND$ "
 else
 	export PS1="$USER \$(date '+%m/%d %H:%m:%S') \${PWD##*/}$ " # Backup prompt with no fancy stuff
 fi
