@@ -85,11 +85,14 @@ if ask "Copy inputrc?"; then
 fi
 
 if ask "Copy nanorc?"; then
-	if [ "$OS" = "Mac" ]; then
-		checked_copy .nanorc-mac ~/.nanorc
-	elif [ "$OS" =~ "^Linux" ]; then
-		checked_copy .nanorc-linux ~/.nanorc
-	fi
+	case "$OS" in
+		"Mac")
+			checked_copy .nanorc-mac ~/.nanorc
+			;;
+		"Linux*")
+			checked_copy .nanorc-linux ~/.nanorc
+			;;
+	esac
 fi
 
 if ask "Copy clang-format?"; then
