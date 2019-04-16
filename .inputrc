@@ -1,0 +1,4 @@
+# Tab completion ignoring case
+set completion-ignore-case on
+# A bit of security protection for pasted text
+set enable-bracketed-paste on

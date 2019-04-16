@@ -1,0 +1,35 @@
+include /opt/local/share/nano/asm.nanorc
+include /opt/local/share/nano/awk.nanorc
+include /opt/local/share/nano/c.nanorc
+include /opt/local/share/nano/cmake.nanorc
+include /opt/local/share/nano/css.nanorc
+include /opt/local/share/nano/debian.nanorc
+include /opt/local/share/nano/fortran.nanorc
+include /opt/local/share/nano/gentoo.nanorc
+include /opt/local/share/nano/groff.nanorc
+include /opt/local/share/nano/html.nanorc
+include /opt/local/share/nano/java.nanorc
+include /opt/local/share/nano/makefile.nanorc
+include /opt/local/share/nano/man.nanorc
+include /opt/local/share/nano/mgp.nanorc
+include /opt/local/share/nano/mutt.nanorc
+include /opt/local/share/nano/nanorc.nanorc
+include /opt/local/share/nano/objc.nanorc
+include /opt/local/share/nano/ocaml.nanorc
+include /opt/local/share/nano/patch.nanorc
+include /opt/local/share/nano/perl.nanorc
+include /opt/local/share/nano/php.nanorc
+include /opt/local/share/nano/pov.nanorc
+include /opt/local/share/nano/python.nanorc
+include /opt/local/share/nano/ruby.nanorc
+include /opt/local/share/nano/sh.nanorc
+include /opt/local/share/nano/tcl.nanorc
+include /opt/local/share/nano/tex.nanorc
+include /opt/local/share/nano/xml.nanorc
+
+set autoindent
+set linenumbers
+set mouse
+set softwrap
+set tabsize 4
+set morespace

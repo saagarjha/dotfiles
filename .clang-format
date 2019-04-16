@@ -1,0 +1,12 @@
+﻿---
+BreakStringLiterals: 'false'
+ColumnLimit: '0'
+IndentWidth: '4'
+ObjCBlockIndentWidth: '4'
+ObjCSpaceBeforeProtocolList: 'false'
+PenaltyBreakComment: '0'
+SortIncludes: 'true'
+TabWidth: '4'
+UseTab: ForIndentation
+
+...
