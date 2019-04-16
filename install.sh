@@ -54,7 +54,7 @@ ask() {
 
 checked_copy() {
 	if [ -f "$2" ]; then
-		diff "$1" "$2" || { echo "$1 and $2 differ, stopping" && exit 1; }
+		diff "$1" "$2" || { ask "$1 and $2 differ, overwrite?" || return 0; }
 	fi
 	if [ "$#" -eq 2 ]; then
 		cp -R "$1" "$2"
