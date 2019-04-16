@@ -59,10 +59,11 @@ export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig"
 
 # stderred
 if [[ -f /usr/local/stderred/build/libstderred.dylib ]]; then
-	# export DYLD_INSERT_LIBRARIES=
 	export DYLD_INSERT_LIBRARIES="/usr/local/stderred/build/libstderred.dylib${DYLD_INSERT_LIBRARIES:+:$DYLD_INSERT_LIBRARIES}"
-	export STDERRED_BLACKLIST="^(gcc.*|g\+\+.*|clang.*|fzf)$"
+elif [[ -f /usr/local/stderred/build/libstderred.so ]]; then
+	export LD_PRELOAD="/usr/local/stderred/build/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
 fi
+export STDERRED_BLACKLIST="^(gcc.*|g\+\+.*|clang.*|fzf)$"
 
 # Dark Nano
 if [[ -f /usr/local/darknano/libdarknano.dylib ]]; then
