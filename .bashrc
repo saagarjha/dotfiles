@@ -16,7 +16,7 @@ export HISTTIMEFORMAT="%d/%m/%y %T " # Time format for history entries
 # 	PROMPT_COMMAND="history -a; iterm-set-profile; printf \"\033]0;$(tty | tail -c 8 | sed 's/ttys00*/tty/g')@$(tput cols)×$(tput lines)\007\""
 # fi
 if [[ "$TERM" == xterm* ]]; then
-	PROMPT_COMMAND="history -a; printf \"\033]0;$(tty | tail -c 8 | sed 's/ttys00*/tty/g')@$(tput cols)×$(tput lines)\007\""
+	PROMPT_COMMAND="history -a; printf \"\033]0;$(tty | sed 's/ttys00*\([0-9]*\)/tty\1/')@$(tput cols)×$(tput lines)\007\""
 fi
 # export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 # export PS1="\u@\h \t \W$ "
