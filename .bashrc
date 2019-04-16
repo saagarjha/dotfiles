@@ -24,18 +24,27 @@ if [[ "$BASH_VERSINFO" -ge 4 ]]; then # If a recent bash
 	if [[ -x "$(which git 2> /dev/null)" && -x "$(which git-ps1-status 2> /dev/null)" ]]; then
 		if [[ -x "$(which timeout 2> /dev/null)" ]]; then
 			if "$(which timeout 2> /dev/null)" 2>&1 | grep -q BusyBox; then
-				GIT_PS1_COMMAND="\[\e[35m\]\$(timeout -t 1 git ps1-status)\[\e[m\]"
+				PS1_GIT_COMMAND="\[\e[35m\]\$(timeout -t 1 git ps1-status)\[\e[m\]"
 			else
-				GIT_PS1_COMMAND="\[\e[35m\]\$(timeout 1 git ps1-status)\[\e[m\]"
+				PS1_GIT_COMMAND="\[\e[35m\]\$(timeout 1 git ps1-status)\[\e[m\]"
 			fi
 		elif [[ -x "$(which gtimeout 2> /dev/null)" ]]; then
-			GIT_PS1_COMMAND="\[\e[35m\]\$(gtimeout 1 git ps1-status)\[\e[m\]"
-		else
-			echo foo
+			PS1_GIT_COMMAND="\[\e[35m\]\$(gtimeout 1 git ps1-status)\[\e[m\]"
 		fi
 	fi
-	export PS1="\[\e[32m\]\h\[\e[m\] \[\e[31m\]\D{%m/%d %T}\[\e[32m\] \[\e[34m\]\W\[\e[m\]$GIT_PS1_COMMAND$ "
+
+	if [ "$SSH_TTY" ]; then
+		PS1_HOSTNAME="\u@\h"
+	else
+		PS1_HOSTNAME="\u"
+	fi
+	export PS1="\[\e[32m\]$PS1_HOSTNAME\[\e[m\] \[\e[31m\]\D{%m/%d %T}\[\e[32m\] \[\e[34m\]\W\[\e[m\]$PS1_GIT_COMMAND\\$ "
 else
+	if [ "$SSH_TTY" ]; then
+		PS1_HOSTNAME="$USER@$HOSTNAME"
+	else
+		PS1_HOSTNAME="$USER"
+	fi
 	export PS1="$HOSTNAME \$(date '+%m/%d %H:%m:%S') \${PWD##*/}$ " # Backup prompt with no fancy stuff
 fi
 export CLICOLOR=1
