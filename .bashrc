@@ -15,20 +15,20 @@ export HISTTIMEFORMAT="%d/%m/%y %T " # Time format for history entries
 # if [[ "$TERM" == xterm* && $(command iterm-set-profile 2> /dev/null) ]]; then
 # 	PROMPT_COMMAND="history -a; iterm-set-profile; printf \"\033]0;$(tty | tail -c 8 | sed 's/ttys00*/tty/g')@$(tput cols)×$(tput lines)\007\""
 # fi
-if [[ "$TERM" == xterm* && -x "$(which tput)" ]]; then
+if [[ "$TERM" == xterm* && -x "$(which tput 2> /dev/null)" ]]; then
 	PROMPT_COMMAND="history -a; printf \"\033]0;$(tty | sed 's/ttys00*\([0-9]*\)/tty\1/')@$(tput cols)×$(tput lines)\007\""
 fi
 # export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 # export PS1="\u@\h \t \W$ "
 if [[ "$BASH_VERSINFO" -ge 4 ]]; then # If a recent bash
-	if [[ -x "$(which git)" && -x "$(which git-ps1-status)" ]]; then
-		if [[ -x "$(which timeout)" ]]; then
-			if "$(which timeout)" 2>&1 | grep -q BusyBox; then
+	if [[ -x "$(which git 2> /dev/null)" && -x "$(which git-ps1-status 2> /dev/null)" ]]; then
+		if [[ -x "$(which timeout 2> /dev/null)" ]]; then
+			if "$(which timeout 2> /dev/null)" 2>&1 | grep -q BusyBox; then
 				GIT_PS1_COMMAND="\[\e[35m\]\$(timeout -t 1 git ps1-status)\[\e[m\]"
 			else
 				GIT_PS1_COMMAND="\[\e[35m\]\$(timeout 1 git ps1-status)\[\e[m\]"
 			fi
-		elif [[ -x "$(which gtimeout)" ]]; then
+		elif [[ -x "$(which gtimeout 2> /dev/null)" ]]; then
 			GIT_PS1_COMMAND="\[\e[35m\]\$(gtimeout 1 git ps1-status)\[\e[m\]"
 		else
 			echo foo

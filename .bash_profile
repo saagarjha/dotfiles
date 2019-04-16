@@ -44,7 +44,7 @@ export PATH="$PATH:/usr/local/sbin"
 export PATH="$PATH:/Users/saagarjha/android-sdks/platform-tools"
 export PATH="$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin"
 
-if [[ -x "$(which launchctl)" ]]; then
+if [[ -x "$(which launchctl 2> /dev/null)" ]]; then
 	launchctl setenv PATH $PATH
 fi
 
