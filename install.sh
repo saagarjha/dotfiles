@@ -24,7 +24,7 @@ checked_copy() {
 	if [ -f "$2" ]; then
 		diff "$1" "$2" || { echo "$1 and $2 differ, stopping" && exit 1; }
 	fi
-	cp "$1" "$2"
+	cp -R "$1" "$2"
 }
 
 checked_copy ".bashrc" "~/.bashrc"
