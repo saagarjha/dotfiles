@@ -10,7 +10,7 @@ case "$(uname)" in
 	"Darwin")
 		OS=Mac
 		;;
-	"Linx")
+	"Linux")
 		OS=Linux
 		;;
 esac
