@@ -54,13 +54,19 @@ ask() {
 
 checked_copy() {
 	if [ -f "$2" ]; then
-		diff "$1" "$2" || { ask "$1 and $2 differ, overwrite?" || return 0; }
+		diff "$1" "$2" || { ask "$1 and $2 differ, overwrite?" || return 1; }
 	fi
-	if [ "$#" -eq 2 ]; then
-		cp -R "$1" "$2"
-	elif [ "$#" -eq 3 ]; then
-		sudo cp -R "$1" "$2"
+	if [ ! -w "$2" ]; then # TOCTOU, technically
+		if ask "$2 is not writable, elevate permissions?"; then
+			COMMAND="sudo cp"
+		else
+			return 1;
+		fi
+	else
+		COMMAND="cp"
 	fi
+	echo "$COMMAND -R '$1' '$2'"
+	"$COMMAND" -R "$1" "$2"
 }
 
 
@@ -103,7 +109,7 @@ if ask "Install iTerm shell integration?"; then
 fi
 
 if ask "Install git-ps1-status to /usr/local/bin?"; then
-	checked_copy git-ps1-status /usr/local/bin/git-ps1-status sudo
+	checked_copy git-ps1-status /usr/local/bin/git-ps1-status
 fi
 
 if [ "${LINUX:-}" = "Alpine" ]; then
