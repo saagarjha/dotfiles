@@ -1,4 +1,4 @@
 #!/bin/sh
 
-sudo apk add bash nano
+sudo apk add bash bash-completion nano
 sudo nano /etc/passwd
