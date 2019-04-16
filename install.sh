@@ -39,7 +39,7 @@ checked_copy() {
 	fi
 }
 
-if [ "$OS" = "Alpine" ];
+if [ "$OS" = "Alpine" ]; then
 	./install-alpine.sh
 fi
 
