@@ -30,9 +30,9 @@ if [[ "$BASH_VERSINFO" -ge 4 ]]; then # If a recent bash
 			echo foo
 		fi
 	fi
-	export PS1="\[\e[32m\]\u\[\e[m\] \[\e[31m\]\D{%m/%d %T}\[\e[32m\] \[\e[34m\]\W\[\e[m\]$GIT_PS1_COMMAND$ "
+	export PS1="\[\e[32m\]\h\[\e[m\] \[\e[31m\]\D{%m/%d %T}\[\e[32m\] \[\e[34m\]\W\[\e[m\]$GIT_PS1_COMMAND$ "
 else
-	export PS1="$USER \$(date '+%m/%d %H:%m:%S') \${PWD##*/}$ " # Backup prompt with no fancy stuff
+	export PS1="$HOSTNAME \$(date '+%m/%d %H:%m:%S') \${PWD##*/}$ " # Backup prompt with no fancy stuff
 fi
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
