@@ -34,15 +34,19 @@ export PATH="$PATH:~/Library/Python/2.7/bin/"
 export PATH="$PATH:~/Library/Python/3.7/bin/"
 
 # Ruby
-export GEM_HOME="$(ls -t -U | ruby -e 'puts Gem.user_dir')"
-export GEM_PATH="$GEM_HOME"
-export PATH="$PATH:$GEM_HOME/bin"
+if [[ -x "$(which ruby)" ]]; then
+	export GEM_HOME="$(ls -t -U | ruby -e 'puts Gem.user_dir')"
+	export GEM_PATH="$GEM_HOME"
+	export PATH="$PATH:$GEM_HOME/bin"
+fi
 
 export PATH="$PATH:/usr/local/sbin"
 export PATH="$PATH:/Users/saagarjha/android-sdks/platform-tools"
 export PATH="$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin"
 
-launchctl setenv PATH $PATH
+if [[ -x "$(which launchctl)" ]]; then
+	launchctl setenv PATH $PATH
+fi
 
 if [[ "$TERM" == xterm* ]]; then
 	test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
@@ -88,4 +92,6 @@ function swift() {
 	fix_python "$(which swift)" "$@"
 }
 
-source /usr/local/bin/virtualenvwrapper.sh
+if [[ -f /usr/local/bin/virtualenvwrapper.sh ]]; then
+	source /usr/local/bin/virtualenvwrapper.sh
+fi
