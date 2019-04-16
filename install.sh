@@ -39,6 +39,10 @@ checked_copy() {
 	fi
 }
 
+if [ "$OS" = "Alpine" ];
+	./install-alpine.sh
+fi
+
 checked_copy .bashrc ~/.bashrc
 checked_copy .bash_profile ~/.bash_profile
 checked_copy .inputrc ~/.inputrc
