@@ -27,12 +27,12 @@ checked_copy() {
 	cp -R "$1" "$2"
 }
 
-checked_copy ".bashrc" "~/.bashrc"
-checked_copy ".bash_profile" "~/.bash_profile"
-checked_copy ".inputrc" "~/.inputrc"
+checked_copy .bashrc ~/.bashrc
+checked_copy .bash_profile ~/.bash_profile
+checked_copy .inputrc ~/.inputrc
 if [ "$OS" = "Mac" ]; then
-	checked_copy ".nanorc-mac" "~/.nanorc"
+	checked_copy .nanorc-mac ~/.nanorc
 elif [ "$OS" = "Linux" ]; then
-	checked_copy ".nanorc-linux" "~/.nanorc"
+	checked_copy .nanorc-linux ~/.nanorc
 fi
-checked_copy ".clang-format" "~/.clang-format"
+checked_copy .clang-format ~/.clang-format
