@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -eux
+set -eu
 
 check_for_bash() {
 	printf "Looking for Bash..."
