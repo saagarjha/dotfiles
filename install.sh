@@ -24,7 +24,11 @@ checked_copy() {
 	if [ -f "$2" ]; then
 		diff "$1" "$2" || { echo "$1 and $2 differ, stopping" && exit 1; }
 	fi
-	cp -R "$1" "$2"
+	if [ "$#" -eq 2 ]; then
+		cp -R "$1" "$2"
+	elif [ "$#" -eq 3 ]; then
+		sudo cp -R "$1" "$2"
+	fi
 }
 
 checked_copy .bashrc ~/.bashrc
@@ -37,4 +41,4 @@ elif [ "$OS" = "Linux" ]; then
 fi
 checked_copy .clang-format ~/.clang-format
 
-checked_copy git-ps1-status /usr/local/bin/git-ps1-status
+checked_copy git-ps1-status /usr/local/bin/git-ps1-status sudo
