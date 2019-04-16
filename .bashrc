@@ -23,7 +23,11 @@ fi
 if [[ "$BASH_VERSINFO" -ge 4 ]]; then # If a recent bash
 	if [[ -x "$(which git)" && -x "$(which git-ps1-status)" ]]; then
 		if [[ -x "$(which timeout)" ]]; then
-			GIT_PS1_COMMAND="\[\e[35m\]\$(timeout 1 git ps1-status)\[\e[m\]"
+			if "$(which timeout)" 2>&1 | grep -q BusyBox; then
+				GIT_PS1_COMMAND="\[\e[35m\]\$(timeout -t 1 git ps1-status)\[\e[m\]"
+			else
+				GIT_PS1_COMMAND="\[\e[35m\]\$(timeout 1 git ps1-status)\[\e[m\]"
+			fi
 		elif [[ -x "$(which gtimeout)" ]]; then
 			GIT_PS1_COMMAND="\[\e[35m\]\$(gtimeout 1 git ps1-status)\[\e[m\]"
 		else
