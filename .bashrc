@@ -36,6 +36,7 @@ else
 fi
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
+export LS_OPTIONS="--color=auto"
 export EDITOR=/usr/local/bin/subl
 if [[ -d ~/.ssl ]]; then
 	export SSL_CERT_FILE=/Users/saagarjha/.ssl/cacert.pem
