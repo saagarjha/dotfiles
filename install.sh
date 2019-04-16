@@ -36,3 +36,5 @@ elif [ "$OS" = "Linux" ]; then
 	checked_copy .nanorc-linux ~/.nanorc
 fi
 checked_copy .clang-format ~/.clang-format
+
+checked_copy git-ps1-status /usr/local/bin/git-ps1-status

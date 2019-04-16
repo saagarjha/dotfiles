@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# Make sure this runs on a modern bash with support for ;;& in case
+
+shopt -s extglob
+
+# Make sure we're in a git directory
+if [ -d .git ] || git rev-parse --git-dir > /dev/null 2>&1; then
+	# Print a leading space to separate from the rest of the PS1
+	echo -n " "
+	# Check our status relative to upstream
+	case "$(git rev-list --count --left-right @{upstream}...HEAD 2>/dev/null)" in
+		"") # No upstream found
+			;;
+		"0	0") # Equal to upstream
+			echo -n "=" ;;
+		!([0])"	"*) # Less than upstream, or diverged 1/2 (and reswitch)
+			echo -n "<" ;;&
+		*"	"!([0])) # Greater than upstream, or diverged 2/2
+			echo -n ">" ;;
+	esac
+	# Print the current branch or HEAD if we're not on one
+	branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
+	if [ $? -eq 0 ]; then
+		echo -n $branch
+	fi
+	# Check if there are staged files
+	if ! git diff --no-ext-diff --cached --quiet > /dev/null; then 
+		echo -n "+"		
+	fi
+	# Check if there are changed files
+	if ! git diff --no-ext-diff --quiet > /dev/null; then 
+		echo -n "*"		
+	fi
+fi
