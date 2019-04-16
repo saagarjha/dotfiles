@@ -94,7 +94,7 @@ if ask "Copy nanorc?"; then
 		"Mac")
 			checked_copy .nanorc-mac ~/.nanorc
 			;;
-		"Linux*")
+		"Linux"*)
 			checked_copy .nanorc-linux ~/.nanorc
 			;;
 	esac
