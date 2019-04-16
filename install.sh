@@ -12,6 +12,14 @@ case "$(uname)" in
 		;;
 	"Linux")
 		OS=Linux
+		case "$(uname -a)" in
+			*Ubuntu*)
+				LINUX="Ubuntu"
+				;;
+			*Alpine*)
+				LINUX="Alpine"
+				;;
+		esac
 		;;
 esac
 
