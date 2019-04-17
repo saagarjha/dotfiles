@@ -33,3 +33,4 @@ set mouse
 set softwrap
 set tabsize 4
 set morespace
+set nowrap
