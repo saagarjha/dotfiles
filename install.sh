@@ -15,7 +15,7 @@ check_for_bash() {
 	fi
 }
 
-detect_os() {
+check_os() {
 	printf "Detecting OS..."
 	case "$(uname)" in
 		"Darwin")
@@ -37,6 +37,14 @@ detect_os() {
 			;;
 	esac
 	echo "$OS"
+}
+
+check_root()  {
+	if [ "$(id -u)" -eq 0 ]; then
+		export IS_ROOT=1
+	else
+		export IS_ROOT=
+	fi
 }
 
 install_stderred() {
@@ -66,13 +74,16 @@ install_stderred() {
 
 
 check_for_bash
-detect_os
+check_os
 
 if [ "$HAS_BASH" ]; then
 	set -o pipefail
 fi
 
 case "$OS" in
+	"Linux Ubuntu")
+		./install-ubuntu.sh
+		;;
 	"Linux Alpine")
 		./install-alpine.sh
 		;;
