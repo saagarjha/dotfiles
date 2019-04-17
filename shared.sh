@@ -2,7 +2,7 @@
 
 ask() {
 	printf "$1 "
-	read -r
+	read -r REPLY
 	case "$REPLY" in
 		"Y")
 			return 0
