@@ -1,7 +1,8 @@
 #!/bin/sh
 
 ask() {
-	read -p "$1 " -r
+	printf "$1 "
+	read -r
 	case "$REPLY" in
 		"Y")
 			return 0
