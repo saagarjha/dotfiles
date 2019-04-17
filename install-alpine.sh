@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source ./shared.sh
+. ./shared.sh
 
 ask "Install bash?" && { apk add bash; ask "Change shell (bash is at $(which bash))?" && nano /etc/passwd; }
 ask "Install bash-completion?" && apk add bash-completion

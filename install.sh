@@ -2,7 +2,7 @@
 
 set -eu
 
-source ./shared.sh
+. ./shared.sh
 
 check_for_bash() {
 	printf "Looking for Bash..."
