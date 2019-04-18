@@ -18,7 +18,7 @@ ask() {
 
 checked_copy() {
 	if [ -f "$2" ]; then
-		diff "$1" "$2" || { ask "$1 and $2 differ, overwrite?" || return 1; }
+		cmp -s "$1" "$2" || { diff "$1" "$2" || true && ask "$1 and $2 differ, overwrite?" || return 1; }
 	fi
 	if [ ! -w "$2" ]; then # TOCTOU, technically
 		if ask "$2 is not writable, elevate permissions?"; then
