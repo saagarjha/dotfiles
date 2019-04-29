@@ -50,7 +50,9 @@ fi
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 export LS_OPTIONS="--color=auto"
-export EDITOR=/usr/local/bin/subl
+if [[ -f /usr/local/bin/subl ]]; then
+	export EDITOR=/usr/local/bin/subl
+fi
 if [[ -d ~/.ssl ]]; then
 	export SSL_CERT_FILE=/Users/saagarjha/.ssl/cacert.pem
 fi
