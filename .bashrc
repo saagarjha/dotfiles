@@ -39,14 +39,14 @@ if [[ "$BASH_VERSINFO" -ge 4 ]]; then # If a recent bash
 	else
 		PS1_HOSTNAME="\u"
 	fi
-	export PS1="\[\e[32m\]$PS1_HOSTNAME\[\e[m\] \[\e[31m\]\D{%m/%d %T}\[\e[32m\] \[\e[34m\]\W\[\e[m\]$PS1_GIT_COMMAND\\$ "
+	PS1="\[\e[32m\]$PS1_HOSTNAME\[\e[m\] \[\e[31m\]\D{%m/%d %T}\[\e[32m\] \[\e[34m\]\W\[\e[m\]$PS1_GIT_COMMAND\\$ "
 else
 	if [ "$SSH_TTY" ]; then
 		PS1_HOSTNAME="$USER@$HOSTNAME"
 	else
 		PS1_HOSTNAME="$USER"
 	fi
-	export PS1="$HOSTNAME \$(date '+%m/%d %H:%m:%S') \${PWD##*/}$ " # Backup prompt with no fancy stuff
+	PS1="$HOSTNAME \$(date '+%m/%d %H:%m:%S') \${PWD##*/}$ " # Backup prompt with no fancy stuff
 fi
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
