@@ -12,9 +12,6 @@ if [[ -f ~/.fzy && -t 1 ]]; then
 fi
 
 if [[ "$BASH_VERSINFO" -ge 4 ]]; then
-# 	if [ -f $(brew --prefix)/share/bash-completion/bash_completion ]; then
-# 	   . $(brew --prefix)/share/bash-completion/bash_completion
-# 	fi
 	if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
 		. /opt/local/etc/profile.d/bash_completion.sh
 	elif [ -f /usr/share/bash-completion/bash_completion ]; then
@@ -63,7 +60,6 @@ export STDERRED_BLACKLIST="^(gcc.*|g\+\+.*|clang.*|fzf)$"
 
 # Dark Nano
 if [[ -f /usr/local/darknano/libdarknano.dylib ]]; then
-	# export DYLD_INSERT_LIBRARIES=
 	export DYLD_INSERT_LIBRARIES="/usr/local/darknano/libdarknano.dylib${DYLD_INSERT_LIBRARIES:+:$DYLD_INSERT_LIBRARIES}"
 fi
 

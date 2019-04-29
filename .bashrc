@@ -12,15 +12,10 @@ fi
 export HISTSIZE= # No limit to history size
 export HISTFILESIZE= # No limit to history file size
 export HISTTIMEFORMAT="%d/%m/%y %T " # Time format for history entries
-# if [[ "$TERM" == xterm* && $(command iterm-set-profile 2> /dev/null) ]]; then
-# 	PROMPT_COMMAND="history -a; iterm-set-profile; printf \"\033]0;$(tty | tail -c 8 | sed 's/ttys00*/tty/g')@$(tput cols)×$(tput lines)\007\""
-# fi
 if [[ "$TERM" == xterm* && -x "$(which tput 2> /dev/null)" && ! "$SET_PROMPT_COMMAND" ]]; then
 	PROMPT_COMMAND="history -a; printf \"\033]0;$(tty | sed 's#/dev/\([^0]*\)0*\([0-9]*\)#\1\2#')@$(tput cols)×$(tput lines)\007\""
 	export SET_PROMPT_COMMAND=1
 fi
-# export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-# export PS1="\u@\h \t \W$ "
 if [[ "$BASH_VERSINFO" -ge 4 ]]; then # If a recent bash
 	if [[ -x "$(which git 2> /dev/null)" && -x "$(which git-ps1-status 2> /dev/null)" ]]; then
 		if [[ -x "$(which timeout 2> /dev/null)" ]]; then
@@ -99,15 +94,10 @@ function installpkg() {
 		sudo installer -pkg "$pkg" -target /
 	done
 }
-# alias "cask-upgrade"='brew cask list | xargs brew cask install --force'
-# alias "cask-upgrade"='brew cask outdated | awk "{ print $1 }" | xargs brew cask install --force'
 alias swift-demangle="xcrun swift-demangle"
 alias jekyll-preview="bundle exec jekyll serve --watch --safe"
 alias htop="sudo htop"
 alias ag="ag --color-match \"30;43\" --color-line-number \"31;31\" --color-path \"32;32\""
-# if [[ $(command hub 2> /dev/null) ]]; then
-# 	eval "$(hub alias -s)"
-# fi
 alias more="less" # Sorry, Mark Nudelman!
 function gnutils() { # Use GNU tools over the system-provided BSD ones
 	export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
