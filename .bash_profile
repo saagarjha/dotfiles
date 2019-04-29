@@ -44,10 +44,6 @@ export PATH="$PATH:/usr/local/sbin"
 export PATH="$PATH:/Users/saagarjha/android-sdks/platform-tools"
 export PATH="$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin"
 
-if [[ -x "$(which launchctl 2> /dev/null)" ]]; then
-	launchctl setenv PATH $PATH
-fi
-
 if [[ "$TERM" == xterm* ]]; then
 	test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 fi
@@ -74,6 +70,10 @@ fi
 export PATH="$PATH:/usr/local/clang-analyze/bin"
 
 export PATH="$PATH:$HOME/.cargo/bin"
+
+if [[ -x "$(which launchctl 2> /dev/null)" ]]; then
+	launchctl setenv PATH $PATH
+fi
 
 export HOMEBREW_NO_AUTO_UPDATE=1
 
