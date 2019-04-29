@@ -73,7 +73,7 @@ fi
 
 export PATH="$PATH:/usr/local/clang-analyze/bin"
 
-export PATH="$PATH:/Users/saagarjha/.cargo/bin"
+export PATH="$PATH:$HOME/.cargo/bin"
 
 export HOMEBREW_NO_AUTO_UPDATE=1
 
