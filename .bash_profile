@@ -1,14 +1,14 @@
 # MacPorts, so .bashrc can see commands
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 
-source ~/.bashrc
+. ~/.bashrc
 
 if [[ -f ~/.tokens ]]; then
-	source ~/.tokens
+	. ~/.tokens
 fi
 
 if [[ -f ~/.fzy && -t 1 ]]; then
-	source ~/.fzy
+	. ~/.fzy
 fi
 
 if [[ "$BASH_VERSINFO" -ge 4 ]]; then

@@ -92,7 +92,7 @@ function hopper() {
 function appbundleid() {
 	/usr/libexec/PlistBuddy -c 'Print CFBundleIdentifier' "$1/Contents/Info.plist"
 }
-alias src='source ~/.bash_profile'
+alias src='. ~/.bash_profile'
 function installpkg() {
 	for pkg in "$@"; do
 		sudo installer -pkg "$pkg" -target /
