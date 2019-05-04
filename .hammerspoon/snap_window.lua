@@ -10,14 +10,10 @@ local pressed = {
 
 -- React to an arrow key press
 function arrowPressed()
-	local win = hs.window.focusedWindow()
-	local f = win:frame()
-	local screen = win:screen()
+	local window = hs.window.focusedWindow()
+	local screen = window:screen()
 	local max = screen:frame()
-	f.x = max.x
-	f.y = max.y
-	f.w = max.w
-	f.h = max.h
+	local f = max
 	if pressed.left or pressed.right then
 		if pressed.up then
 			f.h = max.h / 2
@@ -27,15 +23,13 @@ function arrowPressed()
 		end
 	else
 		if pressed.down then
-			local window = hs.window.focusedWindow()
 			-- window:centerOnScreen()
 			-- local frame = window:frame()
 			local frame = window:_frame()
 			-- print("frame: " .. frame.x .. " " .. frame.y .. " " .. frame.w .. " " .. frame.h)
-			local screen = window:screen():frame()
-			-- print("screen: " .. screen.x .. " " .. screen.y .. " " .. screen.w .. " " .. screen.h)
-			frame.x = screen.w / 2 - frame.w / 2
-			frame.y = screen.h / 2 - frame.h / 2
+			-- print("max: " .. max.x .. " " .. max.y .. " " .. max.w .. " " .. max.h)
+			frame.x = max.w / 2 - frame.w / 2
+			frame.y = max.h / 2 - frame.h / 2
 			-- print("newFrame: " .. frame.x .. " " .. frame.y .. " " .. frame.w .. " " .. frame.h)
 			-- print(hs.inspect(frame))
 			window:setFrame(frame)
@@ -48,7 +42,7 @@ function arrowPressed()
 		f.w = max.w / 2
 		f.x = max.x + max.w / 2
 	end
-	win:setFrame(f)
+	window:setFrame(f)
 end
 
 -- Bind the Hyper+arrow keys
