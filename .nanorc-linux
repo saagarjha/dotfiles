@@ -28,9 +28,13 @@ include /usr/share/nano/tex.nanorc
 include /usr/share/nano/xml.nanorc
 
 set autoindent
+set constantshow
+set cutfromcursor
 set linenumbers
-set mouse
-set softwrap
-set tabsize 4
 set morespace
+set mouse
+set multibuffer
 set nowrap
+set softwrap
+set suspend
+set tabsize 4
