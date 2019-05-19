@@ -3,7 +3,6 @@ include ~/.nano/*.nanorc
 set autoindent
 set constantshow
 set cutfromcursor
-set guidestripe 80
 set linenumbers
 set morespace
 set mouse
