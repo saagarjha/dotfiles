@@ -5,13 +5,13 @@ set -eu
 . ./shared.sh
 
 check_for_bash() {
-	printf "Looking for Bash..."
-	if [ -z "${BASH_VERSION:-}" ]; then
+	printf "Checking if Bash..."
+	if [ "${BASH_VERSION:-}" ]; then
 		export HAS_BASH=1
-		echo "found $BASH_VERSION"
+		echo "yes, $BASH_VERSION"
 	else
 		export HAS_BASH=
-		echo "not found"
+		echo "no"
 	fi
 }
 
