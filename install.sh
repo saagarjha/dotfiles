@@ -6,7 +6,7 @@ set -eu
 
 check_for_bash() {
 	printf "Looking for Bash..."
-	if [ "${BASH_VERSION:-}" ]; then
+	if [ -z "${BASH_VERSION:-}" ]; then
 		export HAS_BASH=1
 		echo "found $BASH_VERSION"
 	else
