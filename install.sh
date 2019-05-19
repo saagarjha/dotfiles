@@ -92,14 +92,7 @@ esac
 ask "Copy bashrc?" && checked_copy .bashrc ~/.bashrc
 ask "Copy bash_profile?" && checked_copy .bash_profile ~/.bash_profile
 ask "Copy inputrc?" && checked_copy .inputrc ~/.inputrc
-ask "Copy nanorc?" && case "$OS" in
-	"Mac")
-		checked_copy .nanorc-mac ~/.nanorc
-		;;
-	"Linux"*)
-		checked_copy .nanorc-linux ~/.nanorc
-		;;
-esac
+ask "Copy nanorc?" && checked_copy .nanorc ~/.nanorc
 ask "Copy clang-format?" && checked_copy .clang-format ~/.clang-format
 ask "Install iTerm shell integration?" && curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
 ask "Install git-ps1-status to /usr/local/bin?" && checked_copy git-ps1-status /usr/local/bin/git-ps1-status
