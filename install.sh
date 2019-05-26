@@ -94,10 +94,14 @@ ask "Copy bash_profile?" && checked_copy .bash_profile ~/.bash_profile
 ask "Copy inputrc?" && checked_copy .inputrc ~/.inputrc
 ask "Copy nanorc?" && checked_copy .nanorc ~/.nanorc && case "$OS" in
 	"Mac")
-		ln -s /usr/share/nano/ ~/.nano
+		set -x
+		ln -s /opt/local/share/nano ~/.nano
+		{ set +x; } 2>/dev/null
 		;;
 	"Linux"*)
-		ln -s /opt/local/share/ ~/.nano
+		set -x
+		ln -s /usr/share/nano/ ~/.nano
+		{ set +x; } 2>/dev/null
 		;;
 esac
 ask "Copy clang-format?" && checked_copy .clang-format ~/.clang-format
