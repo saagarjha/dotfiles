@@ -21,6 +21,8 @@ gsettings set org.pantheon.desktop.gala.appearance button-layout close,minimize,
 
 gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
 
+gsettings set org.gnome.Epiphany.web:/org/gnome/epiphany/web/ enable-adblock true
+
 { set +x; } 2>/dev/null
 
 true
