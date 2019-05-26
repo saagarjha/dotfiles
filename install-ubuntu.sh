@@ -14,13 +14,15 @@ ask "Install bashlogin?" && checked_copy bashlogin /bin/bashlogin
 
 set -x
 
-gsettings set io.elementary.terminal.settings natural-copy-paste false
-gsettings set io.elementary.terminal.settings shell bashlogin
-
 gsettings set org.pantheon.desktop.gala.appearance button-layout close,minimize,maximize
 
 gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
 gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled true
+
+gsettings set io.elementary.desktop.wingpanel.power show-percentage true
+
+gsettings set io.elementary.terminal.settings natural-copy-paste false
+gsettings set io.elementary.terminal.settings shell bashlogin
 
 gsettings set org.gnome.Epiphany.web:/org/gnome/epiphany/web/ enable-adblock true
 
