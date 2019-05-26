@@ -8,6 +8,7 @@ else
 	SUDO=
 fi
 
+ask "Install build-essential?" && $SUDO apt install build-essential
 ask "Install cmake?" && $SUDO apt install cmake
 ask "Install bashlogin?" && checked_copy bashlogin /bin/bashlogin
 
