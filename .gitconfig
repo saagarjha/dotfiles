@@ -18,7 +18,7 @@
 	required = true
 [core]
 	excludesfile = /Users/saagarjha/.gitignore_global
-	editor = subl -n -w
+	editor = nano
 	pager = less -+FX
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
