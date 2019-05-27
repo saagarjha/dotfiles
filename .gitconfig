@@ -1,0 +1,34 @@
+[user]
+	name = Saagar Jha
+	email = saagar@saagarjha.com
+[credential]
+	helper = osxkeychain
+[alias]
+	glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+	git = !echo "You wrote \"git\" twice." >&2 && git
+	rb = "!f() { revision=$1; shift; git rbi HEAD~$revision "$@"; }; f"
+	try-pr = test-pr
+	rbi = rebase -i
+[status]
+	showUntrackedFiles = all
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[core]
+	excludesfile = /Users/saagarjha/.gitignore_global
+	editor = subl -n -w
+	pager = less -+FX
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[push]
+	followTags = true
+[commit]
+	template = /Users/saagarjha/.stCommitMsg
+[merge]
+	conflictstyle = diff3
