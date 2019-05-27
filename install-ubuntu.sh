@@ -26,6 +26,35 @@ gsettings set io.elementary.terminal.settings shell bashlogin
 
 gsettings set org.gnome.Epiphany.web:/org/gnome/epiphany/web/ enable-adblock true
 
+cat > ~/.config/plank/dock1/launchers/io.elementary.files.dockitem <<EOF
+[PlankDockItemPreferences]
+Launcher=file:///usr/share/applications/io.elementary.files.desktop
+EOF
+cat > ~/.config/plank/dock1/launchers/org.gnome.Epiphany.dockitem << EOF
+[PlankDockItemPreferences]
+Launcher=file:///usr/share/applications/org.gnome.Epiphany.desktop
+EOF
+cat > ~/.config/plank/dock1/launchers/io.elementary.appcenter.dockitem <<EOF
+[PlankDockItemPreferences]
+Launcher=file:///usr/share/applications/io.elementary.appcenter.desktop
+EOF
+cat > ~/.config/plank/dock1/launchers/io.elementary.calculator.dockitem <<EOF
+[PlankDockItemPreferences]
+Launcher=file:///usr/share/applications/io.elementary.calculator.desktop
+EOF
+cat > ~/.config/plank/dock1/launchers/gparted.dockitem <<EOF
+[PlankDockItemPreferences]
+Launcher=file:///usr/share/applications/gparted.desktop
+EOF
+cat > ~/.config/plank/dock1/launchers/io.elementary.terminal.dockitem << EOF
+[PlankDockItemPreferences]
+Launcher=file:///usr/share/applications/io.elementary.terminal.desktop
+EOF
+cat > ~/.config/plank/dock1/launchers/io.elementary.switchboard.dockitem <<EOF
+[PlankDockItemPreferences]
+Launcher=file:///usr/share/applications/io.elementary.switchboard.desktop
+EOF
+
 { set +x; } 2>/dev/null
 
 true
