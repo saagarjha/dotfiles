@@ -28,7 +28,5 @@
 	trustExitCode = true
 [push]
 	followTags = true
-[commit]
-	template = /Users/saagarjha/.stCommitMsg
 [merge]
 	conflictstyle = diff3
