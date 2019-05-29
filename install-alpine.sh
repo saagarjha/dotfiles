@@ -12,4 +12,5 @@ ask "Install gcc?" && apk add gcc libc-dev
 ask "Install g++?" && apk add g++
 ask "Install make?" && apk add make
 ask "Install cmake?" && apk add cmake
+ask "Install ag?" && apk add the_silver_searcher
 true
