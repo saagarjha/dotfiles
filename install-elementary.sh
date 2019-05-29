@@ -20,6 +20,10 @@ gsettings set org.pantheon.desktop.gala.appearance button-layout close,minimize,
 gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
 gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled true
 
+gsettings set io.elementary.desktop.wingpanel.datetime clock-format 24h
+gsettings set io.elementary.desktop.wingpanel.datetime clock-show-seconds true
+gsettings set io.elementary.desktop.wingpanel.datetime show-weeks true
+
 gsettings set io.elementary.desktop.wingpanel.power show-percentage true
 
 gsettings set io.elementary.terminal.settings natural-copy-paste false
