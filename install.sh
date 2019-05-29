@@ -67,7 +67,7 @@ install_stderred() {
 	set -x
 	${SUDO:-} git clone https://github.com/saagarjha/stderred.git
 	cd stderred
-	${SUDO:-} make
+	${SUDO:-} CFLAGS=-D_GNU_SOURCE make
 	{ set +x; } 2>/dev/null
 	cd "$SAVED_DIRECTORY"
 }
