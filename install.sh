@@ -23,9 +23,9 @@ check_os() {
 			;;
 		"Linux")
 			export OS=Linux
-			case "$(uname -a)" in
-				*Ubuntu*)
-					export OS="$OS Ubuntu"
+			case "$(cat /etc/os-release)" in
+				*elementary*)
+					export OS="$OS elementary"
 					;;
 				*Alpine*)
 					export OS="$OS Alpine"
@@ -81,8 +81,8 @@ if [ "$HAS_BASH" ]; then
 fi
 
 case "$OS" in
-	"Linux Ubuntu")
-		./install-ubuntu.sh
+	"Linux elementary")
+		./install-elementary.sh
 		;;
 	"Linux Alpine")
 		./install-alpine.sh

@@ -145,7 +145,7 @@ cd() {
 		return
 	elif [[ $1 =~ ^-[0-9]+ ]]; then
 		builtin cd "${cd_history[${1//-}]}" || # Remove the argument's dash
-		return 
+		return
 	else
 		builtin cd "$@" || return # Bail if cd fails
 	fi
