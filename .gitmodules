@@ -1,0 +1,3 @@
+[submodule "stderred"]
+	path = stderred
+	url = https://github.com/saagarjha/stderred.git

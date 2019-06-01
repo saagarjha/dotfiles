@@ -46,18 +46,10 @@ fi
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 export LS_OPTIONS="--color=auto"
-if [[ -f /usr/local/bin/subl ]]; then
-	export EDITOR=/usr/local/bin/subl
-fi
+export EDITOR="$(which nano)"
 if [[ -d ~/.ssl ]]; then
 	export SSL_CERT_FILE=/Users/saagarjha/.ssl/cacert.pem
 fi
-
-# If the java_home symbolic link is set, then run it to find JAVA_HOME
-if [[ -L /usr/libexec/java_home ]]; then
-	export JAVA_HOME="$(/usr/libexec/java_home)"
-fi
-export HADOOP_HOME=/usr/local/hadoop
 
 alias wolfram='/Applications/Mathematica.app/Contents/MacOS/WolframKernel'
 alias hdstart='start-dfs.sh && start-yarn.sh'
@@ -152,9 +144,3 @@ cd() {
 	# cd_history = ["", $OLDPWD, cd_history[1:]]
 	cd_history=("" "$OLDPWD" "${cd_history[@]:1:${#cd_history[@]}}")
 }
-
-# Make reverse-i-search use the current text, if any, as the search string.
-# This makes Control-T unavailable for anything else.
-# bind -r '\C-r' # Remove the default binding
-# bind '"\C-t": reverse-search-history'
-# bind '"\C-r": "\C-t\C-a\C-t\C-y"' # Go to the beginning of the line, start a reverse-i-search, yank the text, and start another searchs
