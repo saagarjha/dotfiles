@@ -4,7 +4,7 @@
 
 cat /dev/null > /etc/motd
 
-ask "Install bash?" && { apk add bash; ask "Change shell (bash is at $(which bash))?" && nano /etc/passwd; }
+ask "Install bash?" && { apk add bash; echo "Make sure to change your shell (bash is at $(which bash))."; }
 ask "Install bash-completion?" && apk add bash-completion
 ask "Install nano?" && apk add nano nano-syntax
 ask "Install less?" && apk add less
