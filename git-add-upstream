@@ -1,0 +1,8 @@
+#!/bin/bash
+
+url="$(git remote get-url origin)"
+if [[ ! "$url" =~ .*\.git$ ]]; then
+	git remote set-url origin "$(git remote get-url origin).git"
+fi
+response="$(curl -s $(echo $url | sed 's|github\.com/\(.*\)/\(.*\).git|api.github.com/repos/\1/\2|'))"
+git remote add "$(echo $response | jq -r '.parent | .owner | .login')" "$(echo $response | jq -r '.parent | .clone_url')"

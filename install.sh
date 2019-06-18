@@ -118,5 +118,6 @@ ask "Copy clang-format?" && checked_copy .clang-format ~/.clang-format
 ask "Copy gitconfig?" && checked_copy .gitconfig ~/.gitconfig
 ask "Install iTerm shell integration?" && curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
 ask "Install git-ps1-status?" && checked_copy git-ps1-status ~/bin/git-ps1-status
+ask "Install git-add-upstream" && checked_copy git-add-upstream ~/bin/git-add-upstream
 ask "Install stderred?" && install_stderred
 ask "Install darknano?" && install_darknano
