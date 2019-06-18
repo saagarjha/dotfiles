@@ -2,3 +2,10 @@
 set completion-ignore-case on
 # A bit of security protection for pasted text
 set enable-bracketed-paste on
+# Color-coded completion for files
+set colored-stats on
+# Blink matching parentheses
+set blink-matching-paren on
+
+# reverse-i-search but using the current text, if any, as the search string.
+"\C-/": "\C-a\C-r\C-y\C-r"
