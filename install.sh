@@ -62,7 +62,6 @@ install_stderred() {
 }
 
 install_darknano() {
-	local saved_directory="$(pwd)"
 	case "$OS" in
 		"macOS")
 			extension=dylib
@@ -74,7 +73,6 @@ install_darknano() {
 	set -x
 	gcc -shared -fPIC darknano.c -o libdarknano.$extension
 	{ set +x; } 2>/dev/null
-	cd "$saved_directory"
 }
 
 
