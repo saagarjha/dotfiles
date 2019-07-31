@@ -4,3 +4,6 @@
 [submodule "macports-base"]
 	path = macports-base
 	url = https://github.com/saagarjha/macports-base.git
+[submodule ".dotfiles"]
+	path = .dotfiles
+	url = https://github.com/saagarjha/.dotfiles.git
