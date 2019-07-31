@@ -90,6 +90,9 @@ if [ ! -d ~/bin ]; then
 fi
 
 case "$OS" in
+	"macOS")
+		./install-macos.sh
+		;;
 	"Linux elementary")
 		./install-elementary.sh
 		;;
@@ -103,7 +106,7 @@ ask "Copy bash_profile?" && checked_copy .bash_profile ~/.bash_profile
 ask "Copy inputrc?" && checked_copy .inputrc ~/.inputrc
 ask "Copy nanorc?" && checked_copy .nanorc ~/.nanorc && ! test -L ~/.nano && \
 case "$OS" in
-	"Mac")
+	"macOS")
 		set -x
 		ln -s /opt/local/share/nano ~/.nano
 		{ set +x; } 2>/dev/null
@@ -116,8 +119,16 @@ case "$OS" in
 esac
 ask "Copy clang-format?" && checked_copy .clang-format ~/.clang-format
 ask "Copy gitconfig?" && checked_copy .gitconfig ~/.gitconfig
+ask "Copy gitattributes?" && checked_copy .gitattributes ~/.gitattributes
+if [ ! -d ~/.config ]; then
+	set -x
+	mkdir ~/.config || true
+	{ set +x; } 2>/dev/null
+fi
+ask "Copy Karabiner?" && checked_copy karabiner ~/.config/karabiner
+ask "Copy Hammerspoon?" && checked_copy .hammerspoon ~/.hammerspoon
 ask "Install iTerm shell integration?" && curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
 ask "Install git-ps1-status?" && checked_copy git-ps1-status ~/bin/git-ps1-status
-ask "Install git-add-upstream" && checked_copy git-add-upstream ~/bin/git-add-upstream
+ask "Install git-add-upstream?" && checked_copy git-add-upstream ~/bin/git-add-upstream
 ask "Install stderred?" && install_stderred
 ask "Install darknano?" && install_darknano

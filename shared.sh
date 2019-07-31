@@ -37,7 +37,7 @@ checked_copy() {
 		local COMMAND_LN="ln"
 	fi
 	set -x
-	$COMMAND_RM "$2"
+	$COMMAND_RM -r "$2"
 	$COMMAND_LN -s "$PWD/$1" "$2"
 	{ set +x; } 2>/dev/null
 }

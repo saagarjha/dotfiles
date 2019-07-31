@@ -1,3 +1,6 @@
 [submodule "stderred"]
 	path = stderred
 	url = https://github.com/saagarjha/stderred.git
+[submodule "macports-base"]
+	path = macports-base
+	url = https://github.com/saagarjha/macports-base.git

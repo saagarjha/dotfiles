@@ -19,6 +19,7 @@
 [core]
 	excludesfile = /Users/saagarjha/.gitignore_global
 	editor = nano
+	attributesfile = /Users/saagarjha/.gitattributes
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -31,3 +32,5 @@
 	conflictstyle = diff3
 [rerere]
 	enabled = true
+[diff "plist"]
+	textconv = plutil -convert xml1 -o -
