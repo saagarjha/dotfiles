@@ -27,11 +27,11 @@ check_os() {
 				*elementary*)
 					export OS="$OS elementary"
 					;;
+				*Ubuntu*)
+					export OS="$OS Ubuntu"
+					;;
 				*Alpine*)
 					export OS="$OS Alpine"
-					;;
-				*)
-					OS=Linux
 					;;
 			esac
 			;;
@@ -96,6 +96,9 @@ case "$OS" in
 	"Linux elementary")
 		./install-elementary.sh
 		;;
+	"Linux Ubuntu")
+		./install-ubuntu.sh
+		;;
 	"Linux Alpine")
 		./install-alpine.sh
 		;;
@@ -125,8 +128,6 @@ if [ ! -d ~/.config ]; then
 	mkdir ~/.config || true
 	{ set +x; } 2>/dev/null
 fi
-ask "Copy Karabiner?" && checked_copy karabiner ~/.config/karabiner
-ask "Copy Hammerspoon?" && checked_copy .hammerspoon ~/.hammerspoon
 ask "Install iTerm shell integration?" && curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
 ask "Install git-ps1-status?" && checked_copy git-ps1-status ~/bin/git-ps1-status
 ask "Install git-add-upstream?" && checked_copy git-add-upstream ~/bin/git-add-upstream
