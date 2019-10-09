@@ -120,6 +120,7 @@ case "$OS" in
 		{ set +x; } 2>/dev/null
 		;;
 esac
+ask "Copy gdbinit?" && checked_copy .gdbinit ~/.gdbinit
 ask "Copy clang-format?" && checked_copy .clang-format ~/.clang-format
 ask "Copy gitconfig?" && checked_copy .gitconfig ~/.gitconfig
 ask "Copy gitattributes?" && checked_copy .gitattributes ~/.gitattributes

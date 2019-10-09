@@ -10,6 +10,7 @@ if [[ -t 1 ]]; then # Check if standard out is a terminal
 fi
 
 export HISTSIZE= # No limit to history size
+export GDBHISTSIZE= # No limit to GDB history size
 export HISTFILESIZE= # No limit to history file size
 export HISTTIMEFORMAT="%d/%m/%y %T " # Time format for history entries
 if [[ "$TERM" == xterm* && -x "$(which tput 2> /dev/null)" && ! "$SET_PROMPT_COMMAND" ]]; then
