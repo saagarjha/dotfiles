@@ -25,7 +25,7 @@ end
 
 bindApp('a', "Activity Monitor")
 bindApp('c', "Google Chrome Canary")
-bindApp('d', "GitUp")
+bindApp('d', "Fork")
 bindApp('e', "Sublime Text")
 bindApp('f', "Finder")
 bindApp('g', "Messages")
