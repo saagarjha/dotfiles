@@ -17,7 +17,7 @@
 	process = git-lfs filter-process
 	required = true
 [core]
-	excludesfile = /Users/saagarjha/.gitignore_global
+	excludesfile = /Users/saagarjha/.gitignore
 	editor = nano
 	attributesfile = /Users/saagarjha/.gitattributes
 [difftool "sourcetree"]
