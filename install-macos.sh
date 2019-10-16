@@ -123,6 +123,8 @@ ask "Install cmake?" && sudo port install cmake
 
 ask "Install SF Mono?" && cp -R /System/Applications/Utilities/Terminal.app/Contents/Resources/Fonts/. ~/Library/Fonts/
 
+ask "Copy Karabiner?" && checked_copy karabiner ~/.config/karabiner
+ask "Copy Hammerspoon?" && checked_copy .hammerspoon ~/.hammerspoon
 ask "Install Xcode keybindings?" && checked_copy Default.idekeybindings ~/Library/Developer/Xcode/UserData/KeyBindings/Default.idekeybindings
 ask "Install Xcode themes?" && checked_copy FontAndColorThemes ~/Library/Developer/Xcode/UserData/FontAndColorThemes && defaults write com.apple.dt.Xcode XCFontAndColorCurrentTheme -string 'Solarized (Light).xccolortheme'
 
