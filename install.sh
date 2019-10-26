@@ -124,6 +124,7 @@ ask "Copy gdbinit?" && checked_copy .gdbinit ~/.gdbinit
 ask "Copy clang-format?" && checked_copy .clang-format ~/.clang-format
 ask "Copy gitconfig?" && checked_copy .gitconfig ~/.gitconfig
 ask "Copy gitattributes?" && checked_copy .gitattributes ~/.gitattributes
+ask "Copy tigrc?" && checked_copy .tigrc ~/.tigrc
 if [ ! -d ~/.config ]; then
 	set -x
 	mkdir ~/.config || true
