@@ -65,13 +65,15 @@ install_darknano() {
 	case "$OS" in
 		"macOS")
 			extension=dylib
+			undefined_flags=-Wl,-U,_program_invocation_short_name
 			;;
 		"Linux"*)
 			extension=so
+			undefined_flags=
 			;;
 	esac
 	set -x
-	gcc -shared -fPIC darknano.c -o libdarknano.$extension
+	gcc -shared -fPIC -lc -ldl -Os $undefined_flags darknano.c -o libdarknano.$extension
 	{ set +x; } 2>/dev/null
 }
 
