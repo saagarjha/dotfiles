@@ -35,6 +35,6 @@
 [diff "plist"]
 	textconv = plutil -convert xml1 -o -
 [pager]
-	log = diff-highlight | less
-	show = diff-highlight | less
-	diff = diff-highlight | less
+	log = git _diff-pager
+	show = git _diff-pager
+	diff = git _diff-pager

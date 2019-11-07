@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ -x "$(which diff-highlight 2> /dev/null)" ]; then
+	diff-highlight | less
+else
+	less
+fi
