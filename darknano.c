@@ -39,6 +39,7 @@ static void darknano_init() {
 	                (&program_invocation_short_name && !strcmp(program_invocation_short_name, "nano"));
 	original_strncasecmp = find_libc_symbol("strncasecmp");
 	original_strcasecmp = find_libc_symbol("strcasecmp");
+	initialized = true;
 }
 
 // I can't figure out how to make darknano_init be called before any other
