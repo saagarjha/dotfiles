@@ -4,7 +4,7 @@
 shopt -s extglob
 
 # Make sure we're in a git directory
-if [ -d .git ] || git rev-parse --git-dir > /dev/null 2>&1; then
+if git rev-parse --git-dir > /dev/null 2>&1; then
 	# Print a leading space to separate from the rest of the PS1
 	printf " "
 	# Check our status relative to upstream
@@ -23,12 +23,14 @@ if [ -d .git ] || git rev-parse --git-dir > /dev/null 2>&1; then
 	if [ $? -eq 0 ]; then
 		echo -n $branch
 	fi
-	# Check if there are staged files
-	if ! git diff --no-ext-diff --cached --quiet > /dev/null; then 
-		printf "+"		
-	fi
-	# Check if there are changed files
-	if ! git diff --no-ext-diff --quiet > /dev/null; then 
-		printf "*"		
+	if [ $(git rev-parse --is-bare-repository) = false ]; then
+		# Check if there are staged files
+		if ! git diff --no-ext-diff --cached --quiet > /dev/null; then 
+			printf "+"		
+		fi
+		# Check if there are changed files
+		if ! git diff --no-ext-diff --quiet > /dev/null; then 
+			printf "*"		
+		fi
 	fi
 fi
