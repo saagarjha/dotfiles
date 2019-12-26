@@ -91,7 +91,7 @@ if [ ! -d ~/bin ]; then
 	{ set +x; } 2>/dev/null
 fi
 
-case "$OS" in
+ask "Run platform-specific steps?" && case "$OS" in
 	"macOS")
 		./install-macos.sh
 		;;
