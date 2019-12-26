@@ -101,8 +101,8 @@ function gnutils() { # Use GNU tools over the system-provided BSD ones
 }
 if [[ -L /var/db/xcode_select_link ]]; then
 	alias xcopen="open -a \$(dirname $(dirname $(readlink /var/db/xcode_select_link)))"
-	export IOS_SDK_ROOT_DIR="$(dirname $(dirname $(readlink /var/db/xcode_select_link)))/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/"
-	export MACOS_SDK_ROOT_DIR="$(dirname $(dirname $(readlink /var/db/xcode_select_link)))/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/"
+	export IOS_SDK="$(dirname $(dirname $(readlink /var/db/xcode_select_link)))/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/"
+	export MACOS_SDK="$(dirname $(dirname $(readlink /var/db/xcode_select_link)))/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/"
 fi
 alias xcbopen="open -a Xcode-beta"
 alias xc-open="open -a Xcode"
