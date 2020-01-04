@@ -99,7 +99,7 @@ function insert_libraries() {
 insert_libraries ~/.dotfiles/stderred/build/libstderred	
 export STDERRED_BLACKLIST="^(gcc.*|g\+\+.*|clang.*)$"
 
-# Dark Nano
-insert_libraries ~/.dotfiles/libdarknano
+# Nano Fixes
+insert_libraries ~/.dotfiles/libfixnano
 
 unset -f insert_libraries

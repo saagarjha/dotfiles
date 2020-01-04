@@ -61,7 +61,7 @@ install_stderred() {
 	export LD_PRELOAD=$ld_preload
 }
 
-install_darknano() {
+install_fixnano() {
 	case "$OS" in
 		"macOS")
 			extension=dylib
@@ -73,7 +73,7 @@ install_darknano() {
 			;;
 	esac
 	set -x
-	gcc -shared -fPIC -lc -ldl -Os $undefined_flags darknano.c -o libdarknano.$extension
+	gcc -shared -fPIC -lc -ldl -Os $undefined_flags fixnano.c -o libfixnano.$extension
 	{ set +x; } 2>/dev/null
 }
 
@@ -137,4 +137,4 @@ ask "Install git-ps1-status?" && checked_copy git-ps1-status ~/bin/git-ps1-statu
 ask "Install git-add-upstream?" && checked_copy git-add-upstream ~/bin/git-add-upstream
 ask "Install git-_diff-pager?" && checked_copy git-_diff-pager ~/bin/git-_diff-pager
 ask "Install stderred?" && install_stderred
-ask "Install darknano?" && install_darknano
+ask "Install nano fixes?" && install_fixnano

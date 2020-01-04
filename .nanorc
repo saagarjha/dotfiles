@@ -1,12 +1,13 @@
-include ~/.nano/*.nanorc
+# 2.3.3- include ~/.nano/*.nanorc
 
 set autoindent
-set constantshow
-set cutfromcursor
-set linenumbers
+# 2.1.0- set constantshow
+# 2.8.6- set cutfromcursor
+# -2.8.6 set cut
+# 2.7.1- set linenumbers
 set morespace
 set multibuffer
 set nowrap
-set softwrap
+# 2.1.11- set softwrap
 set suspend
 set tabsize 4
