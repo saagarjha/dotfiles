@@ -127,5 +127,6 @@ ask "Copy Karabiner?" && checked_copy karabiner ~/.config/karabiner
 ask "Copy Hammerspoon?" && checked_copy .hammerspoon ~/.hammerspoon
 ask "Install Xcode keybindings?" && checked_copy Default.idekeybindings ~/Library/Developer/Xcode/UserData/KeyBindings/Default.idekeybindings
 ask "Install Xcode themes?" && checked_copy FontAndColorThemes ~/Library/Developer/Xcode/UserData/FontAndColorThemes && defaults write com.apple.dt.Xcode XCFontAndColorCurrentTheme -string 'Solarized (Light).xccolortheme'
+ask "Install iterm-theme.py?" && mkdir -p "~/Library/Application Support/iTerm2/Scripts/AutoLaunch/" && checked_copy iterm-theme.py "~/Library/Application Support/iTerm2/Scripts/AutoLaunch/iterm-theme.py"
 
 true
