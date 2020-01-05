@@ -2,14 +2,14 @@
 
 set autoindent
 # 2.1.0- set constantshow
-# 2.8.6- set cutfromcursor
 # -2.8.6 set cut
+# 2.8.6- set cutfromcursor
 # 2.7.1- set linenumbers
 set morespace
 set multibuffer
 set nowrap
-# 2.1.11- set softwrap
 set smarthome
+# 2.1.11- set softwrap
 set suspend
 set tabsize 4
 
