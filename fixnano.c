@@ -76,15 +76,15 @@ static void get_current_nano_version() {
 	uint32_t executable_size = sizeof(executable);
 	_NSGetExecutablePath(executable, &executable_size);
 #else
-	readlink("/proc/self/exe", executable, sizeof(executable));
+	executable[readlink("/proc/self/exe", executable, sizeof(executable))] = '\0';
 #endif
 	char *command;
-	asprintf(&command, "DYLD_INSERT_LIBRARIES= LD_PRELOAD= %s --version | grep -E -o 'version " VERSION_REGEX "'", executable);
-	FILE *output = popen(command, "r");
+	FILE *output = popen(asprintf(&command, "DYLD_INSERT_LIBRARIES= LD_PRELOAD= %s --version | grep -E -o 'version " VERSION_REGEX "'", executable) > 0 ? command : "echo version 0", "r");
 	free(command);
 	char *line = NULL;
 	size_t size;
-	getline(&line, &size, output);
+	while (0 < getline(&line, &size, output))
+		;
 	pclose(output);
 	parse_version(line + strlen("version "), current_version);
 	free(line);
@@ -167,7 +167,7 @@ FILE *OVERRIDE_NAME(fopen)(const char *restrict path, const char *restrict mode)
 	if (should_inject && !strcmp(path, *expansion.we_wordv)) {
 		FILE *file = ORIGINAL_NAME(fopen)(path, mode);
 		regex_t regex;
-		regcomp(&regex, "# (" VERSION_REGEX ")?-(" VERSION_REGEX ")? (.*)", REG_EXTENDED);
+		regcomp(&regex, "^# (" VERSION_REGEX ")?-(" VERSION_REGEX ")? (.*)", REG_EXTENDED);
 		regmatch_t matches[8];
 		char *line = NULL;
 		size_t size = 0;
