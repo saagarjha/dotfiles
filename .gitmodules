@@ -7,3 +7,6 @@
 [submodule ".dotfiles"]
 	path = .dotfiles
 	url = https://github.com/saagarjha/.dotfiles.git
+[submodule "wingpanel-indicator-sys-monitor"]
+	path = wingpanel-indicator-sys-monitor
+	url = https://github.com/saagarjha/wingpanel-indicator-sys-monitor.git
