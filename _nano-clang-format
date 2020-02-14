@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -eu
+
+directory=$(dirname "$3")
+if [ ! -e "$directory/.clang-format" ]; then
+	cp ~/.clang-format "$directory"
+	clang-format "$1" "$2" < "$3" | sponge "$3"
+	rm "$directory/.clang-format"
+else
+	clang-format "$@"
+fi

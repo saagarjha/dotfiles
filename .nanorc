@@ -16,16 +16,16 @@ set tabsize 4
 # 4.6- bind ^J formatter main
 # 2.1.0- bind ^T linter main
 
-# 2.3.3-3.0 extendsyntax c formatter clang-format --assume-filename=test.cpp -style=file -i
-# 4.6- extendsyntax c formatter clang-format --assume-filename=test.cpp -style=file -i
+# 2.3.3-3.0 extendsyntax c formatter _nano-clang-format --assume-filename=test.cpp -style=file
+# 4.6- extendsyntax c formatter _nano-clang-format --assume-filename=test.cpp -style=file
 # 2.3.3- extendsyntax c linter gcc
 
-# 2.3.3-3.0 extendsyntax java formatter clang-format --assume-filename=test.java -style=file -i
-# 4.6- extendsyntax java formatter clang-format --assume-filename=test.java -style=file -i
+# 2.3.3-3.0 extendsyntax java formatter _nano-clang-format --assume-filename=test.java -style=file
+# 4.6- extendsyntax java formatter _nano-clang-format --assume-filename=test.java -style=file
 # 2.3.3- extendsyntax java linter javac
 
-# 2.3.3-3.0 extendsyntax m formatter clang-format --assume-filename=test.mm -style=file -i
-# 4.6- extendsyntax m formatter clang-format --assume-filename=test.mm -style=file -i
+# 2.3.3-3.0 extendsyntax m formatter _nano-clang-format --assume-filename=test.mm -style=file
+# 4.6- extendsyntax m formatter _nano-clang-format --assume-filename=test.mm -style=file
 # 2.3.3- extendsyntax m linter clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -isystem /Applications/Xcode.app/Contents/Developer/CommandLineTools/usr/lib/clang/*/include -isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1
 
 # 2.3.3-3.0 extendsyntax rust formatter rustfmt
