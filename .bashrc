@@ -46,7 +46,11 @@ else
 fi
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
-export LS_OPTIONS="--color=auto"
+if [[ -x "$(which dircolors 2> /dev/null)" ]]; then
+	eval "$(dircolors -b)"
+	export LS_OPTIONS="--color=auto"
+fi
+alias ls="ls $LS_OPTIONS"
 export EDITOR="$(which nano)"
 if [[ -d ~/.ssl ]]; then
 	export SSL_CERT_FILE=/Users/saagarjha/.ssl/cacert.pem
