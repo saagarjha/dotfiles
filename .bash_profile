@@ -23,8 +23,8 @@ if [[ -f ~/.fzy && -t 1 ]]; then
 	. ~/.fzy
 fi
 
-if [[ "$TERM" == xterm* ]]; then
-	test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+if [[ -t 1 && -e "${HOME}/.iterm2_shell_integration.bash" ]]; then
+	. "${HOME}/.iterm2_shell_integration.bash"
 fi
 
 export CFLAGS="-I/opt/local/include"
