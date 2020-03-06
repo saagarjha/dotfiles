@@ -38,8 +38,8 @@ export PATH="$PATH:/usr/local/sbin"
 # Python
 export PATH="$PATH:~/Library/Python/2.7/bin/"
 export PATH="$PATH:~/Library/Python/3.7/bin/"
-if [[ -f /usr/local/bin/virtualenvwrapper.sh ]]; then
-	source /usr/local/bin/virtualenvwrapper.sh
+if [[ -f /usr/local/bin/virtualenvwrapper_lazy.sh ]]; then
+	source /usr/local/bin/virtualenvwrapper_lazy.sh
 fi
 
 function fix_python() { # :(
@@ -58,7 +58,9 @@ function swift() {
 
 # Ruby
 if [[ -x "$(which ruby)" ]]; then
-	export GEM_HOME="$(ls -t -U | ruby -e 'puts Gem.user_dir')"
+	# This is too slow, so do it ourselves
+	# export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+	export GEM_HOME="$(ruby --disable=gems -rrbconfig -e 'puts File.join [Dir.home, ".gem", RUBY_ENGINE, RbConfig::CONFIG["ruby_version"]]')"
 	export GEM_PATH="$GEM_HOME"
 	export PATH="$PATH:$GEM_HOME/bin"
 fi

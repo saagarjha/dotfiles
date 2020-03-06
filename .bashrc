@@ -14,8 +14,8 @@ export GDBHISTSIZE= # No limit to GDB history size
 export HISTFILESIZE= # No limit to history file size
 export HISTTIMEFORMAT="%d/%m/%y %T " # Time format for history entries
 if [[ "$TERM" == xterm* && -x "$(which tput 2> /dev/null)" && ! "$SET_PROMPT_COMMAND" ]]; then
-	PROMPT_COMMAND="history -a; printf \"\033]0;$(tty | sed 's#/dev/\([^0]*\)0*\([0-9]*\)#\1\2#')@$(tput cols)×$(tput lines)\007\""
 	export SET_PROMPT_COMMAND=1
+		PROMPT_COMMAND="history -a; printf \"\033]0;$(tty | sed 's#/dev/\([^0]*\)0*\([0-9]*\)#\1\2#')@${COLUMNS}×${LINES}\007\""
 fi
 if [[ "$BASH_VERSINFO" -ge 4 ]]; then # If a recent bash
 	if [[ -x "$(which git 2> /dev/null)" && -x "$(which git-ps1-status 2> /dev/null)" ]]; then
