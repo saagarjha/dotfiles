@@ -13,10 +13,14 @@ export HISTSIZE= # No limit to history size
 export GDBHISTSIZE= # No limit to GDB history size
 export HISTFILESIZE= # No limit to history file size
 export HISTTIMEFORMAT="%d/%m/%y %T " # Time format for history entries
-if [[ "$TERM" == xterm* && -x "$(which tput 2> /dev/null)" && ! "$SET_PROMPT_COMMAND" ]]; then
-	export SET_PROMPT_COMMAND=1
+if [[ -z ${SET_PROMPT_COMMAND+x} ]]; then
+	if [[ "$TERM" == xterm* && "$TERM_PROGRAM" == iTerm.app ]]; then
 		PROMPT_COMMAND="history -a; printf \"\033]0;$(tty | sed 's#/dev/\([^0]*\)0*\([0-9]*\)#\1\2#')@${COLUMNS}×${LINES}\007\""
+	else
+		PROMPT_COMMAND="history -a"
+	fi
 fi
+export SET_PROMPT_COMMAND=1
 if [[ "$BASH_VERSINFO" -ge 4 ]]; then # If a recent bash
 	if [[ -x "$(which git 2> /dev/null)" && -x "$(which git-ps1-status 2> /dev/null)" ]]; then
 		if [[ -x "$(which timeout 2> /dev/null)" ]]; then
@@ -42,7 +46,7 @@ else
 	else
 		PS1_HOSTNAME="$USER"
 	fi
-	PS1="$HOSTNAME \$(date '+%m/%d %H:%m:%S') \${PWD##*/}$ " # Backup prompt with no fancy stuff
+	PS1="$PS1_HOSTNAME \$(date '+%m/%d %H:%m:%S') \${PWD##*/}$ " # Backup prompt with no fancy stuff
 fi
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
