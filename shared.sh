@@ -19,7 +19,13 @@ ask() {
 # TODO rewrite this in C because POSIX sucks
 checked_copy() {
 	if [ -L "$2" ]; then
-		echo "$2 already linked, skipping..." && return 0;
+		if [ -e "$2" ]; then
+			echo "$2 already linked, skipping..." && return 0;
+		else
+			if ! ask "$2 is a broken link, remove it?"; then
+				return 0;
+			fi
+		fi
 	fi
 	if [ -f "$2" ]; then
 		cmp -s "$1" "$2" || { diff "$1" "$2" || true && ask "$1 and $2 differ, overwrite?" || return 1; }
