@@ -77,6 +77,9 @@ defaults write com.apple.dt.Xcode DVTTextShowFoldingSidebar -bool YES # Show the
 defaults write -g AppleICUForce24HourTime -bool YES # Use 24-hour time
 defaults write -g NSQuitAlwaysKeepsWindows -bool YES # Keep windows on quit
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3 # Full keyboard access in controls
+# AppKit
+defaults write -g _NS_4445425547 -bool YES # Show an internal AppKit debug menu
+
 
 # iTerm2
 defaults write com.googlecode.iterm2 EnableProxyIcon -bool YES # Enable proxy icon in titlebar
