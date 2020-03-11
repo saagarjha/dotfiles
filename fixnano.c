@@ -83,10 +83,10 @@ static void get_current_nano_version() {
 	free(command);
 	char *line = NULL;
 	size_t size;
-	while (0 < getline(&line, &size, output))
+	while (0 < getline(&line, &size, output) && strncmp(line, "version", strlen("version")))
 		;
 	pclose(output);
-	parse_version(line + strlen("version "), current_version);
+	parse_version(strlen(line) ? line + strlen("version ") : "0", current_version);
 	free(line);
 }
 
@@ -181,6 +181,7 @@ FILE *OVERRIDE_NAME(fopen)(const char *restrict path, const char *restrict mode)
 				add_nanorc_line(line);
 			}
 		}
+		regfree(&regex);
 		free(line);
 		return nanorc_file = fmemopen(nanorc.buffer, nanorc.size, mode);
 	} else {
