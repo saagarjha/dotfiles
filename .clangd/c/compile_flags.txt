@@ -1,0 +1,6 @@
+-x
+c
+-Wall
+-Wextra
+-I/opt/local/include
+-std=c11

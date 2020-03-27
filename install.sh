@@ -137,5 +137,6 @@ ask "Install git-ps1-status?" && checked_copy git-ps1-status ~/bin/git-ps1-statu
 ask "Install git-add-upstream?" && checked_copy git-add-upstream ~/bin/git-add-upstream
 ask "Install git-_diff-pager?" && checked_copy git-_diff-pager ~/bin/git-_diff-pager
 ask "Install _nano-clang-format?" && checked_copy _nano-clang-format ~/bin/_nano-clang-format
+ask "Install clangd flags?" && checked_copy .clangd ~/.clangd
 ask "Install stderred?" && install_stderred
 ask "Install nano fixes?" && install_fixnano
