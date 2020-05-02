@@ -63,6 +63,13 @@ defaults write com.apple.ActivityMonitor DisplayType -int 4 # Samples show perce
 defaults write com.apple.ActivityMonitor ShowCategory -int 100 # Show All Process
 killall Activity\ Monitor 2> /dev/null
 
+# Quartz Debug
+defaults write com.apple.QuartzDebug QuartzDebugPrivateInterface -bool YES # Make Quartz Debug actually work
+defaults write com.apple.QuartzDebug QDDockShowFramemeterHistory -bool YES # Show frame history in dock icon
+defaults write com.apple.QuartzDebug QDDockShowNumericalFps -bool YES # Show FPS in dock icon
+defaults write com.apple.QuartzDebug QDShowWindowInfoOnMouseOver -bool YES # Show a debug menu when you press ⌃⌥ while hovering over a window
+killall "Quartz Debug" 2> /dev/null
+
 defaults write com.apple.menuextra.clock DateFormat -string "EEE MMM d  h:mm:ss"
 # Remove clock menu extra
 # Remove battery menu extra
