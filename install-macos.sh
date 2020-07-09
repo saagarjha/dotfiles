@@ -40,7 +40,9 @@ killall "Safari Technology Preview" 2> /dev/null
 { set +x; } 2>/dev/null
 for app in ~/Library/Containers/com.apple.Safari/Data/Library/Preferences/com.apple.Safari ~/Library/Containers/com.apple.SafariTechnologyPreview/Data/Library/Preferences/com.apple.SafariTechnologyPreview; do
 	set -x
+	defaults write $app IncludeDevelopMenu -bool YES # Show the Develop menu
 	defaults write $app WebKitDeveloperExtrasEnabledPreferenceKey -bool YES # Show the Develop menu
+	defaults write $app WebKitPreferences.developerExtrasEnabled -bool YES # Show the Develop menu
 	defaults write $app IncludeDevelopMenu -bool YES # Show the Develop menu
 	defaults write $app ShowOverlayStatusBar -bool YES # Show the status bar
 	defaults write $app ShowFullURLInSmartSearchField -bool YES # Show the full URL in the address bar
@@ -48,6 +50,12 @@ for app in ~/Library/Containers/com.apple.Safari/Data/Library/Preferences/com.ap
 	defaults write $app AutoOpenSafeDownloads -bool NO # Don't open downloads automatically
 	defaults write $app SearchProviderIdentifier -string "com.duckduckgo"
 	defaults write $app ShowIconsInTabs -bool YES
+	{ set +x; } 2>/dev/null
+done
+
+for app in com.apple.Safari.SandboxBroker com.apple.SafariTechnologyPreview.SandboxBroker; do
+	set -x
+	defaults write $app ShowDevelopMenu -bool YES
 	{ set +x; } 2>/dev/null
 done
 set -x
