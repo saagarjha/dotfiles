@@ -35,6 +35,8 @@ defaults write com.apple.finder FXEnableExtensionChangeWarning -bool NO # Disabl
 killall Finder 2> /dev/null
 
 # Safari
+killall Safari 2> /dev/null
+killall "Safari Technology Preview" 2> /dev/null
 { set +x; } 2>/dev/null
 for app in ~/Library/Containers/com.apple.Safari/Data/Library/Preferences/com.apple.Safari ~/Library/Containers/com.apple.SafariTechnologyPreview/Data/Library/Preferences/com.apple.SafariTechnologyPreview; do
 	set -x
@@ -49,26 +51,24 @@ for app in ~/Library/Containers/com.apple.Safari/Data/Library/Preferences/com.ap
 	{ set +x; } 2>/dev/null
 done
 set -x
-killall Safari 2> /dev/null
-killall Safari\ Technology\ Preview 2> /dev/null
 
 # Mail
-defaults write ~/Library/Containers/com.apple.Mail/Data/Library/Preferences/com.apple.mail NumberOfSnippetLines 5
 killall Mail 2> /dev/null
+defaults write ~/Library/Containers/com.apple.Mail/Data/Library/Preferences/com.apple.mail NumberOfSnippetLines 5
 
 # Activity Monitor
+killall Activity\ Monitor 2> /dev/null
 defaults write com.apple.ActivityMonitor UpdatePeriod -int 1 # Update frequently
 defaults write com.apple.ActivityMonitor IconType -int 5 # Set the dock icon to CPU usage
 defaults write com.apple.ActivityMonitor DisplayType -int 4 # Samples show percentage of thread
 defaults write com.apple.ActivityMonitor ShowCategory -int 100 # Show All Process
-killall Activity\ Monitor 2> /dev/null
 
 # Quartz Debug
+killall "Quartz Debug" 2> /dev/null
 defaults write com.apple.QuartzDebug QuartzDebugPrivateInterface -bool YES # Make Quartz Debug actually work
 defaults write com.apple.QuartzDebug QDDockShowFramemeterHistory -bool YES # Show frame history in dock icon
 defaults write com.apple.QuartzDebug QDDockShowNumericalFps -bool YES # Show FPS in dock icon
 defaults write com.apple.QuartzDebug QDShowWindowInfoOnMouseOver -bool YES # Show a debug menu when you press ⌃⌥ while hovering over a window
-killall "Quartz Debug" 2> /dev/null
 
 defaults write com.apple.menuextra.clock DateFormat -string "EEE MMM d  h:mm:ss"
 # Remove clock menu extra
