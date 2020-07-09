@@ -83,7 +83,7 @@ defaults write com.apple.dt.Xcode DVTTextShowFoldingSidebar -bool YES # Show the
 # Global
 defaults write -g AppleICUForce24HourTime -bool YES # Use 24-hour time
 defaults write -g NSQuitAlwaysKeepsWindows -bool YES # Keep windows on quit
-defaults write NSGlobalDomain AppleKeyboardUIMode -int 3 # Full keyboard access in controls
+defaults write -g AppleKeyboardUIMode -int 3 # Full keyboard access in controls
 # AppKit
 defaults write -g _NS_4445425547 -bool YES # Show an internal AppKit debug menu
 
