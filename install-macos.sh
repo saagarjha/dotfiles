@@ -84,6 +84,10 @@ defaults write com.apple.dt.Xcode DVTTextShowFoldingSidebar -bool YES # Show the
 defaults write -g AppleICUForce24HourTime -bool YES # Use 24-hour time
 defaults write -g NSQuitAlwaysKeepsWindows -bool YES # Keep windows on quit
 defaults write -g AppleKeyboardUIMode -int 3 # Full keyboard access in controls
+defaults write -g NSAutomaticSpellingCorrectionEnabled -bool NO # Disable automatic spelling correction
+defaults write -g WebAutomaticSpellingCorrectionEnabled -bool NO # Disable automatic spelling correction for websites
+defaults write -g NSAutomaticPeriodSubstitutionEnabled -bool NO # Disable automatic period insertion
+defaults write -g com.apple.sound.beep.feedback -bool YES # Make noise when using the volume keys
 # AppKit
 defaults write -g _NS_4445425547 -bool YES # Show an internal AppKit debug menu
 
