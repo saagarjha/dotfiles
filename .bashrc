@@ -86,6 +86,11 @@ function hopper() {
 	hopperv4 -e "$@"
 	export DYLD_INSERT_LIBRARIES="$dil"
 }
+function dyld_hopper() {
+	local dylib_dir="$(mktemp -d)" && \
+	dyld_shared_cache_util -extract_matching "$1" "$dylib_dir" "$(find /System/Library/dyld | fzy)" && \
+	hopper "$(find "$dylib_dir" -type f | fzy)"
+}
 function appbundleid() {
 	/usr/libexec/PlistBuddy -c 'Print CFBundleIdentifier' "$1/Contents/Info.plist"
 }
