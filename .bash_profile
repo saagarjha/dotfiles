@@ -27,11 +27,13 @@ if [[ -t 1 && -e "${HOME}/.iterm2_shell_integration.bash" ]]; then
 	. "${HOME}/.iterm2_shell_integration.bash"
 fi
 
-export CFLAGS="-I/opt/local/include"
-export CPPFLAGS="-I/opt/local/include"
-export CXXFLAGS="-I/opt/local/include"
-export LDFLAGS="-L/opt/local/lib"
-export PKG_CONFIG_PATH="/opt/local/lib/pkgconfig"
+function use_macports() {
+	export CFLAGS="-I/opt/local/include"
+	export CPPFLAGS="-I/opt/local/include"
+	export CXXFLAGS="-I/opt/local/include"
+	export LDFLAGS="-L/opt/local/lib"
+	export PKG_CONFIG_PATH="/opt/local/lib/pkgconfig"
+}
 
 export PATH="$PATH:/usr/local/sbin"
 
