@@ -38,3 +38,8 @@
 	log = git _diff-pager
 	show = git _diff-pager
 	diff = git _diff-pager
+[sendemail]
+	smtpEncryption = tls
+	smtpServer = smtp.gmail.com
+	smtpUser = saagarjha28@gmail.com
+	smtpServerPort = 587
