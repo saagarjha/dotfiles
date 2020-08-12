@@ -27,6 +27,7 @@
 #define VERSION_REGEX "[0-9]+(\\.[0-9]+)?(\\.[0-9]+)?"
 
 FILE *(*original_fopen)(const char *restrict, const char *restrict);
+FILE *(*original_fclose)(FILE *);
 int (*original_fileno)(FILE *stream);
 
 __attribute__((weak)) const char *getprogname();
@@ -94,6 +95,7 @@ static void fixnano_init() {
 	should_inject = (getprogname && !strcmp(getprogname(), "nano")) ||
 	                (&program_invocation_short_name && !strcmp(program_invocation_short_name, "nano"));
 	original_fopen = find_libc_symbol("fopen");
+	original_fclose = find_libc_symbol("fclose");
 	original_fileno = find_libc_symbol("fileno");
 	if (should_inject) {
 		wordexp("~/.nanorc", &expansion, 0);
@@ -189,6 +191,13 @@ FILE *OVERRIDE_NAME(fopen)(const char *restrict path, const char *restrict mode)
 	}
 }
 
+int OVERRIDE_NAME(fclose)(FILE *stream) {
+	if (stream == nanorc_file) {
+		nanorc_file = NULL;
+	}
+	return ORIGINAL_NAME(fclose)(stream);
+}
+
 #ifdef __APPLE__
 FILE *fopen_DARWIN_EXTSN(const char *restrict, const char *restrict) __DARWIN_EXTSN(fopen);
 
@@ -198,6 +207,13 @@ __attribute__((used, section("__DATA,__interpose"))) static struct {
 } fopen_overrides[] = {
     {overridden_fopen, fopen},
     {overridden_fopen, fopen_DARWIN_EXTSN},
+};
+
+__attribute__((used, section("__DATA,__interpose"))) static struct {
+	int (*original_fclose)(FILE *);
+	int (*fclose)(FILE *);
+} fclose_overrides[] = {
+    {overridden_fclose, fclose},
 };
 
 __attribute__((used, section("__DATA,__interpose"))) static struct {
