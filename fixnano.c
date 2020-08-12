@@ -79,15 +79,18 @@ static void get_current_nano_version() {
 #else
 	executable[readlink("/proc/self/exe", executable, sizeof(executable))] = '\0';
 #endif
-	char *command;
-	FILE *output = popen(asprintf(&command, "DYLD_INSERT_LIBRARIES= LD_PRELOAD= %s --version | grep -E -o 'version " VERSION_REGEX "'", executable) > 0 ? command : "echo version 0", "r");
-	free(command);
+	char command[1024];
+	FILE *output = popen(snprintf(command, sizeof(command),
+		"DYLD_INSERT_LIBRARIES= LD_PRELOAD= %s --version |"
+		" grep -E -o '(version |v)" VERSION_REGEX "' |"
+		" grep -E -o '" VERSION_REGEX "'",
+		executable) > 0 ? command : "echo version 0", "r");
 	char *line = NULL;
 	size_t size;
-	while (0 < getline(&line, &size, output) && strncmp(line, "version", strlen("version")))
+	getline(&line, &size, output)
 		;
 	pclose(output);
-	parse_version(strlen(line) ? line + strlen("version ") : "0", current_version);
+	parse_version(strlen(line) ? line : "0", current_version);
 	free(line);
 }
 
@@ -157,13 +160,6 @@ static inline bool supported_version(char *line, regmatch_t *matches) {
 	return verscmp(current_version, minimum_version) >= 0 && verscmp(current_version, maximum_version) <= 0;
 }
 
-int OVERRIDE_NAME(fileno)(FILE *stream) {
-	ENSURE_INITIALIZATION();
-	// Nano's getline reimplementation used to check that this returns something
-	// other than -1. Return -2 to bypass the check for our memory buffer.
-	return stream == nanorc_file ? -2 : ORIGINAL_NAME(fileno)(stream);
-}
-
 FILE *OVERRIDE_NAME(fopen)(const char *restrict path, const char *restrict mode) {
 	ENSURE_INITIALIZATION();
 	if (should_inject && !strcmp(path, *expansion.we_wordv)) {
@@ -196,6 +192,13 @@ int OVERRIDE_NAME(fclose)(FILE *stream) {
 		nanorc_file = NULL;
 	}
 	return ORIGINAL_NAME(fclose)(stream);
+}
+
+int OVERRIDE_NAME(fileno)(FILE *stream) {
+	ENSURE_INITIALIZATION();
+	// Nano's getline reimplementation used to check that this returns something
+	// other than -1. Return -2 to bypass the check for our memory buffer.
+	return stream == nanorc_file ? -2 : ORIGINAL_NAME(fileno)(stream);
 }
 
 #ifdef __APPLE__
