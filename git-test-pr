@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+if [ $# == 1 ]; then
+	git fetch origin "pull/$1/head:pr-$1"
+	git checkout "pr-$1"
+elif [ $# == 2 ]; then
+	git fetch "$1" "pull/$2/head:pr-$2"
+	git checkout "pr-$2"
+else
+	echo "Usage: git test-pr [remote] pr#"
+	false
+fi
