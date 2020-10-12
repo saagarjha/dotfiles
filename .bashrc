@@ -106,11 +106,7 @@ alias htop="sudo htop"
 alias ag="ag --color-match \"30;43\" --color-line-number \"31;31\" --color-path \"32;32\""
 alias more="less" # Sorry, Mark Nudelman!
 function gnutils() { # Use GNU tools over the system-provided BSD ones
-	export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-	export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
-	export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
-	export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
-	export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
+	export PATH="/opt/local/libexec/gnubin:$PATH"
 }
 if [[ -L /var/db/xcode_select_link ]]; then
 	alias xcopen="open -a \$(dirname $(dirname $(readlink /var/db/xcode_select_link)))"
