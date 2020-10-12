@@ -100,6 +100,7 @@ defaults write -g NSAutomaticPeriodSubstitutionEnabled -bool NO # Disable automa
 defaults write -g com.apple.sound.beep.feedback -bool YES # Make noise when using the volume keys
 # AppKit
 defaults write -g _NS_4445425547 -bool YES # Show an internal AppKit debug menu
+defaults write -g NSToolbarTitleViewRolloverDelay -float 0 # Not perfect, but makes the proxy icon show up faster
 
 
 # iTerm2
