@@ -27,7 +27,7 @@
 #define VERSION_REGEX "[0-9]+(\\.[0-9]+)?(\\.[0-9]+)?"
 
 FILE *(*original_fopen)(const char *restrict, const char *restrict);
-FILE *(*original_fclose)(FILE *);
+int (*original_fclose)(FILE *);
 int (*original_fileno)(FILE *stream);
 
 __attribute__((weak)) const char *getprogname();
