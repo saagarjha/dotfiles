@@ -188,6 +188,7 @@ FILE *OVERRIDE_NAME(fopen)(const char *restrict path, const char *restrict mode)
 }
 
 int OVERRIDE_NAME(fclose)(FILE *stream) {
+	ENSURE_INITIALIZATION();
 	if (stream == nanorc_file) {
 		nanorc_file = NULL;
 	}
