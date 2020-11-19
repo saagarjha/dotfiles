@@ -87,6 +87,7 @@ set_defaults() {
 	# Xcode
 	defaults write com.apple.dt.Xcode DVTTextIndentUsingTabs -bool YES # Use tabs for indentation
 	defaults write com.apple.dt.Xcode DVTTextShowFoldingSidebar -bool YES # Show the sidebar for indentation depth
+	defaults write com.apple.dt.Xcode IDEAlwaysShowCompressedStackFrames -bool YES # Show the full stack trace in the sidebar
 	defaults write com.apple.dt.Xcode IDEIssueNavigatorDetailLevel -int 30 # Show up to 30 lines of detail in the issue navigator
 	defaults write com.apple.dt.Xcode IDESearchNavigatorDetailLevel -int 30 # Show up to 30 lines of detail when searching
 	
