@@ -158,6 +158,6 @@ ask "Install Xcode themes?" && checked_copy FontAndColorThemes ~/Library/Develop
 ask "Install iterm-theme.py?" && mkdir -p "~/Library/Application Support/iTerm2/Scripts/AutoLaunch/" && checked_copy iterm-theme.py "~/Library/Application Support/iTerm2/Scripts/AutoLaunch/iterm-theme.py"
 
 ask "Install sysctl modifications?" && checked_copy sysctl.plist /Library/LaunchDaemons
-ask "Install hyper key remap?" checked_copy RemapHyper.plist  ~/Library/LaunchAgents/com.saagarjha.RemapHyper.plist
+#ask "Install hyper key remap?" checked_copy RemapHyper.plist  ~/Library/LaunchAgents/com.saagarjha.RemapHyper.plist
 
 true
