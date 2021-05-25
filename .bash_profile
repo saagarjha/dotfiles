@@ -72,7 +72,7 @@ export PATH="$PATH:$HOME/.cargo/bin"
 
 # Java
 # If the java_home symbolic link is set, then run it to find JAVA_HOME
-if [[ -L /usr/libexec/java_home ]]; then
+if [[ -e /usr/libexec/java_home ]]; then
 	export JAVA_HOME="$(/usr/libexec/java_home 2> /dev/null)"
 fi
 
