@@ -49,7 +49,8 @@ else
 	PS1="$PS1_HOSTNAME \$(date '+%m/%d %H:%m:%S') \${PWD##*/}$ " # Backup prompt with no fancy stuff
 fi
 export CLICOLOR=1
-export LSCOLORS=ExFxCxDxBxegedabagacad
+export LSCOLORS=exFxCxDxBxegedabagacad
+export LS_COLORS="di=34:ln=1;35:so=1;32:pi=1;33:ex=1;31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
 if [[ -x "$(which dircolors 2> /dev/null)" ]]; then
 	eval "$(dircolors -b)"
 	export LS_OPTIONS="--color=auto"
