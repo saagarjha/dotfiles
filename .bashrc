@@ -15,7 +15,8 @@ export HISTFILESIZE= # No limit to history file size
 export HISTTIMEFORMAT="%d/%m/%y %T " # Time format for history entries
 if [[ -z ${SET_PROMPT_COMMAND+x} ]]; then
 	if [[ "$TERM" == xterm* && "$TERM_PROGRAM" == iTerm.app ]]; then
-		PROMPT_COMMAND="history -a; printf \"\033]0;$(tty | sed 's#/dev/\([^0]*\)0*\([0-9]*\)#\1\2#')@${COLUMNS}×${LINES}\007\""
+		# \303\227 is the multiplication sign, since the literal character doesn't work
+		PROMPT_COMMAND='history -a; printf "\033]0;$(tty | sed "s#/dev/\([^0]*\)0*\([0-9]*\)#\1\2#")@$COLUMNS\303\227$LINES\007"'
 	else
 		PROMPT_COMMAND="history -a"
 	fi
