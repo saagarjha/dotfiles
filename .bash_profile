@@ -35,6 +35,8 @@ function use_macports() {
 	export PKG_CONFIG_PATH="/opt/local/lib/pkgconfig"
 }
 
+export ASAN_OPTIONS="debug=true:check_initialization_order=true:detect_stack_use_after_return=true:alloc_dealloc_mismatch=true:strict_string_checks=true:detect_invalid_pointer_pairs=1:atexit=true"
+
 export PATH="$PATH:/usr/local/sbin"
 
 # Python
