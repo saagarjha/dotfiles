@@ -92,6 +92,7 @@ set_defaults() {
 	defaults write com.apple.dt.Xcode IDEAlwaysShowCompressedStackFrames -bool YES # Show the full stack trace in the sidebar
 	defaults write com.apple.dt.Xcode IDEIssueNavigatorDetailLevel -int 30 # Show up to 30 lines of detail in the issue navigator
 	defaults write com.apple.dt.Xcode IDESearchNavigatorDetailLevel -int 30 # Show up to 30 lines of detail when searching
+	defaults write com.apple.dt.Xcode ShowDVTDebugMenu -bool YES # Show the build number in the app icon
 	
 	# Global
 	defaults write -g AppleICUForce24HourTime -bool YES # Use 24-hour time
