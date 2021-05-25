@@ -139,7 +139,7 @@ function macports() {
 	cat <(echo "macOS $(sw_vers -productVersion) $(sw_vers -buildVersion)") <(echo "Xcode $(xcodebuild -version | awk '{print $NF}' | tr '\n' ' ')") | pbcopy
 }
 
-cd() {
+function cd() {
 	# Set the current directory to the 0th history item
 	cd_history[0]=$PWD
 	if [[ $1 == -h ]]; then
