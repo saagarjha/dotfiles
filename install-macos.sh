@@ -97,7 +97,10 @@ set_defaults() {
 	# Global
 	defaults write -g AppleICUForce24HourTime -bool YES # Use 24-hour time
 	defaults write -g AppleKeyboardUIMode -int 3 # Full keyboard access in controls
+	defaults write -g ApplePressAndHoldEnabled -bool NO # Allow keyboard repeat
+	defaults write -g InitialKeyRepeat -int 15 # Faster initial key repeat (225 ms)
 	defaults write -g NSQuitAlwaysKeepsWindows -bool YES # Keep windows on quit
+	defaults write -g KeyRepeat -int 2 # Faster key repeat (30 ms)
 	defaults write -g NSAutomaticSpellingCorrectionEnabled -bool NO # Disable automatic spelling correction
 	defaults write -g WebAutomaticSpellingCorrectionEnabled -bool NO # Disable automatic spelling correction for websites
 	defaults write -g NSAutomaticPeriodSubstitutionEnabled -bool NO # Disable automatic period insertion
