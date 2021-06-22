@@ -131,7 +131,7 @@ set_defaults() {
 	defaults write com.DanPristupov.Fork terminalClient -int 1 # Use iTerm
 	defaults write com.DanPristupov.Fork pageGuideLinePosition -int 72 # Commit message body column
 	defaults write com.DanPristupov.Fork diffShowHiddenSymbols -bool YES # Show whitespace
-	defaults write com.DanPristupov.Fork diffFontName -int SFMono-Regular # Font to use
+	defaults write com.DanPristupov.Fork diffFontName -string SFMono-Regular # Font to use
 	killall Fork 2> /dev/null
 	
 	{ set +x; } 2>/dev/null
