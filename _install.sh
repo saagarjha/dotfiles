@@ -48,6 +48,7 @@ check_root()  {
 }
 
 install_stderred() {
+	git submodule update --init stderred
 	local dil="${DYLD_INSERT_LIBRARIES:-}"
 	local ld_preload="${LD_PRELOAD:-}"
 	unset DYLD_INSERT_LIBRARIES
