@@ -73,6 +73,11 @@ set_defaults() {
 	defaults write com.apple.ActivityMonitor DisplayType -int 4 # Samples show percentage of thread
 	defaults write com.apple.ActivityMonitor ShowCategory -int 100 # Show All Process
 	
+	# Disk Utility
+	killall Disk\ Utility 2> /dev/null
+	defaults write com.apple.DiskUtility SidebarShowAllDevices -bool YES # Show all devices in the sidebar
+	defaults write com.apple.DiskUtility WorkspaceShowAPFSSnapshots -bool YES # Show APFS shapshots
+
 	# Quartz Debug
 	killall "Quartz Debug" 2> /dev/null
 	defaults write com.apple.QuartzDebug QuartzDebugPrivateInterface -bool YES # Make Quartz Debug actually work
