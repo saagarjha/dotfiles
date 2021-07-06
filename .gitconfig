@@ -1,8 +1,6 @@
 [user]
 	name = Saagar Jha
 	email = saagar@saagarjha.com
-[credential]
-	helper = osxkeychain
 [alias]
 	glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 	git = !echo "You wrote \"git\" twice." >&2 && git
