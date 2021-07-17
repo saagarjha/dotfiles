@@ -9,10 +9,10 @@ end
 
 -- Launch app (or show it, if it's already running)
 function launchApp(app)
-	if app ~= "Finder" then
-		hs.application.launchOrFocus(app)
-	else
+	if app == "Finder" or (app == "Ghidra" and hs.application.find("Ghidra")) then
 		hs.application.get(app):activate(true)
+	else
+		hs.application.launchOrFocus(app)
 	end
 	k.triggered = true
 end
@@ -38,6 +38,7 @@ bindApp('m', "Mail")
 bindApp('n', "Numbers")
 bindApp('o', "Notes")
 bindApp('p', "Pages")
+bindApp('q', "Ghidra")
 bindApp('r', "Preview")
 bindApp('s', hs.application.nameForBundleID("com.apple.SafariTechnologyPreview") and "Safari Technology Preview" or "Safari")
 bindApp('t', hs.application.nameForBundleID("com.googlecode.iterm2") and "iTerm" or "Terminal")
