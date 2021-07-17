@@ -113,8 +113,8 @@ set_defaults() {
 	defaults write -g com.apple.sound.beep.feedback -bool YES # Make noise when using the volume keys
 	# AppKit
 	defaults write -g _NS_4445425547 -bool YES # Show an internal AppKit debug menu
-	defaults write -g NSToolbarTitleViewRolloverDelay -float 0 # Not perfect, but makes the proxy icon show up faster
-	
+	# Universal Access
+	defaults write com.apple.universalaccess showWindowTitlebarIcons -bool YES # Show proxy icon in titlebar
 	
 	# iTerm2
 	defaults write com.googlecode.iterm2 EnableProxyIcon -bool YES # Enable proxy icon in titlebar
