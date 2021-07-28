@@ -1,7 +1,6 @@
 shopt -s histappend
 if [[ "$BASH_VERSINFO" -ge 4 ]]; then
 	shopt -s globstar
-	shopt -s autocd
 fi
 
 if [[ -t 1 ]]; then # Check if standard out is a terminal
