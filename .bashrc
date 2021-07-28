@@ -92,6 +92,7 @@ function dyld_hopper() {
 	dyld_shared_cache_util -extract_matching "$1" "$dylib_dir" "$(find /System/Library/dyld | fzy)" && \
 	hopper "$(find "$dylib_dir" -type f | fzy)"
 }
+alias ghidra='java -cp /Applications/Ghidra.app/Contents/Resources/ OpenGhidra'
 function appbundleid() {
 	/usr/libexec/PlistBuddy -c 'Print CFBundleIdentifier' "$1/Contents/Info.plist"
 }
