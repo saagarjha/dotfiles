@@ -4,6 +4,7 @@
 
 install_macports() {
 	set -x
+	git submodule update --init macports-base
 	cd macports-base
 	git remote add macports https://github.com/macports/macports-base.git || true
 	git fetch macports
