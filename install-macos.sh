@@ -6,6 +6,9 @@ install_macports() {
 	set -x
 	cd macports-base
 	git remote add macports https://github.com/macports/macports-base.git || true
+	git fetch macports
+	git checkout selfupdate
+	git branch --set-upstream-to=macports/master
 	git pull macports master --rebase --autostash
 	./configure && make && sudo make install
 	cd ..
