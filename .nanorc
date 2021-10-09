@@ -5,6 +5,7 @@ set autoindent
 # -2.8.6 set cut
 # 2.8.6- set cutfromcursor
 # 2.7.1- set linenumbers
+# 5.5- set minibar
 # -5.6.1 set morespace
 set multibuffer
 set nowrap
