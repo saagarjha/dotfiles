@@ -8,6 +8,7 @@ set autoindent
 # 5.5- set minibar
 # -5.6.1 set morespace
 set multibuffer
+set nohelp
 set nowrap
 set smarthome
 # 2.1.11- set softwrap
