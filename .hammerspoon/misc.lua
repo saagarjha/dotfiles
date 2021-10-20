@@ -15,7 +15,7 @@ k:bind({}, '\\', nil, function()
 end)
 
 -- Combine windows
-k:bind({}, '`', function ()
+k:bind({}, '`', nil, function ()
 	local app = hs.application.frontmostApplication()
 	if app:title() ~= "Safari Technology Preview" then
 		local menuItemTable = {"Window", "Merge All Windows"}
