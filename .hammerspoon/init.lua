@@ -1,5 +1,5 @@
 -- A global variable for Hyper Mode
-k = hs.hotkey.modal.new({}, "F17")
+k = hs.hotkey.modal.new({}, nil)
 
 -- Enter Hyper Mode when F18 (Hyper/Caps lock) is pressed
 pressedF18 = function()
