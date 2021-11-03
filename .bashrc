@@ -8,6 +8,7 @@ if [[ -t 1 ]]; then # Check if standard out is a terminal
 	stty -ixon
 fi
 
+export HISTFILE=~/.bash_history_noclobber # Avoid bash from clobbering history if we don't set any variables
 export HISTSIZE= # No limit to history size
 export GDBHISTSIZE= # No limit to GDB history size
 export HISTFILESIZE= # No limit to history file size
