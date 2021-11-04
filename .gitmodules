@@ -10,3 +10,9 @@
 [submodule "wingpanel-indicator-sys-monitor"]
 	path = wingpanel-indicator-sys-monitor
 	url = https://github.com/saagarjha/wingpanel-indicator-sys-monitor.git
+[submodule "library_injector"]
+	path = library_injector
+	url = https://gist.github.com/saagarjha/a70d44951cb72f82efee3317d80ac07f
+[submodule "swizzler"]
+	path = swizzler
+	url = https://gist.github.com/saagarjha/ed701e3369639410b5d5303612964557

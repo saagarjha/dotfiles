@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.saagarjha.ForceFullDesktopBar</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/Users/saagarjha/bin/library_injector</string>
+		<string>/System/Library/CoreServices/Dock.app/Contents/MacOS/Dock</string>
+		<string>/Users/saagarjha/.dotfiles/libforce_full_desktop_bar.dylib</string>
+	</array>
+	<key>KeepAlive</key>
+	<dict>
+		<key>OtherJobEnabled</key>
+		<dict>
+			<key>com.apple.WindowServer</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

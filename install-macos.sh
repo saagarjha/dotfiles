@@ -146,6 +146,23 @@ set_defaults() {
 	{ set +x; } 2>/dev/null
 }
 
+install_force_full_desktop_bar() {
+	set -x
+	git submodule update --init library_injector
+	git submodule update --init swizzler
+	clang++ -arch x86_64 -arch arm64 -std=c++20 library_injector/library_injector.cpp -lbsm -lEndpointSecurity -o library_injector/library_injector
+	codesign -s - --entitlements library_injector_entitlements.plist library_injector/library_injector
+	{ set +x; } 2>/dev/null
+	checked_copy library_injector/library_injector ~/bin/library_injector
+	set -x
+	clang++ -std=c++20 force_full_desktop_bar.mm -framework Foundation -framework CoreGraphics -shared -arch arm64e -arch arm64 -arch x86_64 -o libforce_full_desktop_bar.dylib
+	{ set +x; } 2>/dev/null
+	checked_copy com.saagarjha.ForceFullDesktopBar.plist /Library/LaunchDaemons/com.saagarjha.ForceFullDesktopBar.plist
+	set -x
+	sudo chown root:wheel /Library/LaunchDaemons/com.saagarjha.ForceFullDesktopBar.plist
+	{ set +x; } 2>/dev/null
+}
+
 export PATH="/opt/local/bin/:$PATH"
 ask "Set defaults?" && set_defaults
 ask "Install MacPorts?" && install_macports
@@ -174,5 +191,6 @@ ask "Install Xcode themes?" && checked_copy FontAndColorThemes ~/Library/Develop
 
 ask "Install sysctl modifications?" && checked_copy sysctl.plist /Library/LaunchDaemons
 ask "Install hyper key remap?" && checked_copy com.saagarjha.RemapHyper.plist ~/Library/LaunchAgents/com.saagarjha.RemapHyper.plist && launchctl load ~/Library/LaunchAgents/com.saagarjha.RemapHyper.plist
+ask "Install force full desktop bar?" && install_force_full_desktop_bar
 
 true
