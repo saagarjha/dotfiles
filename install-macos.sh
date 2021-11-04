@@ -166,7 +166,7 @@ install_force_full_desktop_bar() {
 export PATH="/opt/local/bin/:$PATH"
 ask "Set defaults?" && set_defaults
 ask "Install MacPorts?" && install_macports
-if [ -x "$(which port 2> /dev/null)" ]; then
+if [ -x "$(which port 2> /dev/null)" ] && ask "Update ports?"; then
 	set -x
 	sudo port selfupdate
 	{ set +x; } 2>/dev/null
