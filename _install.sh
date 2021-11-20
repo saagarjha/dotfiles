@@ -49,8 +49,8 @@ check_root()  {
 
 install_stderred() {
 	git submodule update --init stderred
-	local dil="${DYLD_INSERT_LIBRARIES:-}"
-	local ld_preload="${LD_PRELOAD:-}"
+	dil="${DYLD_INSERT_LIBRARIES:-}"
+	ld_preload="${LD_PRELOAD:-}"
 	unset DYLD_INSERT_LIBRARIES
 	unset LD_PRELOAD
 	set -x
@@ -58,8 +58,8 @@ install_stderred() {
 	make clean && make
 	cd ..
 	{ set +x; } 2>/dev/null
-	export DYLD_INSERT_LIBRARIES=$dil
-	export LD_PRELOAD=$ld_preload
+	export DYLD_INSERT_LIBRARIES="$dil"
+	export LD_PRELOAD="$ld_preload"
 }
 
 install_fixnano() {
@@ -74,6 +74,7 @@ install_fixnano() {
 			;;
 	esac
 	set -x
+	# shellcheck disable=SC2086
 	gcc -shared -fPIC -lc -ldl -Os $undefined_flags fixnano.c -o libfixnano.$extension
 	{ set +x; } 2>/dev/null
 }
@@ -83,6 +84,7 @@ check_for_bash
 check_os
 
 if [ "$HAS_BASH" ]; then
+	# shellcheck disable=SC3040
 	set -o pipefail
 fi
 

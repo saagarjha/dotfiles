@@ -3,28 +3,29 @@
 . ./shared.sh
 
 if [ ! "$IS_ROOT" ]; then
-	SUDO=sudo
+	sudo=sudo
 else
-	SUDO=
+	sudo=
 fi
 
 install_wingpanel_indicator_sys_monitor() {
 	set -x
-	cd wingpanel-indicator-sys-monitor
-	$SUDO apt install libgtop2-dev libgranite-dev libgtk-3-dev libwingpanel-2.0-dev meson valac
-	meson build --prefix=/usr
-	cd build
-	ninja
-	$SUDO ninja install
-	cd ..
+	(
+		cd wingpanel-indicator-sys-monitor
+		$sudo apt install libgtop2-dev libgranite-dev libgtk-3-dev libwingpanel-2.0-dev meson valac
+		meson build --prefix=/usr
+		cd build
+		ninja
+		$sudo ninja install
+	)
 	{ set +x; } 2>/dev/null
 }
 
-ask "Install build-essential?" && $SUDO apt install build-essential
-ask "Install cmake?" && $SUDO apt install cmake
-ask "Install clang-format?" && $SUDO apt install clang-format
-ask "Install tig?" && $SUDO apt install tig
-ask "Install ag?" && $SUDO apt install silversearcher-ag
+ask "Install build-essential?" && $sudo apt install build-essential
+ask "Install cmake?" && $sudo apt install cmake
+ask "Install clang-format?" && $sudo apt install clang-format
+ask "Install tig?" && $sudo apt install tig
+ask "Install ag?" && $sudo apt install silversearcher-ag
 ask "Install bashlogin?" && checked_copy bashlogin /bin/bashlogin
 
 ask "Install wingpanel-indicator-sys-monitor?" && install_wingpanel_indicator_sys_monitor

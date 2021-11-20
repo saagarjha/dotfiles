@@ -1,9 +1,9 @@
 #!/bin/sh
 
 ask() {
-	printf "$1 "
-	read -r REPLY
-	case "$REPLY" in
+	printf "%s " "$1"
+	read -r reply
+	case "$reply" in
 		"Y")
 			return 0
 			;;
@@ -33,17 +33,17 @@ checked_copy() {
 	# TOCTOU, what's that?
 	if ! touch "$2"; then
 		if ask "$2 is not writable, elevate permissions?"; then
-			local COMMAND_RM="sudo rm"
-			local COMMAND_LN="sudo ln"
+			command_rm="sudo rm"
+			command_ln="sudo ln"
 		else
 			return 1;
 		fi
 	else
-		local COMMAND_RM="rm"
-		local COMMAND_LN="ln"
+		command_rm="rm"
+		command_ln="ln"
 	fi
 	set -x
-	$COMMAND_RM -r "$2"
-	$COMMAND_LN -s "$PWD/$1" "$2"
+	$command_rm -r "$2"
+	$command_ln -s "$PWD/$1" "$2"
 	{ set +x; } 2>/dev/null
 }

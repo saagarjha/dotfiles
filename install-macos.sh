@@ -5,14 +5,15 @@
 install_macports() {
 	set -x
 	git submodule update --init macports-base
-	cd macports-base
-	git remote add macports https://github.com/macports/macports-base.git || true
-	git fetch macports
-	git checkout selfupdate
-	git branch --set-upstream-to=macports/master
-	git pull macports master --rebase --autostash
-	./configure && make && sudo make install
-	cd ..
+	(
+		cd macports-base
+		git remote add macports https://github.com/macports/macports-base.git || true
+		git fetch macports
+		git checkout selfupdate
+		git branch --set-upstream-to=macports/master
+		git pull macports master --rebase --autostash
+		./configure && make && sudo make install
+	)
 	{ set +x; } 2>/dev/null
 }
 
