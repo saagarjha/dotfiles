@@ -167,6 +167,18 @@ install_force_full_desktop_bar() {
 	{ set +x; } 2>/dev/null
 }
 
+install_ios_scaler() {
+	install_library_injector
+	set -x
+	xcrun clang++ -std=c++20 ios_scaler.mm -framework Foundation -framework CoreGraphics -shared -arch arm64e -arch arm64 -arch x86_64 -o libios_scaler.dylib
+	codesign -s "Apple Development" libios_scaler.dylib
+	{ set +x; } 2>/dev/null
+	checked_copy com.saagarjha.iOSScaler.plist /Library/LaunchDaemons/com.saagarjha.iOSScaler.plist
+	set -x
+	sudo chown root:wheel /Library/LaunchDaemons/com.saagarjha.iOSScaler.plist
+	{ set +x; } 2>/dev/null
+}
+
 export PATH="/opt/local/bin/:$PATH"
 ask "Set defaults?" && set_defaults
 ask "Install MacPorts?" && install_macports
@@ -196,5 +208,6 @@ ask "Install Xcode themes?" && checked_copy FontAndColorThemes ~/Library/Develop
 ask "Install sysctl modifications?" && checked_copy sysctl.plist /Library/LaunchDaemons
 ask "Install hyper key remap?" && checked_copy com.saagarjha.RemapHyper.plist ~/Library/LaunchAgents/com.saagarjha.RemapHyper.plist && launchctl load ~/Library/LaunchAgents/com.saagarjha.RemapHyper.plist
 ask "Install force full desktop bar?" && install_force_full_desktop_bar
+ask "Install iOS scaler?" && install_ios_scaler
 
 true

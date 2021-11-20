@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.saagarjha.iOSScaler</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/Users/saagarjha/bin/library_injector</string>
+		<string>/Users/saagarjha/.dotfiles/libios_scaler.dylib</string>
+		<string>Wrapper/Slack.app/Slack</string>
+		<string>Wrapper/Discord.app/Discord</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+</dict>
+</plist>
