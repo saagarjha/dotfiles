@@ -1,4 +1,5 @@
 ﻿---
+AlignAfterOpenBracket: DontAlign
 BreakStringLiterals: 'false'
 ColumnLimit: '0'
 IndentWidth: '4'
