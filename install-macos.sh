@@ -146,16 +146,20 @@ set_defaults() {
 	{ set +x; } 2>/dev/null
 }
 
-install_force_full_desktop_bar() {
+install_library_injector() {
 	set -x
 	git submodule update --init library_injector
 	git submodule update --init swizzler
-	clang++ -arch x86_64 -arch arm64 -std=c++20 library_injector/library_injector.cpp -lbsm -lEndpointSecurity -o library_injector/library_injector
+	xcrun clang++ -arch arm64e -arch arm64 -arch x86_64 -std=c++20 library_injector/library_injector.cpp -lbsm -lEndpointSecurity -o library_injector/library_injector
 	codesign -s - --entitlements library_injector_entitlements.plist library_injector/library_injector
 	{ set +x; } 2>/dev/null
 	checked_copy library_injector/library_injector ~/bin/library_injector
+}
+
+install_force_full_desktop_bar() {
+	install_library_injector
 	set -x
-	clang++ -std=c++20 force_full_desktop_bar.mm -framework Foundation -framework CoreGraphics -shared -arch arm64e -arch arm64 -arch x86_64 -o libforce_full_desktop_bar.dylib
+	xcrun clang++ -std=c++20 force_full_desktop_bar.mm -framework Foundation -framework CoreGraphics -shared -arch arm64e -arch arm64 -arch x86_64 -o libforce_full_desktop_bar.dylib
 	{ set +x; } 2>/dev/null
 	checked_copy com.saagarjha.ForceFullDesktopBar.plist /Library/LaunchDaemons/com.saagarjha.ForceFullDesktopBar.plist
 	set -x
