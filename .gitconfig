@@ -18,12 +18,6 @@
 	excludesfile = /Users/saagarjha/.gitignore
 	editor = nano
 	attributesfile = /Users/saagarjha/.gitattributes
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [push]
 	followTags = true
 [merge]
