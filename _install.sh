@@ -66,7 +66,7 @@ install_fixnano() {
 	case "$OS" in
 		"macOS")
 			extension=dylib
-			undefined_flags=-Wl,-U,_program_invocation_short_name
+			undefined_flags="-Wl,-U,_program_invocation_short_name -arch arm64e -arch arm64 -arch x86_64"
 			;;
 		"Linux"*)
 			extension=so
