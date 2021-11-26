@@ -214,14 +214,14 @@ __attribute__((used, section("__DATA,__interpose"))) static struct {
 };
 
 __attribute__((used, section("__DATA,__interpose"))) static struct {
-	int (*original_fclose)(FILE *);
+	int (*overridden_fclose)(FILE *);
 	int (*fclose)(FILE *);
 } fclose_overrides[] = {
     {overridden_fclose, fclose},
 };
 
 __attribute__((used, section("__DATA,__interpose"))) static struct {
-	int (*original_fileno)(FILE *);
+	int (*overridden_fileno)(FILE *);
 	int (*fileno)(FILE *);
 } fileno_overrides[] = {
     {overridden_fileno, fileno},
