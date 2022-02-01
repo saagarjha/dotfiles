@@ -157,15 +157,19 @@ install_library_injector() {
 	checked_copy library_injector/library_injector ~/bin/library_injector
 }
 
+install_launch_daemon() {
+	checked_copy "$1" "/Library/LaunchDaemons/$1"
+	set -x
+	sudo chown root:wheel "/Library/LaunchDaemons/$1"
+	{ set +x; } 2>/dev/null
+}
+
 install_force_full_desktop_bar() {
 	install_library_injector
 	set -x
 	xcrun clang++ -std=c++20 force_full_desktop_bar.mm -framework Foundation -framework CoreGraphics -shared -arch arm64e -arch arm64 -arch x86_64 -o libforce_full_desktop_bar.dylib
 	{ set +x; } 2>/dev/null
-	checked_copy com.saagarjha.ForceFullDesktopBar.plist /Library/LaunchDaemons/com.saagarjha.ForceFullDesktopBar.plist
-	set -x
-	sudo chown root:wheel /Library/LaunchDaemons/com.saagarjha.ForceFullDesktopBar.plist
-	{ set +x; } 2>/dev/null
+	install_launch_daemon com.saagarjha.ForceFullDesktopBar.plist
 }
 
 install_ios_scaler() {
@@ -174,10 +178,16 @@ install_ios_scaler() {
 	xcrun clang++ -std=c++20 ios_scaler.mm -framework Foundation -framework CoreGraphics -shared -arch arm64e -arch arm64 -arch x86_64 -o libios_scaler.dylib
 	codesign -s "Apple Development" libios_scaler.dylib
 	{ set +x; } 2>/dev/null
-	checked_copy com.saagarjha.iOSScaler.plist /Library/LaunchDaemons/com.saagarjha.iOSScaler.plist
+	install_launch_daemon com.saagarjha.iOSScaler.plist
+}
+
+install_disable_diagnostics_reporter() {
+	install_library_injector
 	set -x
-	sudo chown root:wheel /Library/LaunchDaemons/com.saagarjha.iOSScaler.plist
+	xcrun clang disable_diagnostics_reporter.c -F /System/Library/PrivateFrameworks -framework CrashReporterSupport -shared -arch arm64e -arch arm64 -arch x86_64 -o libdisable_diagnostics_reporter.dylib
+	codesign -s "Apple Development" libios_scaler.dylib
 	{ set +x; } 2>/dev/null
+	install_launch_daemon com.saagarjha.DisableDiagnosticsReporter.plist
 }
 
 export PATH="/opt/local/bin/:$PATH"
@@ -210,5 +220,6 @@ ask "Install sysctl modifications?" && checked_copy sysctl.plist /Library/Launch
 ask "Install hyper key remap?" && checked_copy com.saagarjha.RemapHyper.plist ~/Library/LaunchAgents/com.saagarjha.RemapHyper.plist && launchctl load ~/Library/LaunchAgents/com.saagarjha.RemapHyper.plist
 ask "Install force full desktop bar?" && install_force_full_desktop_bar
 ask "Install iOS scaler?" && install_ios_scaler
+ask "Install disable diagnostics reporter?" && install_disable_diagnostics_reporter
 
 true
