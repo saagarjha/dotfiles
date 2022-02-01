@@ -3,7 +3,7 @@
 #import <Foundation/Foundation.h>
 
 auto scaleFactorOverride = []([[maybe_unused]] auto self) {
-	return 0.9;
+	return 1.0;
 };
 
 static Swizzler<CGFloat, id> UINSSceneView_sceneToSceneViewScaleFactor {
