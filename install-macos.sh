@@ -185,7 +185,6 @@ install_disable_diagnostics_reporter() {
 	install_library_injector
 	set -x
 	xcrun clang disable_diagnostics_reporter.c -F /System/Library/PrivateFrameworks -framework CrashReporterSupport -shared -arch arm64e -arch arm64 -arch x86_64 -o libdisable_diagnostics_reporter.dylib
-	codesign -s "Apple Development" libios_scaler.dylib
 	{ set +x; } 2>/dev/null
 	install_launch_daemon com.saagarjha.DisableDiagnosticsReporter.plist
 }
