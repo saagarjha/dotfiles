@@ -55,7 +55,10 @@ install_stderred() {
 	unset LD_PRELOAD
 	set -x
 	cd stderred
-	make clean && make
+	if [ "$OS" = "macOS" ]; then 
+		cmake_osx_architectures="x86_64;arm64;arm64e"
+	fi
+	make clean && CMAKE_OSX_ARCHITECTURES="$cmake_osx_architectures" make
 	cd ..
 	{ set +x; } 2>/dev/null
 	export DYLD_INSERT_LIBRARIES="$dil"
