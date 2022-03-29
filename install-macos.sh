@@ -12,7 +12,7 @@ install_macports() {
 		git checkout selfupdate
 		git branch --set-upstream-to=macports/master
 		git pull macports master --rebase --autostash
-		./configure && make && sudo make install
+		./configure && make -j "$(sysctl -n hw.ncpu)" && sudo make install
 	)
 	{ set +x; } 2>/dev/null
 }
