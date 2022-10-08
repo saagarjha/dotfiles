@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# set -x
+
+#function lookup_host() {
+#    if [[ $1 =~ ^([^.]*|[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)$ ]]; then
+#        echo "$1"
+#    else
+#        host -t a "${1}" | sed -e $'/.* has address / { s///; p; d; q; }; /.*\tA\t/ { s///; p; d; q; }; d;' | head -n 1
+#    fi
+#}
+
+machine=$1
+shift 1
+
+#user=${machine%@*}
+#addr=$(lookup_host "${machine#*@}")
+
+if [[ $1 == "-l" ]]; then
+    ssh "$machine" "tmux list-sessions"
+    exit 0
+fi
+
+if [[ $1 =~ \^.* ]]; then
+    session=${1#^}
+    shift 1
+else
+    session=$(date -u +"%Y%m%d%H%M%S")
+fi
+
+while true; do
+    ssh "$@" -t -e none \
+        -o ConnectTimeout=2 \
+        -o ServerAliveCountMax=4 \
+        -o ServerAliveInterval=2 \
+        -o TCPKeepAlive=no \
+    "$machine" bash -i -l -c "\"tmux -CC new-session -A -s $session\""
+    case "$?" in
+        (0) break;;
+        (*) sleep 1;;
+    esac
+done

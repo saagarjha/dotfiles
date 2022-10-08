@@ -15,6 +15,11 @@ if [[ "$BASH_VERSINFO" -ge 4 ]]; then
 	fi
 fi
 
+if [[ "$BASH_VERSINFO" -ge 4 ]]; then
+	_completion_loader ssh
+	complete -F _ssh cysh
+fi
+
 if [[ -f ~/.tokens ]]; then
 	. ~/.tokens
 fi
