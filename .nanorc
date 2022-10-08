@@ -12,7 +12,7 @@ set nohelp
 set nowrap
 set smarthome
 # 2.1.11- set softwrap
-set suspend
+# -6.3 set suspend
 set tabsize 4
 
 # 4.6- bind ^J formatter main
