@@ -209,6 +209,7 @@ ask "Install coreutils?" && sudo port install coreutils
 ask "Install jq?" && sudo port install jq
 ask "Install ag?" && sudo port install the_silver_searcher
 ask "Install cmake?" && sudo port install cmake
+ask "Install mpstats?" && sudo port install mpstats
 
 ask "Install SF Mono?" && cp -R /System/Applications/Utilities/Terminal.app/Contents/Resources/Fonts/. ~/Library/Fonts/
 
