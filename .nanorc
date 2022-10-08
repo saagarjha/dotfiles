@@ -14,6 +14,7 @@ set smarthome
 # 2.1.11- set softwrap
 # -6.3 set suspend
 set tabsize 4
+# 3.2- set zap
 
 # 4.6- bind ^J formatter main
 # 2.1.0- bind ^T linter main
