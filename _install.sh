@@ -56,9 +56,10 @@ install_stderred() {
 	set -x
 	cd stderred
 	if [ "$OS" = "macOS" ]; then 
-		cmake_osx_architectures="x86_64;arm64;arm64e"
+		make clean && CMAKE_OSX_ARCHITECTURES="x86_64;arm64;arm64e" make
+	else
+		make clean && make
 	fi
-	make clean && CMAKE_OSX_ARCHITECTURES="$cmake_osx_architectures" make
 	cd ..
 	{ set +x; } 2>/dev/null
 	export DYLD_INSERT_LIBRARIES="$dil"
