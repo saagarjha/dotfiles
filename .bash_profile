@@ -66,7 +66,7 @@ function swift() {
 }
 
 # Ruby
-if [[ -x "$(which ruby)" ]]; then
+if [[ -x "$(which ruby 2> /dev/null)" ]]; then
 	# This is too slow, so do it ourselves
 	# export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 	export GEM_HOME="$(ruby --disable=gems -rrbconfig -e 'puts File.join [Dir.home, ".gem", RUBY_ENGINE, RbConfig::CONFIG["ruby_version"]]')"
