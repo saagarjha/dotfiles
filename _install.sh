@@ -56,6 +56,7 @@ install_stderred() {
 	set -x
 	cd stderred
 	if [ "$OS" = "macOS" ]; then 
+		export PATH="/opt/local/bin/:$PATH"
 		make clean && CMAKE_OSX_ARCHITECTURES="x86_64;arm64;arm64e" make
 	else
 		make clean && make
