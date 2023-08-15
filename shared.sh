@@ -18,6 +18,7 @@ ask() {
 
 # TODO rewrite this in C because POSIX sucks
 checked_copy() {
+	mkdir -p "$(dirname "$2")"
 	if [ -L "$2" ]; then
 		if [ -e "$2" ]; then
 			echo "$2 already linked, skipping..." && return 0;
