@@ -81,14 +81,16 @@ static void get_current_nano_version() {
 #endif
 	char command[1024];
 	FILE *output = popen(snprintf(command, sizeof(command),
-		"DYLD_INSERT_LIBRARIES= LD_PRELOAD= %s --version |"
-		" grep -E -o '(version |v)" VERSION_REGEX "' |"
-		" grep -E -o '" VERSION_REGEX "'",
-		executable) > 0 ? command : "echo version 0", "r");
+	                         "DYLD_INSERT_LIBRARIES= LD_PRELOAD= %s --version |"
+	                         " grep -E -o '(version |v)" VERSION_REGEX "' |"
+	                         " grep -E -o '" VERSION_REGEX "'",
+	                         executable) > 0
+	                         ? command
+	                         : "echo version 0",
+	    "r");
 	char *line = NULL;
 	size_t size;
-	getline(&line, &size, output)
-		;
+	getline(&line, &size, output);
 	pclose(output);
 	parse_version(strlen(line) ? line : "0", current_version);
 	free(line);
@@ -96,7 +98,9 @@ static void get_current_nano_version() {
 
 static void fixnano_init() {
 	should_inject = (getprogname && !strcmp(getprogname(), "nano")) ||
-	                (&program_invocation_short_name && !strcmp(program_invocation_short_name, "nano"));
+	                (&program_invocation_short_name &&   // Does the symbol exist at all?
+	                    program_invocation_short_name && // If the symbol exists, is it bound (to libc)?
+	                    !strcmp(program_invocation_short_name, "nano"));
 	original_fopen = find_libc_symbol("fopen");
 	original_fclose = find_libc_symbol("fclose");
 	original_fileno = find_libc_symbol("fileno");
