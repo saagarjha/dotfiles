@@ -45,6 +45,6 @@ bindApp('t', hs.application.nameForBundleID("com.googlecode.iterm2") and "iTerm"
 bindApp('u', "iTunes")
 bindApp('v', "Telegram")
 bindApp('w', "Microsoft Word")
-bindApp('x', table.pack(hs.execute("readlink /var/db/xcode_select_link", true):gsub("/Applications/", ""):gsub("/Contents/Developer\n", ""))[1])
+bindApp('x', table.pack(hs.execute("readlink /var/select/developer_dir", true):gsub("/Applications/", ""):gsub("/Contents/Developer\n", ""))[1])
 bindApp('y', "Skype")
 bindApp('/', "Dictionary")
