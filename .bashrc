@@ -111,10 +111,13 @@ alias more="less" # Sorry, Mark Nudelman!
 function gnutils() { # Use GNU tools over the system-provided BSD ones
 	export PATH="/opt/local/libexec/gnubin:$PATH"
 }
-if [[ -L /var/db/xcode_select_link ]]; then
-	alias xcopen="open -a \$(dirname $(dirname $(readlink /var/db/xcode_select_link)))"
-	export IOS_SDK="$(dirname $(dirname $(readlink /var/db/xcode_select_link)))/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/"
-	export MACOS_SDK="$(dirname $(dirname $(readlink /var/db/xcode_select_link)))/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/"
+if [[ -L /var/select/developer_dir ]]; then
+	alias xcopen="open -a \$(dirname $(dirname $(readlink /var/select/developer_dir)))"
+	export MACOS_SDK="$(dirname $(dirname $(readlink /var/select/developer_dir)))/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
+	ios_build="$(xcrun simctl runtime match list -j | jq 'to_entries[] | if (.key | test("iphoneos")) then .value.preferredBuild else empty end')"
+	mount_path="$(xcrun simctl runtime list -j | jq -r ".[] | if (.build == $ios_build) then .mountPath else empty end")"
+	ios_version="$(xcrun simctl runtime list -j | jq -r ".[] | if (.build == $ios_build) then .version else empty end")"
+	export IOS_SDK="$mount_path/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS $ios_version.simruntime/Contents/Resources/RuntimeRoot/"
 fi
 export DYLD_CRYPTEX=/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld
 alias xcbopen="open -a Xcode-beta"
