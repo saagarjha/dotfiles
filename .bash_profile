@@ -51,20 +51,6 @@ if [[ -f /usr/local/bin/virtualenvwrapper_lazy.sh ]]; then
 	source /usr/local/bin/virtualenvwrapper_lazy.sh
 fi
 
-function fix_python() { # :(
-	local command=$1
-	shift
-	PATH="/usr/bin:$PATH" $command "$@"
-}
-
-function lldb() {
-	fix_python "$(which lldb)" "$@"
-}
-
-function swift() {
-	fix_python "$(which swift)" "$@"
-}
-
 # Ruby
 if [[ -x "$(which ruby 2> /dev/null)" ]]; then
 	# This is too slow, so do it ourselves
