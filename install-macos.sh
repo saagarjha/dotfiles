@@ -221,6 +221,7 @@ ask "Install Xcode themes?" && checked_copy FontAndColorThemes ~/Library/Develop
 
 ask "Install sysctl modifications?" && checked_copy sysctl.plist /Library/LaunchDaemons
 ask "Install hyper key remap?" && checked_copy com.saagarjha.RemapHyper.plist ~/Library/LaunchAgents/com.saagarjha.RemapHyper.plist && launchctl load ~/Library/LaunchAgents/com.saagarjha.RemapHyper.plist
+ask "Install enable tailspin?" && checked_copy com.saagarjha.EnableTailspin.plist ~/Library/LaunchAgents/com.saagarjha.EnableTailspin.plist && launchctl load ~/Library/LaunchAgents/com.saagarjha.EnableTailspin.plist
 ask "Install force full desktop bar?" && install_force_full_desktop_bar
 ask "Install iOS scaler?" && install_ios_scaler
 ask "Install disable diagnostics reporter?" && install_disable_diagnostics_reporter
