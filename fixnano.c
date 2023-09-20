@@ -4,6 +4,7 @@
 #include <inttypes.h>
 #include <limits.h>
 #include <regex.h>
+#include <stdatomic.h>
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -33,8 +34,8 @@ int (*original_fileno)(FILE *stream);
 __attribute__((weak)) const char *getprogname();
 __attribute__((weak)) extern char *program_invocation_short_name;
 
-bool initialized = false;
-bool should_inject = false;
+atomic_bool initialized;
+bool should_inject;
 
 wordexp_t expansion;
 typedef uintmax_t nano_version[3];
@@ -108,7 +109,7 @@ static void fixnano_init() {
 		wordexp("~/.nanorc", &expansion, 0);
 		get_current_nano_version();
 	}
-	initialized = true;
+	atomic_store_explicit(&initialized, true, memory_order_relaxed);
 }
 
 __attribute__((destructor)) static void fixnano_fini() {
@@ -121,10 +122,12 @@ __attribute__((destructor)) static void fixnano_fini() {
 // functions we interpose. (If we don't do this, certain applications will call
 // these functions in their constructors and the "original" functions will never
 // be set.)
-#define ENSURE_INITIALIZATION() \
-	if (!initialized) {         \
-		fixnano_init();         \
-	}
+#define ENSURE_INITIALIZATION()                                          \
+	do {                                                                 \
+		if (!atomic_load_explicit(&initialized, memory_order_relaxed)) { \
+			fixnano_init();                                              \
+		}                                                                \
+	} while (0)
 
 static void add_nanorc_line(char *line) {
 	size_t length = strlen(line);
