@@ -116,6 +116,7 @@ if [[ -L /var/db/xcode_select_link ]]; then
 	export IOS_SDK="$(dirname $(dirname $(readlink /var/db/xcode_select_link)))/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/"
 	export MACOS_SDK="$(dirname $(dirname $(readlink /var/db/xcode_select_link)))/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/"
 fi
+export DYLD_CRYPTEX=/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld
 alias xcbopen="open -a Xcode-beta"
 alias xc-open="open -a Xcode"
 function adb-paste() {
