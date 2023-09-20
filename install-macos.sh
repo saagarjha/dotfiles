@@ -166,6 +166,16 @@ install_launch_daemon() {
 	{ set +x; } 2>/dev/null
 }
 
+install_hyper_remap() {
+	set -x
+	swiftc remap_hyper.swift -O
+	{ set +x; } 2>/dev/null
+	checked_copy com.saagarjha.RemapHyper.plist ~/Library/LaunchAgents/com.saagarjha.RemapHyper.plist
+	set -x
+	launchctl load ~/Library/LaunchAgents/com.saagarjha.RemapHyper.plist
+	{ set +x; } 2>/dev/null
+}
+
 install_force_full_desktop_bar() {
 	install_library_injector
 	set -x
@@ -220,7 +230,7 @@ ask "Install Xcode keybindings?" && checked_copy Default.idekeybindings ~/Librar
 ask "Install Xcode themes?" && checked_copy FontAndColorThemes ~/Library/Developer/Xcode/UserData/FontAndColorThemes && defaults write com.apple.dt.Xcode XCFontAndColorCurrentTheme -string 'Solarized (Light).xccolortheme'
 
 ask "Install sysctl modifications?" && checked_copy sysctl.plist /Library/LaunchDaemons
-ask "Install hyper key remap?" && checked_copy com.saagarjha.RemapHyper.plist ~/Library/LaunchAgents/com.saagarjha.RemapHyper.plist && launchctl load ~/Library/LaunchAgents/com.saagarjha.RemapHyper.plist
+ask "Install hyper key remap?" && install_hyper_remap
 ask "Install enable tailspin?" && checked_copy com.saagarjha.EnableTailspin.plist ~/Library/LaunchAgents/com.saagarjha.EnableTailspin.plist && launchctl load ~/Library/LaunchAgents/com.saagarjha.EnableTailspin.plist
 ask "Install force full desktop bar?" && install_force_full_desktop_bar
 ask "Install iOS scaler?" && install_ios_scaler
