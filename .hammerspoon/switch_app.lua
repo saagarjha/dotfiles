@@ -23,6 +23,10 @@ function bindApp(key, app)
 	-- k:bind({"cmd"}, key, nil, function() launchApp(app) end)
 end
 
+function bindDynamicApp(key, appGenerator)
+	k:bind({}, key, nil, function() launchApp(appGenerator()) end)
+end
+
 bindApp('a', "Activity Monitor")
 bindApp('c', "Google Chrome Canary")
 bindApp('d', "Fork")
@@ -45,6 +49,6 @@ bindApp('t', hs.application.nameForBundleID("com.googlecode.iterm2") and "iTerm"
 bindApp('u', "iTunes")
 bindApp('v', "Telegram")
 bindApp('w', "Microsoft Word")
-bindApp('x', table.pack(hs.execute("readlink /var/select/developer_dir", true):gsub("/Applications/", ""):gsub("/Contents/Developer\n", ""))[1])
+bindDynamicApp('x', function() return table.pack(hs.fs.symlinkAttributes("/var/select/developer_dir")["target"]:gsub("/Applications/", ""):gsub("/Contents/Developer", ""))[1] end)
 bindApp('y', "Skype")
 bindApp('/', "Dictionary")
