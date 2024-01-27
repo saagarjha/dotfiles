@@ -3,5 +3,6 @@ libfixnano.so
 libforce_full_desktop_bar.dylib
 libios_scaler.dylib
 libdisable_diagnostics_reporter.dylib
+libxcodebuild_silencer.dylib
 remap_hyper
 karabiner/automatic_backups

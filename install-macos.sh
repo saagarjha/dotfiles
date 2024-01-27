@@ -201,6 +201,14 @@ install_disable_diagnostics_reporter() {
 	install_launch_daemon com.saagarjha.DisableDiagnosticsReporter.plist
 }
 
+install_xcodebuild_silencer() {
+	install_library_injector
+	set -x
+	xcrun clang xcodebuild_silencer.m -framework Foundation -shared -arch arm64e -arch arm64 -arch x86_64 -o libxcodebuild_silencer.dylib
+	{ set +x; } 2>/dev/null
+	install_launch_daemon com.saagarjha.XcodebuildSilencer.plist
+}
+
 export PATH="/opt/local/bin/:$PATH"
 ask "Set defaults?" && set_defaults
 ask "Install MacPorts?" && install_macports
@@ -235,5 +243,6 @@ ask "Install enable tailspin?" && checked_copy com.saagarjha.EnableTailspin.plis
 ask "Install force full desktop bar?" && install_force_full_desktop_bar
 ask "Install iOS scaler?" && install_ios_scaler
 ask "Install disable diagnostics reporter?" && install_disable_diagnostics_reporter
+ask "Install xcodebuild silencer?" && install_xcodebuild_silencer
 
 true
