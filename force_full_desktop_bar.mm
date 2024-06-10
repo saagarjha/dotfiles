@@ -1,7 +1,7 @@
 #import "swizzler/swizzler.h"
-#include <cstdlib>
-#import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
+#import <Foundation/Foundation.h>
+#include <cstdlib>
 
 #define dockSwipeGesturePhase 123
 #define dockSwipeGestureMotion 134
@@ -12,7 +12,7 @@
 static int mouseOverrideCount;
 
 static Swizzler<void, id, long long> Dock_WVExpose_changeMode_ {
-	NSClassFromString(@"Dock.WVExpose"), @selector(changeMode:), [](auto self, auto mode) {
+	NSClassFromString(@"WVExpose"), @selector(changeMode:), [](auto self, auto mode) {
 		if (mode == 1) {
 			mouseOverrideCount = 1;
 		}
@@ -28,18 +28,15 @@ static auto isDoubleTapEvent(CGEventType type, CGGesturePhase phase, uint64_t di
 	return type == dockSwipeEvent && phase == kCGGesturePhaseNone && direction == kIOHIDGestureMotionDoubleTap;
 }
 
-static Swizzler<void, id, CGEventRef> DOCKGestures_handleEvent_ {
-	NSClassFromString(@"DOCKGestures"), @selector(handleEvent:), [](auto self, auto event) {
-		if (event) {
-			auto type = CGEventGetType(event);
-			auto phase = (CGGesturePhase)CGEventGetIntegerValueField(event, static_cast<CGEventField>(dockSwipeGestureMotion));
-			auto direction = (CGGesturePhase)CGEventGetIntegerValueField(event, static_cast<CGEventField>(dockSwipeGesturePhase));
+static Swizzler<void, id, CGEventRef, CGEventType> DOCKGestures_handleEvent_type_ {
+	NSClassFromString(@"DOCKGestures"), @selector(handleEvent:type:), [](auto self, auto event, auto type) {
+		auto phase = (CGGesturePhase)CGEventGetIntegerValueField(event, static_cast<CGEventField>(dockSwipeGestureMotion));
+		auto direction = (CGGesturePhase)CGEventGetIntegerValueField(event, static_cast<CGEventField>(dockSwipeGesturePhase));
 
-			if (isStartOfTrackpadSwipeUpEvent(type, phase, direction) || isDoubleTapEvent(type, phase, direction)) {
-				mouseOverrideCount = 2;
-			}
+		if (isStartOfTrackpadSwipeUpEvent(type, phase, direction) || isDoubleTapEvent(type, phase, direction)) {
+			mouseOverrideCount = 2;
 		}
-		DOCKGestures_handleEvent_(self, event);
+		DOCKGestures_handleEvent_type_(self, event, type);
 	}
 };
 
@@ -81,7 +78,6 @@ __attribute__((used, section("__DATA,__interpose"))) static struct {
     {overriden_CGSCurrentInputPointerPosition, CGSCurrentInputPointerPosition},
 };
 
-__attribute__((constructor))
-static void init() {
+__attribute__((constructor)) static void init() {
 	unsetenv("DYLD_INSERT_LIBRARIES");
 }
