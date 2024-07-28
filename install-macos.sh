@@ -125,6 +125,7 @@ set_defaults() {
 	defaults write -g _NS_4445425547 -bool YES # Show an internal AppKit debug menu
 	# Universal Access
 	defaults write com.apple.universalaccess showWindowTitlebarIcons -bool YES # Show proxy icon in titlebar
+	./zoom_enable.sh # Enable scroll to accessibility zoom
 	
 	# iTerm2
 	defaults write com.googlecode.iterm2 EnableProxyIcon -bool YES # Enable proxy icon in titlebar
