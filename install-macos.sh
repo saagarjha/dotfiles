@@ -212,6 +212,17 @@ install_xcodebuild_silencer() {
 	install_launch_daemon com.saagarjha.XcodebuildSilencer.plist
 }
 
+setup_sublime_text() {
+	set -x
+	subl --background --command 'install_package_control'
+	subl --background --command 'install_packages {"packages": ["Solarized Color Scheme"]}'
+	subl --background --command 'install_packages {"packages": ["LSP", "LSP-SourceKit", "Swift Next"]}'
+	echo '{"enabled":true}' > /Users/saagarjha/Library/Application\ Support/Sublime\ Text/Packages/User/LSP-SourceKit.sublime-settings
+	{ set +x; } 2>/dev/null
+	checked_copy "Theme - El Capitan" ~/Library/Application\ Support/Sublime\ Text/Packages/Theme\ -\ El\ Capitan
+	checked_copy Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text/Packages/User/Preferences.sublime-settings	
+}
+
 export PATH="/opt/local/bin/:$PATH"
 ask "Set defaults?" && set_defaults
 ask "Install MacPorts?" && install_macports
@@ -241,6 +252,9 @@ ask "Copy Hammerspoon?" && checked_copy .hammerspoon ~/.hammerspoon
 
 ask "Install Xcode keybindings?" && checked_copy Default.idekeybindings ~/Library/Developer/Xcode/UserData/KeyBindings/Default.idekeybindings
 ask "Install Xcode themes?" && checked_copy FontAndColorThemes ~/Library/Developer/Xcode/UserData/FontAndColorThemes && defaults write com.apple.dt.Xcode XCFontAndColorCurrentTheme -string 'Solarized (Light).xccolortheme'
+
+ask "Install subl?" && ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl
+ask "Setup Sublime Text?" && setup_sublime_text
 
 ask "Install fork?" && ln -s "/Applications/Fork.app/Contents/Resources/fork_cli" ~/bin/fork
 

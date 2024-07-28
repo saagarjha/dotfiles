@@ -16,3 +16,6 @@
 [submodule "swizzler"]
 	path = swizzler
 	url = https://gist.github.com/saagarjha/ed701e3369639410b5d5303612964557
+[submodule "Theme - El Capitan"]
+	path = Theme - El Capitan
+	url = https://github.com/saagarjha/El-Capitan-Theme.git
