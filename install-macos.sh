@@ -224,6 +224,13 @@ setup_sublime_text() {
 	checked_copy Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text/Packages/User/Preferences.sublime-settings	
 }
 
+setup_touch_id_sudo() {
+	set -x
+	sudo cp /etc/pam.d/sudo_local.template /etc/pam.d/sudo_local
+	echo "auth       sufficient     pam_tid.so" | sudo tee /etc/pam.d/sudo_local
+	{ set +x; } 2>/dev/null
+}
+
 export PATH="/opt/local/bin/:$PATH"
 ask "Set defaults?" && set_defaults
 ask "Install MacPorts?" && install_macports
@@ -258,6 +265,8 @@ ask "Install subl?" && ln -s "/Applications/Sublime Text.app/Contents/SharedSupp
 ask "Setup Sublime Text?" && setup_sublime_text
 
 ask "Install fork?" && ln -s "/Applications/Fork.app/Contents/Resources/fork_cli" ~/bin/fork
+
+ask "Set up Touch ID sudo?" && setup_touch_id_sudo
 
 ask "Install sysctl modifications?" && checked_copy sysctl.plist /Library/LaunchDaemons
 ask "Install hyper key remap?" && install_hyper_remap
