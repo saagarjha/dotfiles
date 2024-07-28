@@ -79,6 +79,7 @@ set_defaults() {
 	defaults write com.apple.ActivityMonitor ShowCategory -int 100 # Show All Process
 
 	# Console
+	killall Console 2> /dev/null
 	defaults write com.apple.Console devicesState "{debug = 0; info = 0;}" # Enable debug and info messages
 	
 	# Disk Utility
