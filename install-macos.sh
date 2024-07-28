@@ -238,8 +238,11 @@ ask "Install SF Mono?" && cp -R /System/Applications/Utilities/Terminal.app/Cont
 
 ask "Copy Karabiner?" && checked_copy karabiner ~/.config/karabiner
 ask "Copy Hammerspoon?" && checked_copy .hammerspoon ~/.hammerspoon
+
 ask "Install Xcode keybindings?" && checked_copy Default.idekeybindings ~/Library/Developer/Xcode/UserData/KeyBindings/Default.idekeybindings
 ask "Install Xcode themes?" && checked_copy FontAndColorThemes ~/Library/Developer/Xcode/UserData/FontAndColorThemes && defaults write com.apple.dt.Xcode XCFontAndColorCurrentTheme -string 'Solarized (Light).xccolortheme'
+
+ask "Install fork?" && ln -s "/Applications/Fork.app/Contents/Resources/fork_cli" ~/bin/fork
 
 ask "Install sysctl modifications?" && checked_copy sysctl.plist /Library/LaunchDaemons
 ask "Install hyper key remap?" && install_hyper_remap
