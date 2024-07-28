@@ -97,8 +97,10 @@ set_defaults() {
 	defaults write com.apple.menuextra.clock DateFormat -string "EEE MMM d  h:mm:ss"
 	# Remove clock menu extra
 	# Remove battery menu extra
-	defaults write com.apple.menuextra.battery ShowPercent -bool YES # Show percentage in battery menu extra
+	defaults -currentHost write com.apple.controlcenter BatteryShowPercentage -bool YES # Show percentage in battery menu extra
+	defaults -currentHost write com.apple.controlcenter KeyboardBrightness -bool YES # Show keyboard brightness in Control Center
 	killall SystemUIServer 2> /dev/null
+	killall ControlCenter 2> /dev/null
 	
 	# Xcode
 	defaults write com.apple.dt.Xcode DVTTextIndentUsingTabs -bool YES # Use tabs for indentation
