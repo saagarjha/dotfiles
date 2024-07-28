@@ -231,6 +231,7 @@ setup_sublime_text() {
 	echo '{"enabled":true,"selector":"source.swift"}' > /Users/saagarjha/Library/Application\ Support/Sublime\ Text/Packages/User/LSP-SourceKit.sublime-settings
 	{ set +x; } 2>/dev/null
 	checked_copy LSP.sublime-settings /Users/saagarjha/Library/Application\ Support/Sublime\ Text/Packages/User/LSP.sublime-settings
+	git submodule update --init "Theme - El Capitan"
 	checked_copy "Theme - El Capitan" ~/Library/Application\ Support/Sublime\ Text/Packages/Theme\ -\ El\ Capitan
 	checked_copy Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text/Packages/User/Preferences.sublime-settings	
 }
