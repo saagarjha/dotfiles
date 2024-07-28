@@ -270,7 +270,12 @@ ask "Copy Karabiner?" && checked_copy karabiner ~/.config/karabiner
 ask "Copy Hammerspoon?" && checked_copy .hammerspoon ~/.hammerspoon
 
 ask "Install Xcode keybindings?" && checked_copy Default.idekeybindings ~/Library/Developer/Xcode/UserData/KeyBindings/Default.idekeybindings
-ask "Install Xcode themes?" && checked_copy FontAndColorThemes ~/Library/Developer/Xcode/UserData/FontAndColorThemes && defaults write com.apple.dt.Xcode XCFontAndColorCurrentTheme -string 'Solarized (Light).xccolortheme'
+ask "Install Xcode themes?" && checked_copy FontAndColorThemes ~/Library/Developer/Xcode/UserData/FontAndColorThemes && \
+defaults write com.apple.dt.Xcode XCFontAndColorCurrentTheme -string 'Solarized (Light).xccolortheme' && \
+defaults write com.apple.dt.Xcode XCFontAndColorCurrentDarkTheme -string 'Solarized (Dark).xccolortheme' && \
+mkdir -p ~/Library/Developer/FileMerge/UserData/FontAndColorThemes && checked_copy FontAndColorThemes ~/Library/Developer/FileMerge/UserData/FontAndColorThemes && \
+defaults write com.apple.FileMerge XCFontAndColorCurrentTheme -string 'Solarized (Light).xccolortheme' && \
+defaults write com.apple.FileMerge XCFontAndColorCurrentDarkTheme -string 'Solarized (Dark).xccolortheme'
 
 ask "Install subl?" && ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl
 ask "Setup Sublime Text?" && setup_sublime_text
