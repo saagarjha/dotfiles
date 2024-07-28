@@ -77,6 +77,9 @@ set_defaults() {
 	defaults write com.apple.ActivityMonitor IconType -int 5 # Set the dock icon to CPU usage
 	defaults write com.apple.ActivityMonitor DisplayType -int 4 # Samples show percentage of thread
 	defaults write com.apple.ActivityMonitor ShowCategory -int 100 # Show All Process
+
+	# Console
+	defaults write com.apple.Console devicesState "{debug = 0; info = 0;}" # Enable debug and info messages
 	
 	# Disk Utility
 	killall Disk\ Utility 2> /dev/null
