@@ -1,0 +1,11 @@
+-x
+cuda
+-Wall
+-Wextra
+-I/opt/local/include
+-std=c++20
+--cuda-path=/Users/saagarjha/Downloads/cuda
+-ferror-limit=0
+--cuda-gpu-arch=sm_80
+--expt-relaxed-constexpr
+-fcuda-allow-host-calls-from-host-device
