@@ -140,7 +140,14 @@ set_defaults() {
 	defaults write com.googlecode.iterm2 WindowNumber -bool NO # No window number
 	defaults write com.googlecode.iterm2 HideTabNumber -bool YES # No tab number
 	defaults write com.googlecode.iterm2 AlternateMouseScroll -bool YES # Scroll in man pages, less, etc. with the scroll wheel
-	killall iTerm2 2> /dev/null
+	{ set +x; } 2>/dev/null
+
+	if [ -z "$ITERM_PROFILE" ]; then
+		set -x
+		killall iTerm2 2> /dev/null
+		{ set +x; } 2>/dev/null
+	fi
+
 	
 	# Fork
 	defaults write com.DanPristupov.Fork useMonospaceInCommitDescription -bool YES # Monospaced font in commit description
