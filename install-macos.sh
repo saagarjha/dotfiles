@@ -230,6 +230,7 @@ ask "Install coreutils?" && sudo port install coreutils
 ask "Install jq?" && sudo port install jq
 ask "Install ag?" && sudo port install the_silver_searcher
 ask "Install fd?" && sudo port install fd
+ask "Install unxip?" && sudo port install unxip
 ask "Install cmake?" && sudo port install cmake
 ask "Install mpstats?" && sudo port install mpstats
 
