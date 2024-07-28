@@ -228,7 +228,7 @@ setup_sublime_text() {
 	subl --background --command 'install_package_control'
 	subl --background --command 'install_packages {"packages": ["Solarized Color Scheme"]}'
 	subl --background --command 'install_packages {"packages": ["LSP", "LSP-SourceKit", "Swift Next"]}'
-	echo '{"enabled":true}' > /Users/saagarjha/Library/Application\ Support/Sublime\ Text/Packages/User/LSP-SourceKit.sublime-settings
+	echo '{"enabled":true,"selector":"source.swift"}' > /Users/saagarjha/Library/Application\ Support/Sublime\ Text/Packages/User/LSP-SourceKit.sublime-settings
 	{ set +x; } 2>/dev/null
 	checked_copy LSP.sublime-settings /Users/saagarjha/Library/Application\ Support/Sublime\ Text/Packages/User/LSP.sublime-settings
 	checked_copy "Theme - El Capitan" ~/Library/Application\ Support/Sublime\ Text/Packages/Theme\ -\ El\ Capitan
