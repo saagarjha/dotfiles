@@ -4,16 +4,20 @@
 	],
 	"index_files": true,
 
-	"show_full_path": true,
-
-	"caret_style": "blink",
-	"font_face": "SF Mono",
 	"theme": "auto",
 	"light_theme": "El Capitan Light.sublime-theme",
 	"dark_theme": "El Capitan Dark.sublime-theme",
 	"el_capitan_sidebar_blue_folders": true,
-	"ensure_newline_at_eof_on_save": true,
+
 	"color_scheme": "auto",
 	"light_color_scheme": "Solarized (light).sublime-color-scheme",
 	"dark_color_scheme": "Solarized (dark).sublime-color-scheme",
+
+	"show_full_path": true,
+	"caret_style": "blink",
+	"font_face": "SF Mono",
+	"ensure_newline_at_eof_on_save": true,
+	"rulers": [
+		80	
+	],
 }
