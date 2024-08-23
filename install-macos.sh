@@ -17,6 +17,20 @@ install_macports() {
 	{ set +x; } 2>/dev/null
 }
 
+setup_git_ports() {
+	set -x
+	git submodule update --init macports-ports
+	(
+		cd macports-ports
+		git remote add macports https://github.com/macports/macports-ports.git || true
+		git fetch macports
+		git branch --set-upstream-to=macports/master
+		git pull macports master --rebase --autostash
+	)
+	{ set +x; } 2>/dev/null
+	checked_copy sources.conf /opt/local/etc/macports/sources.conf
+}
+
 set_defaults() {
 	set -x
 	
@@ -246,6 +260,7 @@ setup_touch_id_sudo() {
 export PATH="/opt/local/bin/:$PATH"
 ask "Set defaults?" && set_defaults
 ask "Install MacPorts?" && install_macports
+ask "Use Git for ports?" && setup_git_ports
 if [ -x "$(which port 2> /dev/null)" ] && ask "Update ports?"; then
 	set -x
 	sudo port selfupdate

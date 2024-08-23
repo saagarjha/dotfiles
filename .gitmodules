@@ -19,3 +19,6 @@
 [submodule "Theme - El Capitan"]
 	path = Theme - El Capitan
 	url = https://github.com/saagarjha/El-Capitan-Theme.git
+[submodule "macports-ports"]
+	path = macports-ports
+	url = https://github.com/saagarjha/macports-ports.git
