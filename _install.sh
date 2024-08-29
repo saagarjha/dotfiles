@@ -147,6 +147,13 @@ ask "Install git-test-pr?" && checked_copy git-test-pr ~/bin/git-test-pr
 ask "Install git-_diff-pager?" && checked_copy git-_diff-pager ~/bin/git-_diff-pager
 ask "Install _nano-clang-format?" && checked_copy _nano-clang-format ~/bin/_nano-clang-format
 ask "Install cysh?" && checked_copy cysh ~/bin/cysh
-ask "Install clangd flags?" && checked_copy .clangd ~/.clangd
+ask "Install clangd config?" && case "$OS" in
+	"macOS")
+		checked_copy config.yaml ~/Library/Preferences/clangd/config.yaml
+		;;
+	"Linux"*)
+		checked_copy config.yaml "$XDG_CONFIG_HOME/clangd/config.yaml"
+		;;
+esac
 ask "Install stderred?" && install_stderred
 ask "Install nano fixes?" && install_fixnano

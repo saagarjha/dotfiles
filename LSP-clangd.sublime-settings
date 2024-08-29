@@ -1,0 +1,7 @@
+{
+	"initializationOptions": {
+		"cland.background-index": true,
+		"clangd.completion-style": "detailed",
+		"clangd.header-insertion-decorators": true,
+	}
+}
