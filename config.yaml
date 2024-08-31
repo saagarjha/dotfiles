@@ -41,7 +41,7 @@ CompileFlags:
 ---
 
 If:
-  PathMatch: .*\.mm
+  PathMatch: [.*\.mm, .*\.h]
 
 CompileFlags:
   Add:
