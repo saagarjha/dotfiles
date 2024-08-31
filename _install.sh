@@ -152,7 +152,7 @@ ask "Install clangd config?" && case "$OS" in
 		checked_copy config.yaml ~/Library/Preferences/clangd/config.yaml
 		;;
 	"Linux"*)
-		checked_copy config.yaml "$XDG_CONFIG_HOME/clangd/config.yaml"
+		checked_copy config.yaml ~/.config/clangd/config.yaml
 		;;
 esac
 ask "Install stderred?" && install_stderred

@@ -242,8 +242,8 @@ setup_sublime_text() {
 	subl --background --command 'install_package_control'
 	subl --background --command 'install_packages {"packages": ["Solarized Color Scheme"]}'
 	subl --background --command 'install_packages {"packages": ["LSP", "LSP-clangd", "LSP-SourceKit", "Swift Next", "CUDA C++"]}'
-	checked_copy LSP.sublime-settings ~/Library/Application\ Support/Sublime\ Text/Packages/User/LSP.sublime-settings
 	{ set +x; } 2>/dev/null
+	checked_copy LSP.sublime-settings ~/Library/Application\ Support/Sublime\ Text/Packages/User/LSP.sublime-settings
 	checked_copy LSP.sublime-settings ~/Library/Application\ Support/Sublime\ Text/Packages/User/LSP.sublime-settings
 	checked_copy LSP-SourceKit.sublime-settings ~/Library/Application\ Support/Sublime\ Text/Packages/User/LSP-SourceKit.sublime-settings
 	checked_copy LSP-clangd.sublime-settings ~/Library/Application\ Support/Sublime\ Text/Packages/User/LSP-clangd.sublime-settings
