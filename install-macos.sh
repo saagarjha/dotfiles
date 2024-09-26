@@ -276,7 +276,7 @@ ask "Install git?" && sudo port install git
 ask "Install nano?" && sudo port install nano
 ask "Install coreutils?" && sudo port install coreutils
 ask "Install jq?" && sudo port install jq
-ask "Install ag?" && sudo port install the_silver_searcher
+ask "Install ag?" && sudo port install the_silver_searcher && checked_copy ag ~/.local/share/bash-completion/completions/ag
 ask "Install fd?" && sudo port install fd
 ask "Install unxip?" && sudo port install unxip
 ask "Install cmake?" && sudo port install cmake
