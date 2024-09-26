@@ -106,7 +106,9 @@ function installpkg() {
 alias swift-demangle="xcrun swift-demangle"
 alias jekyll-preview="bundle exec jekyll serve --watch --safe"
 alias htop="sudo htop"
-alias ag="ag --color-match \"30;43\" --color-line-number \"31;31\" --color-path \"32;32\""
+function ag() {
+	command ag --mmap --color-match "30;43" --color-line-number "31;31" --color-path "32;32" --color "$@" | cut -c1-1000
+}
 alias more="less" # Sorry, Mark Nudelman!
 function gnutils() { # Use GNU tools over the system-provided BSD ones
 	export PATH="/opt/local/libexec/gnubin:$PATH"
