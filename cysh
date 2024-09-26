@@ -34,7 +34,7 @@ while true; do
         -o ServerAliveCountMax=4 \
         -o ServerAliveInterval=2 \
         -o TCPKeepAlive=no \
-    "$machine" bash -i -l -c "\"tmux -CC new-session -A -s $session\""
+    "$machine" bash -i -l -c "\"tmux -u -CC new-session -A -s $session\""
     case "$?" in
         (0) break;;
         (*) sleep 1;;
