@@ -14,5 +14,6 @@ ask "Install gdb?" && $SUDO apt install gdb
 ask "Install clang-format?" && $SUDO apt install clang-format
 ask "Install tig?" && $SUDO apt install tig
 ask "Install ag?" && $SUDO apt install silversearcher-ag && checked_copy ag ~/.local/share/bash-completion/completions/ag
+ask "Install fd?" && $SUDO apt install fd-find && ln -s "$(which fdfind)" ~/bin/fd
 
 true
