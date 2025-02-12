@@ -45,8 +45,7 @@ export ASAN_OPTIONS="debug=true:check_initialization_order=true:detect_stack_use
 export PATH="$PATH:/usr/local/sbin"
 
 # Python
-export PATH="$PATH:~/Library/Python/2.7/bin/"
-export PATH="$PATH:~/Library/Python/3.7/bin/"
+export PATH="$PATH:$(python3 -m site --user-base)/bin"
 if [[ -f /usr/local/bin/virtualenvwrapper_lazy.sh ]]; then
 	source /usr/local/bin/virtualenvwrapper_lazy.sh
 fi
