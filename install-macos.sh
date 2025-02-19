@@ -124,6 +124,7 @@ set_defaults() {
 	defaults write com.apple.dt.Xcode IDEIssueNavigatorDetailLevel -int 30 # Show up to 30 lines of detail in the issue navigator
 	defaults write com.apple.dt.Xcode IDESearchNavigatorDetailLevel -int 30 # Show up to 30 lines of detail when searching
 	defaults write com.apple.dt.Xcode DVTEnableDockIconVersionNumber -bool YES # Show the build number in the app icon
+	defaults write com.apple.dt.Xcode DVTShowSDKVersions -string all # Show SDK versions in the app icon
 	defaults write com.apple.dt.Xcode ShowDVTDebugMenu -bool YES # Does the above, and show a debug menu, but useless because of the above an the latter has more checks
 	defaults write com.apple.dt.Xcode IDEIndexerActivityShowNumericProgress -bool true # Show details on indexing progress
 	
