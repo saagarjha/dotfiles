@@ -99,3 +99,6 @@ export STDERRED_BLACKLIST="^(gcc.*|g\+\+.*|clang.*)$"
 insert_libraries ~/.dotfiles/libfixnano
 
 unset -f insert_libraries
+
+export CUDA_HOME=/usr/local/cuda
+export PATH="$PATH:$CUDA_HOME/bin"
