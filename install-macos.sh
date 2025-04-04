@@ -302,6 +302,7 @@ ask "Setup Sublime Text?" && setup_sublime_text
 ask "Install fork?" && ln -s "/Applications/Fork.app/Contents/Resources/fork_cli" ~/bin/fork
 
 ask "Set up Touch ID sudo?" && setup_touch_id_sudo
+ask "Set boot args?" && sudo nvram boot-args="-v -arm64e_preview_abi keepsyms=1 debug=0x104c44"
 
 ask "Install sysctl modifications?" && checked_copy sysctl.plist /Library/LaunchDaemons
 ask "Install hyper key remap?" && install_hyper_remap
