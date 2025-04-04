@@ -175,6 +175,10 @@ set_defaults() {
 	defaults write com.DanPristupov.Fork diffShowHiddenSymbols -bool YES # Show whitespace
 	defaults write com.DanPristupov.Fork diffFontName -string SFMono-Regular # Font to use
 	killall Fork 2> /dev/null
+
+	# Hammerspoon
+	defaults write org.hammerspoon.Hammerspoon MJShowMenuIconKey -bool NO
+	killall Hammerspoon 2> /dev/null
 	
 	{ set +x; } 2>/dev/null
 }
