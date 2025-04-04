@@ -24,6 +24,7 @@ setup_git_ports() {
 		cd macports-ports
 		git remote add macports https://github.com/macports/macports-ports.git || true
 		git fetch macports
+		git checkout master
 		git branch --set-upstream-to=macports/master
 		git pull macports master --rebase --autostash
 	)
