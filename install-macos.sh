@@ -243,6 +243,14 @@ install_xcodebuild_silencer() {
 	install_launch_daemon com.saagarjha.XcodebuildSilencer.plist
 }
 
+install_fix_processor_trace() {
+	install_library_injector
+	set -x
+	xcrun clang fix_processor_trace.c -shared -arch arm64e -arch arm64 -arch x86_64 -o libfix_processor_trace.dylib
+	{ set +x; } 2>/dev/null
+	install_launch_daemon com.saagarjha.FixProcessorTrace.plist
+}
+
 setup_sublime_text() {
 	set -x
 	subl --background --command 'install_package_control'
@@ -317,5 +325,6 @@ ask "Install force full desktop bar?" && install_force_full_desktop_bar
 ask "Install iOS scaler?" && install_ios_scaler
 ask "Install disable diagnostics reporter?" && install_disable_diagnostics_reporter
 ask "Install xcodebuild silencer?" && install_xcodebuild_silencer
+ask "Install fix processor trace?" && install_fix_processor_trace
 
 true
