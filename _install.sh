@@ -135,6 +135,7 @@ ask "Copy clang-format?" && checked_copy .clang-format ~/.clang-format
 ask "Copy gitconfig?" && checked_copy .gitconfig ~/.gitconfig
 ask "Copy gitattributes?" && checked_copy .gitattributes ~/.gitattributes
 ask "Copy tigrc?" && checked_copy .tigrc ~/.tigrc
+ask "Copy gdu config?" && checked_copy .gdu.yaml ~/.gdu.yaml
 if [ ! -d ~/.config ]; then
 	set -x
 	mkdir ~/.config || true

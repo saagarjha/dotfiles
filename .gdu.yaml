@@ -1,0 +1,3 @@
+style:
+    progress-modal:
+        current-item-path-max-len: 300
