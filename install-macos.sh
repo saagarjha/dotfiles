@@ -318,7 +318,7 @@ ask "Set up Touch ID sudo?" && setup_touch_id_sudo
 ask "Set boot args?" && sudo nvram boot-args="-v -arm64e_preview_abi keepsyms=1 debug=0x104c44"
 ask "Disable library validation?" && sudo defaults write /Library/Preferences/com.apple.security.libraryvalidation.plist DisableLibraryValidation -bool YES
 
-ask "Install sysctl modifications?" && checked_copy sysctl.plist /Library/LaunchDaemons
+ask "Install sysctl modifications?" && checked_copy sysctl.plist /Library/LaunchDaemons/sysctl.plist
 ask "Install hyper key remap?" && install_hyper_remap
 ask "Install enable tailspin?" && checked_copy com.saagarjha.EnableTailspin.plist ~/Library/LaunchAgents/com.saagarjha.EnableTailspin.plist && launchctl load ~/Library/LaunchAgents/com.saagarjha.EnableTailspin.plist
 ask "Install force full desktop bar?" && install_force_full_desktop_bar
