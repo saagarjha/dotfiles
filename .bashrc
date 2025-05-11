@@ -94,6 +94,10 @@ function dyld_hopper() {
 	hopper "$(find "$dylib_dir" -type f | fzy)"
 }
 alias ghidra='java -cp /Applications/Ghidra.app/Contents/Resources/ OpenGhidra'
+function binja() {
+	xattr -d com.apple.quarantine "$1" 2> /dev/null
+	open "$1" -a "Binary Ninja"
+}
 function appbundleid() {
 	/usr/libexec/PlistBuddy -c 'Print CFBundleIdentifier' "$1/Contents/Info.plist"
 }
