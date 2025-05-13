@@ -9,3 +9,6 @@ set blink-matching-paren on
 
 # reverse-i-search but using the current text, if any, as the search string.
 "\C-/": "\C-a\C-r\C-y\C-r"
+
+# Don't edit history when using reverse-i-search
+set revert-all-at-newline on
