@@ -7,7 +7,7 @@
 	<key>ProgramArguments</key>
 	<array>
 		<string>/usr/bin/sysctl</string>
-		<string>security.mac.amfi.verbose_logging=1</string>
+		<string>security.mac.amfi.verbose_logging=3</string>
 	</array>
 	<key>UserName</key>
 	<string>root</string>
