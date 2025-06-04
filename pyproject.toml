@@ -1,0 +1,5 @@
+[tool.ruff]
+indent-width = 4
+
+[tool.ruff.format]
+indent-style = "tab"
