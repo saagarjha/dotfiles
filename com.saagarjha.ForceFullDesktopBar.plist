@@ -4,6 +4,8 @@
 <dict>
 	<key>Label</key>
 	<string>com.saagarjha.ForceFullDesktopBar</string>
+	<key>Disabled</key>
+	<false/>
 	<key>ProgramArguments</key>
 	<array>
 		<string>/Users/saagarjha/bin/library_injector</string>

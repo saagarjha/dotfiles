@@ -12,7 +12,7 @@
 static int mouseOverrideCount;
 
 static Swizzler<void, id, long long> Dock_WVExpose_changeMode_ {
-	NSClassFromString(@"WVExpose"), @selector(changeMode:), [](auto self, auto mode) {
+	NSClassFromString(@"DockCore.WVExpose"), @selector(changeMode:), [](auto self, auto mode) {
 		if (mode == 1) {
 			mouseOverrideCount = 1;
 		}
