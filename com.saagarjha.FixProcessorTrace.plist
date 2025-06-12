@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>com.saagarjha.iOSScaler</string>
+	<string>com.saagarjha.FixProcessorTrace</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>/Users/saagarjha/bin/library_injector</string>
