@@ -42,6 +42,7 @@ set_defaults() {
 	defaults write com.apple.dock slow-motion-allowed -bool YES # Enable slow motion when pressing modifier keys
 	defaults write com.apple.dock mineffect -string suck # Use the suck animation for minimization
 	defaults write com.apple.dock show-recents -bool NO # Disable recent apps
+	defaults write com.apple.dock no-bouncing -bool YES # No bouncing the Dock icon
 	# Use list for Downloads folder dock tile
 	killall Dock 2> /dev/null
 	
