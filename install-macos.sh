@@ -326,7 +326,7 @@ ask "Setup Sublime Text?" && setup_sublime_text
 ask "Install fork?" && ln -s "/Applications/Fork.app/Contents/Resources/fork_cli" ~/bin/fork
 
 ask "Set up Touch ID sudo?" && setup_touch_id_sudo
-ask "Set boot args?" && sudo nvram boot-args="-v -arm64e_preview_abi keepsyms=1 debug=0x104c44"
+ask "Set boot args?" && sudo nvram boot-args="-v keepsyms=1 debug=0x104c44"
 ask "Disable library validation?" && sudo defaults write /Library/Preferences/com.apple.security.libraryvalidation.plist DisableLibraryValidation -bool YES
 
 ask "Install sysctl modifications?" && checked_copy sysctl.plist /Library/LaunchDaemons/sysctl.plist
