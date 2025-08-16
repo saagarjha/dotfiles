@@ -78,6 +78,26 @@
 				<key>Alternate</key>
 				<string>NO</string>
 				<key>CommandID</key>
+				<string>IDESourceEditorExtension:com.saagarjha.SFSEE.Extension,IDESourceEditorExtensionCommand:com.saagarjha.SFSEE.Extension.SourceEditorCommand</string>
+				<key>Group</key>
+				<string>Editor Menu for Source Code</string>
+				<key>GroupID</key>
+				<string>Xcode.IDEPegasusSourceEditor.MenuDefinition.Editor</string>
+				<key>GroupedAlternate</key>
+				<string>NO</string>
+				<key>Navigation</key>
+				<string>NO</string>
+				<key>Parent Title</key>
+				<string>Extension</string>
+				<key>Title</key>
+				<string>Format</string>
+			</dict>
+			<dict>
+				<key>Action</key>
+				<string>_invokeSourceEditorExtensionCommand:</string>
+				<key>Alternate</key>
+				<string>NO</string>
+				<key>CommandID</key>
 				<string>IDESourceEditorExtension:com.saagarjha.Swimat.Swimat-Extension,IDESourceEditorExtensionCommand:com.saagarjha.Swimat.Swimat-Extension.SourceEditorCommand</string>
 				<key>Group</key>
 				<string>Editor Menu for Source Code</string>
@@ -137,6 +157,8 @@
 				<string>findInWorkspace:</string>
 				<key>Alternate</key>
 				<string>NO</string>
+				<key>CommandGroupID</key>
+				<string>Xcode.IDEKit.CmdDefinition.FindInWorkspace</string>
 				<key>CommandID</key>
 				<string>Xcode.IDEKit.CmdDefinition.FindInWorkspace</string>
 				<key>Group</key>
@@ -154,29 +176,11 @@
 			</dict>
 			<dict>
 				<key>Action</key>
-				<string>newPlayground:</string>
-				<key>Alternate</key>
-				<string>NO</string>
-				<key>CommandID</key>
-				<string>Xcode.IDEKit.CmdDefinition.NewPlayground</string>
-				<key>Group</key>
-				<string>File Menu</string>
-				<key>GroupID</key>
-				<string>Xcode.IDEKit.MenuDefinition.Main</string>
-				<key>GroupedAlternate</key>
-				<string>NO</string>
-				<key>Navigation</key>
-				<string>NO</string>
-				<key>Parent Title</key>
-				<string>New</string>
-				<key>Title</key>
-				<string>Playground…</string>
-			</dict>
-			<dict>
-				<key>Action</key>
 				<string>newTarget:</string>
 				<key>Alternate</key>
 				<string>NO</string>
+				<key>CommandGroupID</key>
+				<string>Xcode.IDEKit.CmdDefinition.NewTarget</string>
 				<key>CommandID</key>
 				<string>Xcode.IDEKit.CmdDefinition.NewTarget</string>
 				<key>Group</key>
@@ -196,27 +200,11 @@
 			</dict>
 			<dict>
 				<key>Action</key>
-				<string>runPageLayout:</string>
-				<key>Alternate</key>
-				<string>NO</string>
-				<key>CommandID</key>
-				<string>Xcode.IDEKit.CmdDefinition.PageSetup</string>
-				<key>Group</key>
-				<string>File Menu</string>
-				<key>GroupID</key>
-				<string>Xcode.IDEKit.MenuDefinition.Main</string>
-				<key>GroupedAlternate</key>
-				<string>NO</string>
-				<key>Navigation</key>
-				<string>NO</string>
-				<key>Title</key>
-				<string>Page Setup…</string>
-			</dict>
-			<dict>
-				<key>Action</key>
 				<string>printDocument:</string>
 				<key>Alternate</key>
 				<string>NO</string>
+				<key>CommandGroupID</key>
+				<string>Xcode.IDEKit.CmdDefinition.Print</string>
 				<key>CommandID</key>
 				<string>Xcode.IDEKit.CmdDefinition.Print</string>
 				<key>Group</key>
@@ -235,6 +223,8 @@
 				<string>windowMenu_showProducts:</string>
 				<key>Alternate</key>
 				<string>NO</string>
+				<key>CommandGroupID</key>
+				<string>Xcode.IDEKit.CmdDefinition.Products</string>
 				<key>CommandID</key>
 				<string>Xcode.IDEKit.CmdDefinition.Products</string>
 				<key>Group</key>
@@ -255,6 +245,8 @@
 				<string>revealInDebugNavigator:</string>
 				<key>Alternate</key>
 				<string>NO</string>
+				<key>CommandGroupID</key>
+				<string>Xcode.IDEKit.CmdDefinition.RevealInDebugNavigator</string>
 				<key>CommandID</key>
 				<string>Xcode.IDEKit.CmdDefinition.RevealInDebugNavigator</string>
 				<key>Group</key>
@@ -275,6 +267,8 @@
 				<string>showDocumentItemsMenu:</string>
 				<key>Alternate</key>
 				<string>NO</string>
+				<key>CommandGroupID</key>
+				<string>Xcode.IDEKit.CmdDefinition.ShowDocumentItemsMenu</string>
 				<key>CommandID</key>
 				<string>Xcode.IDEKit.CmdDefinition.ShowDocumentItemsMenu</string>
 				<key>Group</key>
@@ -291,6 +285,26 @@
 				<string>Editor</string>
 				<key>Title</key>
 				<string>Show Document Items</string>
+			</dict>
+			<dict>
+				<key>Action</key>
+				<string>togglePinSelectedEditorTab:</string>
+				<key>Alternate</key>
+				<string>NO</string>
+				<key>CommandGroupID</key>
+				<string>Xcode.IDEKit.CmdDefinition.TogglePinSelectedEditorTab</string>
+				<key>CommandID</key>
+				<string>Xcode.IDEKit.CmdDefinition.TogglePinSelectedEditorTab</string>
+				<key>Group</key>
+				<string>View Menu</string>
+				<key>GroupID</key>
+				<string>Xcode.IDEKit.MenuDefinition.Main</string>
+				<key>GroupedAlternate</key>
+				<string>NO</string>
+				<key>Navigation</key>
+				<string>NO</string>
+				<key>Title</key>
+				<string>Pin Editor Tab</string>
 			</dict>
 		</array>
 		<key>Version</key>
