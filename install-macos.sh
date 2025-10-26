@@ -145,6 +145,7 @@ set_defaults() {
 	defaults write -g com.apple.sound.beep.feedback -bool YES # Make noise when using the volume keys
 	# AppKit
 	defaults write -g _NS_4445425547 -bool YES # Show an internal AppKit debug menu
+	defaults write com.installbuilder.appinstaller _NS_4445425547 -bool NO # Turn it off for the IDA Pro installer (crashes)
 	# Universal Access
 	defaults write com.apple.universalaccess showWindowTitlebarIcons -bool YES # Show proxy icon in titlebar
 	./zoom_enable.sh # Enable scroll to accessibility zoom
