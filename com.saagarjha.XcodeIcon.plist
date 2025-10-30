@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>com.saagarjha.InternalXcoe</string>
+	<string>com.saagarjha.XcodeIcon</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>/Users/saagarjha/bin/library_injector</string>
-		<string>/Users/saagarjha/.dotfiles/libinternal_xcode.dylib</string>
+		<string>/Users/saagarjha/.dotfiles/libxcode_icon.dylib</string>
 		<string>Xcode$</string>
 	</array>
 	<key>RunAtLoad</key>

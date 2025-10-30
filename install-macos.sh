@@ -255,12 +255,12 @@ install_unfiltered_process_list() {
 	install_launch_daemon com.saagarjha.UnfilteredProcessList.plist
 }
 
-install_internal_xcode() {
+install_xcode_icon() {
 	install_library_injector
 	set -x
-	xcrun clang internal_xcode.c -shared -arch arm64e -arch arm64 -arch x86_64 -o libinternal_xcode.dylib
+	xcrun clang xcode_icon.m -framework AppKit -shared -arch arm64e -arch arm64 -arch x86_64 -o libxcode_icon.dylib
 	{ set +x; } 2>/dev/null
-	install_launch_daemon com.saagarjha.InternalXcode.plist
+	install_launch_daemon com.saagarjha.XcodeIcon.plist
 }
 
 setup_sublime_text() {
@@ -338,6 +338,6 @@ ask "Install iOS scaler?" && install_ios_scaler
 ask "Install disable diagnostics reporter?" && install_disable_diagnostics_reporter
 ask "Install xcodebuild silencer?" && install_xcodebuild_silencer
 ask "Install unfiltered process list?" && install_unfiltered_process_list
-ask "Install internal Xcode?" && install_internal_xcode
+ask "Install Xcode icon?" && install_xcode_icon
 
 true

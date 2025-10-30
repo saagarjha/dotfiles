@@ -5,6 +5,6 @@ libios_scaler.dylib
 libdisable_diagnostics_reporter.dylib
 libxcodebuild_silencer.dylib
 libunfiltered_process_list.dylib
-libinternal_xcode.dylib
+libxcode_icon.dylib
 remap_hyper
 karabiner/automatic_backups
