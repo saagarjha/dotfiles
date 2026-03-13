@@ -16,27 +16,28 @@ shift 1
 #user=${machine%@*}
 #addr=$(lookup_host "${machine#*@}")
 
-if [[ $1 == "-l" ]]; then
-    ssh "$machine" "tmux list-sessions"
-    exit 0
+if [[ $machine == "-l" ]]; then
+	machine=$1
+	ssh "$machine" "tmux list-sessions"
+	exit 0
 fi
 
 if [[ $1 =~ \^.* ]]; then
-    session=${1#^}
-    shift 1
+	session=${1#^}
+	shift 1
 else
-    session=$(date -u +"%Y%m%d%H%M%S")
+	session=$(date -u +"%Y%m%d%H%M%S")
 fi
 
 while true; do
-    ssh "$machine" "$@" -t -e none \
-        -o ConnectTimeout=2 \
-        -o ServerAliveCountMax=4 \
-        -o ServerAliveInterval=2 \
-        -o TCPKeepAlive=no \
-    bash -i -l -c "\"tmux -u -CC new-session -A -s $session\""
-    case "$?" in
-        (0) break;;
-        (*) sleep 1;;
-    esac
+	ssh "$machine" "$@" -t -e none \
+		-o ConnectTimeout=2 \
+		-o ServerAliveCountMax=4 \
+		-o ServerAliveInterval=2 \
+		-o TCPKeepAlive=no \
+	bash -i -l -c "\"tmux -u -CC set-option -g history-limit 42069 \; new-session -A -s $session\""
+	case "$?" in
+		(0) break;;
+		(*) sleep 1;;
+	esac
 done
