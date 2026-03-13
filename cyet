@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# set -x
+
+machine=$1
+shift 1
+
+if [[ $machine == "-l" ]]; then
+	machine=$1
+	ssh "$machine" "tmux list-sessions"
+	exit 0
+fi
+
+if [[ $1 =~ \^.* ]]; then
+	session=${1#^}
+	shift 1
+else
+	session=$(date -u +"%Y%m%d%H%M%S")
+fi
+
+et "$machine" "$@" -c "bash -i -l -c 'tmux -u -CC set-option -g history-limit 42069 \\; new-session -A -s $session'"
