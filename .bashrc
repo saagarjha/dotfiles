@@ -63,35 +63,11 @@ if [[ -d ~/.ssl ]]; then
 fi
 
 alias wolfram='/Applications/Mathematica.app/Contents/MacOS/WolframKernel'
-alias hdstart='start-dfs.sh && start-yarn.sh'
-alias hdstop='stop-dfs.sh && stop-yarn.sh'
-alias hdrestart='hdstop && hdstart'
-alias hdrm='hdfs dfs -rm -r /user/saagarjha/output'
-function hdc() {
-	hadoop com.sun.tools.javac.Main $1.java ${@:2}
-}
-function hdj() {
-	jar cf $1.jar $1*.class
-}
-function hdr {
-	hadoop jar $1.jar ${@:2}
-}
-function hd {
-	hdrm; hdc $1 && hdj $1 && hdr $@
-}
-alias tigcc='tigcc -Os'
-alias hopperv3='/usr/local/bin/hopper -e'
-# alias hopper='hopperv4 -e'
 function hopper() {
 	local dil="$DYLD_INSERT_LIBRARIES"
 	unset DYLD_INSERT_LIBRARIES
 	hopperv4 -e "$@"
 	export DYLD_INSERT_LIBRARIES="$dil"
-}
-function dyld_hopper() {
-	local dylib_dir="$(mktemp -d)" && \
-	dyld_shared_cache_util -extract_matching "$1" "$dylib_dir" "$(find /System/Library/dyld | fzy)" && \
-	hopper "$(find "$dylib_dir" -type f | fzy)"
 }
 alias ghidra='java -cp /Applications/Ghidra.app/Contents/Resources/ OpenGhidra'
 function binja() {
@@ -128,10 +104,6 @@ fi
 export DYLD_CRYPTEX=/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld
 alias xcbopen="open -a Xcode-beta"
 alias xc-open="open -a Xcode"
-function adb-paste() {
-	adb shell "am startservice ca.zgrs.clipper/.ClipboardService && am broadcast -a clipper.set -e text '$1'"
-}
-alias spim="spim -f"
 alias sysdiagnose="sudo sysdiagnose -v"
 function xed() {
 	if [[ $# == 1 ]]; then
@@ -139,12 +111,6 @@ function xed() {
 	else
 		xed "$PWD"
 	fi
-}
-function gitup() {
-	(
-		cd "$1"
-		command gitup
-	)
 }
 function macports() {
 	cat <(echo "macOS $(sw_vers -productVersion) $(sw_vers -buildVersion)") <(echo "Xcode $(xcodebuild -version | awk '{print $NF}' | tr '\n' ' ')") | pbcopy

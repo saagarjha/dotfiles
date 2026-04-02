@@ -46,9 +46,6 @@ export PATH="$PATH:/usr/local/sbin"
 
 # Python
 export PATH="$PATH:$(python3 -m site --user-base)/bin"
-if [[ -f /usr/local/bin/virtualenvwrapper_lazy.sh ]]; then
-	source /usr/local/bin/virtualenvwrapper_lazy.sh
-fi
 
 # Ruby
 if [[ -x "$(which ruby 2> /dev/null)" ]]; then
