@@ -15,6 +15,7 @@
 @end
 
 __attribute__((constructor)) static void init() {
+	unsetenv("DYLD_INSERT_LIBRARIES");
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[NSApplication adjustApplicationIconWithAppVersion:((DVTToolsInfo *)[NSClassFromString(@"DVTToolsInfo") toolsInfo]).toolsBuildVersion.name];
 	});
