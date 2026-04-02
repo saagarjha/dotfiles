@@ -247,14 +247,6 @@ install_xcodebuild_silencer() {
 	install_launch_daemon com.saagarjha.XcodebuildSilencer.plist
 }
 
-install_unfiltered_process_list() {
-	install_library_injector
-	set -x
-	xcrun clang++ -std=c++20 unfiltered_process_list.mm -framework Foundation -shared -arch arm64e -arch arm64 -arch x86_64 -o libunfiltered_process_list.dylib
-	{ set +x; } 2>/dev/null
-	install_launch_daemon com.saagarjha.UnfilteredProcessList.plist
-}
-
 install_xcode_icon() {
 	install_library_injector
 	set -x
@@ -337,7 +329,6 @@ ask "Install force full desktop bar?" && install_force_full_desktop_bar
 ask "Install iOS scaler?" && install_ios_scaler
 ask "Install disable diagnostics reporter?" && install_disable_diagnostics_reporter
 ask "Install xcodebuild silencer?" && install_xcodebuild_silencer
-ask "Install unfiltered process list?" && install_unfiltered_process_list
 ask "Install Xcode icon?" && install_xcode_icon
 
 true
