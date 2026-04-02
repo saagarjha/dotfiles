@@ -7,3 +7,4 @@ libxcodebuild_silencer.dylib
 libxcode_icon.dylib
 remap_hyper
 karabiner/automatic_backups
+*.dSYM
