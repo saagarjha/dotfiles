@@ -151,6 +151,7 @@ ask "Install git-_diff-pager?" && checked_copy git-_diff-pager ~/bin/git-_diff-p
 ask "Install _nano-clang-format?" && checked_copy _nano-clang-format ~/bin/_nano-clang-format
 ask "Install cysh?" && checked_copy cysh ~/bin/cysh
 ask "Install cyet?" && checked_copy cyet ~/bin/cyet
+ask "Install claude-docker?" && checked_copy claude-docker ~/bin/claude-docker
 ask "Install clangd config?" && case "$OS" in
 	"macOS")
 		checked_copy config.yaml ~/Library/Preferences/clangd/config.yaml

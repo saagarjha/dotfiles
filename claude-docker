@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+vol=()
+
+case "$#" in
+  1) dir="$(cd "$1" && pwd)"; vol=(-v "$dir:/root/$(basename "$dir"):ro") ;;
+  2) dir="$(cd "$2" && pwd)"; vol=(-v "$dir:/root/$(basename "$dir"):$1") ;;
+esac
+
+docker build -q -t claude --build-arg ANTHROPIC_API_KEY="$ANTHROPIC_API_KEY" - <<'DOCKERFILE'
+FROM ubuntu
+RUN apt update && apt install -y curl tmux
+RUN curl -fsSL https://claude.ai/install.sh | bash
+RUN echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+ARG ANTHROPIC_API_KEY
+ENV ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+ENV IS_SANDBOX=1
+ENV LANG=C.UTF-8
+RUN KEY_SUFFIX=$(echo "${ANTHROPIC_API_KEY}" | tail -c 21) && \
+    echo "{\n\
+  \"customApiKeyResponses\": {\"approved\": [\"${KEY_SUFFIX}\"]},\n\
+  \"hasCompletedOnboarding\": true,\n\
+  \"bypassPermissionsModeAccepted\": true,\n\
+  \"projects\": {\"/root\": {\"hasTrustDialogAccepted\": true}}\n\
+}" > /root/.claude.json
+RUN echo "claude --dangerously-skip-permissions" >> ~/.bash_history
+WORKDIR /root
+CMD [ "/usr/bin/tmux", "-CC" ]
+DOCKERFILE
+
+docker run -it "${vol[@]}" claude
