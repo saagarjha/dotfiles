@@ -24,9 +24,12 @@ if [[ -f ~/.tokens ]]; then
 	. ~/.tokens
 fi
 
-if [[ -f ~/.fzy && -t 1 ]]; then
-	. ~/.fzy
-fi
+
+function fzy_history() {
+	HISTTIMEFORMAT= history | LC_ALL=C sed 's/^[ ]*[0-9]\{1,\}[ ]*//' | fzy -q "$1"
+}
+
+bind '"\C-g": "\C-a`fzy_history \C-e`\e\C-e\C-l"'
 
 if [[ -t 1 && -e "${HOME}/.iterm2_shell_integration.bash" ]]; then
 	. "${HOME}/.iterm2_shell_integration.bash"

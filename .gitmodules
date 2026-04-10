@@ -22,3 +22,6 @@
 [submodule "macports-ports"]
 	path = macports-ports
 	url = https://github.com/saagarjha/macports-ports.git
+[submodule "fzy"]
+	path = fzy
+	url = https://github.com/saagarjha/fzy.git

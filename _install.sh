@@ -67,6 +67,16 @@ install_stderred() {
 	export LD_PRELOAD="$ld_preload"
 }
 
+install_fzy() {
+	git submodule update --init fzy
+	set -x
+	cd fzy
+	make
+	checked_copy fzy ~/bin/fzy
+	cd ..
+	{ set +x; } 2>/dev/null
+}
+
 install_fixnano() {
 	case "$OS" in
 		"macOS")
@@ -161,4 +171,5 @@ ask "Install clangd config?" && case "$OS" in
 		;;
 esac
 ask "Install stderred?" && install_stderred
+ask "Install fzy?" && install_fzy
 ask "Install nano fixes?" && install_fixnano
