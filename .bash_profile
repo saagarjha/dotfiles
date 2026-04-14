@@ -32,6 +32,7 @@ function fzy_history() {
 bind '"\C-g": "\C-a`fzy_history \C-e`\e\C-e\C-l"'
 
 if [[ -t 1 && -e "${HOME}/.iterm2_shell_integration.bash" ]]; then
+	export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=1
 	. "${HOME}/.iterm2_shell_integration.bash"
 fi
 
