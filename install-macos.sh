@@ -178,6 +178,8 @@ set_defaults() {
 	defaults write com.DanPristupov.Fork pageGuideLinePosition -int 72 # Commit message body column
 	defaults write com.DanPristupov.Fork diffShowHiddenSymbols -bool YES # Show whitespace
 	defaults write com.DanPristupov.Fork diffFontName -string SFMono-Regular # Font to use
+	defaults write com.DanPristupov.Fork gitInstance -int 2 # Use custom Git wrapper
+	defaults write com.DanPristupov.Fork customGitInstancePath "$HOME/.dotfiles/fork-git/bin/git"
 	killall Fork 2> /dev/null
 
 	# Hammerspoon
