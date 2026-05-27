@@ -11,6 +11,7 @@ fi
 ask "Install bash-completion" && $SUDO apt install bash-completion
 ask "Install build-essential?" && $SUDO apt install build-essential
 ask "Install cmake?" && $SUDO apt install cmake
+ask "Install nano?" && $SUDO apt install nano
 ask "Install gdb?" && $SUDO apt install gdb
 ask "Install clang-format?" && $SUDO apt install clang-format
 ask "Install tig?" && $SUDO apt install tig
