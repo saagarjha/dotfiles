@@ -9,23 +9,19 @@ case "$#" in
   2) dir="$(cd "$2" && pwd)"; vol=(-v "$dir:/root/$(basename "$dir"):$1") ;;
 esac
 
-docker build -t claude --build-arg ANTHROPIC_API_KEY="$ANTHROPIC_API_KEY" - <<'DOCKERFILE'
+docker build -t claude - <<'DOCKERFILE'
 FROM ubuntu
 RUN apt update && DEBIAN_FRONTEND=noninteractive apt -y install tzdata
 RUN apt install -y curl tmux git sudo
 RUN curl -fsSL https://claude.ai/install.sh | bash
 RUN echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
-ARG ANTHROPIC_API_KEY
-ENV ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
 ENV IS_SANDBOX=1
 ENV LANG=C.UTF-8
-RUN KEY_SUFFIX=$(echo "${ANTHROPIC_API_KEY}" | tail -c 21) && \
-    echo "{\n\
-  \"customApiKeyResponses\": {\"approved\": [\"${KEY_SUFFIX}\"]},\n\
-  \"hasCompletedOnboarding\": true,\n\
-  \"bypassPermissionsModeAccepted\": true,\n\
-  \"projects\": {\"/root\": {\"hasTrustDialogAccepted\": true}}\n\
-}" > /root/.claude.json
+RUN echo '{\n\
+  "hasCompletedOnboarding": true,\n\
+  "bypassPermissionsModeAccepted": true,\n\
+  "projects": {"/root": {"hasTrustDialogAccepted": true}}\n\
+}' > /root/.claude.json
 RUN git clone https://github.com/saagarjha/dotfiles /root/.dotfiles
 WORKDIR /root/.dotfiles
 RUN yes | ./_install.sh
@@ -34,4 +30,10 @@ WORKDIR /root
 CMD [ "/usr/bin/tmux", "-CC" ]
 DOCKERFILE
 
-docker run -it "${vol[@]}" claude
+creds="$(mktemp)"
+trap 'rm -f "$creds"' EXIT
+security find-generic-password -s "Claude Code-credentials" -w > "$creds"
+
+docker run -it \
+  -v "$creds:/root/.claude/.credentials.json:ro" \
+  "${vol[@]}" claude
