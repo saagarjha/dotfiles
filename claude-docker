@@ -4,10 +4,15 @@ set -euo pipefail
 
 vol=()
 
-case "$#" in
-  1) dir="$(cd "$1" && pwd)"; vol=(-v "$dir:/root/$(basename "$dir"):ro") ;;
-  2) dir="$(cd "$2" && pwd)"; vol=(-v "$dir:/root/$(basename "$dir"):$1") ;;
-esac
+for arg; do
+  case "$arg" in
+    ro:*) mode=ro; path="${arg#ro:}" ;;
+    rw:*) mode=rw; path="${arg#rw:}" ;;
+    *)    mode=ro; path="$arg" ;;
+  esac
+  dir="$(cd "$path" && pwd)"
+  vol+=(-v "$dir:/root/$(basename "$dir"):$mode")
+done
 
 docker build -t claude - <<'DOCKERFILE'
 FROM ubuntu
@@ -25,15 +30,19 @@ RUN echo '{\n\
 RUN git clone https://github.com/saagarjha/dotfiles /root/.dotfiles
 WORKDIR /root/.dotfiles
 RUN yes | ./_install.sh
+RUN echo 'echo "/root/shared is mounted from host: $HOST_SCRATCH"' >> ~/.bashrc
 RUN echo "claude --dangerously-skip-permissions" >> ~/.bash_history_noclobber
 WORKDIR /root
 CMD [ "/usr/bin/tmux", "-CC" ]
 DOCKERFILE
 
 creds="$(mktemp)"
-trap 'rm -f "$creds"' EXIT
+scratch="$(mktemp -d)"
+trap 'rm -f "$creds"; rm -rf "$scratch"' EXIT
 security find-generic-password -s "Claude Code-credentials" -w > "$creds"
 
 docker run -it \
+  -e HOST_SCRATCH="$scratch" \
   -v "$creds:/root/.claude/.credentials.json:ro" \
+  -v "$scratch:/root/shared" \
   "${vol[@]}" claude
