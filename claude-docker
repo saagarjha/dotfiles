@@ -3,21 +3,52 @@
 set -euo pipefail
 
 vol=()
+binja=
 
 for arg; do
   case "$arg" in
-    ro:*) mode=ro; path="${arg#ro:}" ;;
-    rw:*) mode=rw; path="${arg#rw:}" ;;
-    *)    mode=ro; path="$arg" ;;
+    --binja) binja=1; continue ;;
+    --*)     echo "unknown flag: $arg" >&2; exit 1 ;;
+    ro:*)    mode=ro; path="${arg#ro:}" ;;
+    rw:*)    mode=rw; path="${arg#rw:}" ;;
+    *)       mode=ro; path="$arg" ;;
   esac
   dir="$(cd "$path" && pwd)"
   vol+=(-v "$dir:/root/$(basename "$dir"):$mode")
 done
 
-docker build -t claude - <<'DOCKERFILE'
+license="$HOME/.dotfiles/.dotfiles/license.dat"
+
+build=()
+run=()
+tools=()
+if [ "$binja" ]; then
+  tools+=(binja)
+  build=(--secret id=bnlicense,src="$license")
+  run=(-v "$license:/root/.binaryninja/license.dat:ro")
+fi
+
+tag=claude
+[ ${#tools[@]} -gt 0 ] && tag+="-$(IFS=-; echo "${tools[*]}")"
+
+{
+cat <<'DOCKERFILE'
 FROM ubuntu
 RUN apt update && DEBIAN_FRONTEND=noninteractive apt -y install tzdata
 RUN apt install -y curl tmux git sudo
+DOCKERFILE
+
+[ "$binja" ] && cat <<'DOCKERFILE'
+RUN apt install -y python3 openssl
+RUN --mount=type=secret,id=bnlicense \
+    curl -fsSL https://gist.githubusercontent.com/saagarjha/ae93a2a404ea8cec1acfc0bb0d85c9e5/raw/bn_install.py -o /tmp/bn_install.py && \
+    python3 /tmp/bn_install.py /run/secrets/bnlicense /opt/binaryninja --platform linux-arm && \
+    python3 /opt/binaryninja/scripts/install_api.py
+ENV PATH="/opt/binaryninja:$PATH"
+ENV PYTHONPATH="/opt/binaryninja/python"
+DOCKERFILE
+
+cat <<'DOCKERFILE'
 RUN curl -fsSL https://claude.ai/install.sh | bash
 RUN echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
 ENV IS_SANDBOX=1
@@ -35,6 +66,7 @@ RUN echo "claude --dangerously-skip-permissions" >> ~/.bash_history_noclobber
 WORKDIR /root
 CMD [ "/usr/bin/tmux", "-CC" ]
 DOCKERFILE
+} | docker build -t "$tag" "${build[@]}" -
 
 creds="$(mktemp)"
 scratch="$(mktemp -d)"
@@ -45,4 +77,4 @@ docker run -it \
   -e HOST_SCRATCH="$scratch" \
   -v "$creds:/root/.claude/.credentials.json:ro" \
   -v "$scratch:/root/shared" \
-  "${vol[@]}" claude
+  "${run[@]}" "${vol[@]}" "$tag"
