@@ -68,13 +68,11 @@ CMD [ "/usr/bin/tmux", "-CC" ]
 DOCKERFILE
 } | docker build -t "$tag" "${build[@]}" -
 
-creds="$(mktemp)"
 scratch="$(mktemp -d)"
-trap 'rm -f "$creds"; rm -rf "$scratch"' EXIT
-security find-generic-password -s "Claude Code-credentials" -w > "$creds"
+trap 'rm -rf "$scratch"' EXIT
 
 docker run -it \
   -e HOST_SCRATCH="$scratch" \
-  -v "$creds:/root/.claude/.credentials.json:ro" \
+  -e CLAUDE_CODE_OAUTH_TOKEN="$CLAUDE_CODE_OAUTH_TOKEN" \
   -v "$scratch:/root/shared" \
   "${run[@]}" "${vol[@]}" "$tag"
