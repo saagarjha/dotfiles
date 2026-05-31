@@ -58,6 +58,10 @@ RUN echo '{\n\
   "bypassPermissionsModeAccepted": true,\n\
   "projects": {"/root": {"hasTrustDialogAccepted": true}}\n\
 }' > /root/.claude.json
+RUN mkdir -p /root/.claude && echo '{\n\
+  "model": "opus",\n\
+  "theme": "auto"\n\
+}' > /root/.claude/settings.json
 RUN git clone https://github.com/saagarjha/dotfiles /root/.dotfiles
 WORKDIR /root/.dotfiles
 RUN yes | ./_install.sh
