@@ -8,6 +8,7 @@ else
 	SUDO=
 fi
 
+ask "Update apt?" && $SUDO apt update
 ask "Install bash-completion" && $SUDO apt install bash-completion
 ask "Install build-essential?" && $SUDO apt install build-essential
 ask "Install cmake?" && $SUDO apt install cmake
