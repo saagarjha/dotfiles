@@ -1,3 +1,4 @@
 settings set target.x86-disassembly-flavor intel
 settings set target.process.thread.step-out-avoid-nodebug false
 settings set show-dont-use-po-hint false
+settings set show-statusline false
