@@ -47,6 +47,11 @@ check_root()  {
 	fi
 }
 
+install_pi() {
+	git submodule update --init .pi/agent/extensions
+	checked_copy .pi/agent/extensions ~/.pi/agent/extensions
+}
+
 install_stderred() {
 	git submodule update --init stderred
 	dil="${DYLD_INSERT_LIBRARIES:-}"
@@ -170,6 +175,7 @@ ask "Install clangd config?" && case "$OS" in
 		checked_copy config.yaml ~/.config/clangd/config.yaml
 		;;
 esac
+ask "Install pi config?" && install_pi
 ask "Install stderred?" && install_stderred
 ask "Install fzy?" && install_fzy
 ask "Install nano fixes?" && install_fixnano

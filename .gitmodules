@@ -25,3 +25,6 @@
 [submodule "fzy"]
 	path = fzy
 	url = https://github.com/saagarjha/fzy.git
+[submodule ".pi/agent/extensions"]
+	path = .pi/agent/extensions
+	url = https://github.com/saagarjha/pi-extensions.git
