@@ -29,7 +29,7 @@ function fzy_history() {
 	HISTTIMEFORMAT= history | LC_ALL=C sed 's/^[ ]*[0-9]\{1,\}[ ]*//' | fzy -q "$1"
 }
 
-bind '"\C-g": "\C-a`fzy_history \C-e`\e\C-e\C-l"'
+[[ $- == *i* ]] && bind '"\C-g": "\C-a`fzy_history \C-e`\e\C-e\C-l"'
 
 if [[ -t 1 && -e "${HOME}/.iterm2_shell_integration.bash" ]]; then
 	export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=1
