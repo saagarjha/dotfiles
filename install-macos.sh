@@ -45,6 +45,9 @@ set_defaults() {
 	defaults write com.apple.dock no-bouncing -bool YES # No bouncing the Dock icon
 	# Use list for Downloads folder dock tile
 	killall Dock 2> /dev/null
+
+	# WindowManager
+	defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool NO # Disable click wallpaper to show desktop
 	
 	# Finder
 	defaults write com.apple.finder QLEnableTextSelection -bool YES # Enable text selection from Quick Look
