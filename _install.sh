@@ -146,7 +146,7 @@ case "$OS" in
 		;;
 esac
 ask "Copy gdbinit?" && checked_copy .gdbinit ~/.gdbinit
-ask "Copy lldbinit?" && checked_copy .gdbinit ~/.lldbinit
+ask "Copy lldbinit?" && checked_copy .lldbinit ~/.lldbinit
 ask "Copy clang-format?" && checked_copy .clang-format ~/.clang-format
 ask "Copy ruff config?" && checked_copy pyproject.toml ~/.config/ruff/pyproject.toml
 ask "Copy gitconfig?" && checked_copy .gitconfig ~/.gitconfig
